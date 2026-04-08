@@ -1,48 +1,48 @@
-import { Leaf, ShieldCheck, Clock, DollarSign, Trophy, Smartphone } from "lucide-react";
+import { Smartphone, ShieldCheck, DollarSign, Clock, ClipboardCheck, MessageSquare } from "lucide-react";
 
 const features = [
   {
-    icon: Leaf,
-    title: "Eco-Friendly Products",
-    description: "We use only non-toxic, environmentally safe cleaning products that are safe for kids and pets.",
+    icon: Smartphone,
+    title: "Simple Booking",
+    description: "Book in minutes online, 24/7, no phone call required.",
   },
   {
     icon: ShieldCheck,
-    title: "Background-Checked Pros",
-    description: "Every team member is thoroughly vetted, trained, and insured for your peace of mind.",
-  },
-  {
-    icon: Clock,
-    title: "Flexible Scheduling",
-    description: "We work around your schedule, available 7 days a week with same-day booking options.",
+    title: "Vetted Professionals",
+    description: "Every cleaner is background-checked, trained, and insured.",
   },
   {
     icon: DollarSign,
     title: "Transparent Pricing",
-    description: "No hourly surprises. You see the full price before you book — what you see is what you pay.",
+    description: "No hidden fees. You see the full price before you book.",
   },
   {
-    icon: Trophy,
-    title: "Satisfaction Guarantee",
-    description: "If you're not happy with our work, we'll re-clean for free. No questions asked.",
+    icon: Clock,
+    title: "Reliable Scheduling",
+    description: "We show up on time, every time. Your schedule matters.",
   },
   {
-    icon: Smartphone,
-    title: "Easy Online Booking",
-    description: "Book in 2 minutes. Get instant confirmation. Manage everything from your phone.",
+    icon: ClipboardCheck,
+    title: "Quality Standards",
+    description: "We follow a structured cleaning checklist for consistent results.",
+  },
+  {
+    icon: MessageSquare,
+    title: "Easy Communication",
+    description: "Clear updates before, during, and after every cleaning.",
   },
 ];
 
 const WhyChooseUs = () => {
   return (
-    <section id="about" className="py-20 bg-muted">
+    <section className="py-20 bg-muted">
       <div className="container mx-auto px-4">
         <div className="text-center mb-14">
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Why Choose Pleasant Cleanings?
+            Why Choose Design Cleaning?
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            We focus on quality, consistency, and customer satisfaction — delivering a spotless finish that makes every space feel refreshed and brand new.
+            A modern cleaning service built for convenience, reliability, and professional results.
           </p>
         </div>
 
@@ -53,7 +53,7 @@ const WhyChooseUs = () => {
               className="text-center opacity-0 animate-fade-in"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 border border-primary/20">
+              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                 <feature.icon className="w-7 h-7 text-primary" />
               </div>
               <h3 className="font-display text-lg font-semibold text-foreground mb-2">

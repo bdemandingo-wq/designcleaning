@@ -1,23 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, User, ChevronDown, Phone } from "lucide-react";
-
+import { Menu, X, Phone } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
-
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-
-const scrollToBooking = () => {
-  const bookingSection = document.getElementById('booking');
-  if (bookingSection) {
-    bookingSection.scrollIntoView({ behavior: 'smooth' });
-  }
-};
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,38 +10,13 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleBookNowClick = () => {
-    if (location.pathname === '/') {
-      scrollToBooking();
-    } else {
-      navigate('/');
-      setTimeout(() => scrollToBooking(), 100);
-    }
-  };
-
-  const handlePricingClick = () => {
-    if (location.pathname === '/') {
-      scrollToBooking();
-    } else {
-      navigate('/');
-      setTimeout(() => scrollToBooking(), 100);
-    }
-  };
-
   const navLinks = [
-    { href: "/", label: "Home", isRoute: true },
-    { href: "/#services", label: "Services", isDropdown: true },
-    { href: "/#booking", label: "Pricing", isScroll: true },
-    { href: "/service-areas", label: "Areas", isRoute: true },
-    { href: "/blog", label: "Blog", isRoute: true },
-    { href: "/faq", label: "FAQ", isRoute: true },
-  ];
-
-  const serviceLinks = [
-    { href: "/standard-cleaning", label: "Standard Cleaning" },
-    { href: "/deep-cleaning", label: "Deep Cleaning" },
-    { href: "/move-in-out-cleaning", label: "Move In/Out Cleaning" },
-    { href: "/upholstery-cleaning", label: "Upholstery Cleaning" },
+    { href: "/", label: "Home" },
+    { href: "/services", label: "Services" },
+    { href: "/membership", label: "Membership" },
+    { href: "/about", label: "About" },
+    { href: "/booking", label: "Booking" },
+    { href: "/contact", label: "Contact" },
   ];
 
   return (
@@ -67,135 +27,81 @@ const Navbar = () => {
       >
         Skip to main content
       </a>
-      <nav className="fixed top-0 left-0 right-0 z-[60] bg-background/95 backdrop-blur-md border-b border-border">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <span className="font-display text-xl font-bold text-foreground">Pleasant Cleanings</span>
-          </Link>
+      <nav className="fixed top-0 left-0 right-0 z-[60] bg-background/95 backdrop-blur-md border-b border-border shadow-sm">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-16">
+            <Link to="/" className="flex items-center">
+              <span className="font-display text-xl font-bold text-foreground">Design Cleaning</span>
+            </Link>
 
-          <div className="hidden md:flex items-center gap-5">
-            {navLinks.map((link) => (
-              link.isDropdown ? (
-                <DropdownMenu key={link.href}>
-                  <DropdownMenuTrigger className="flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors font-medium text-sm">
-                    {link.label}
-                    <ChevronDown className="w-4 h-4" />
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="center">
-                    {serviceLinks.map((service) => (
-                      <DropdownMenuItem key={service.href} asChild>
-                        <Link to={service.href} className="cursor-pointer">
-                          {service.label}
-                        </Link>
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              ) : link.isScroll ? (
-                <button
-                  key={link.href}
-                  onClick={handlePricingClick}
-                  className="text-muted-foreground hover:text-foreground transition-colors font-medium text-sm"
-                >
-                  {link.label}
-                </button>
-              ) : link.isRoute ? (
+            <div className="hidden md:flex items-center gap-6">
+              {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   to={link.href}
-                  className="text-muted-foreground hover:text-foreground transition-colors font-medium text-sm"
+                  className={`text-sm font-medium transition-colors ${
+                    location.pathname === link.href
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
                 >
                   {link.label}
                 </Link>
-              ) : (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="text-muted-foreground hover:text-foreground transition-colors font-medium text-sm"
-                >
-                  {link.label}
-                </a>
-              )
-            ))}
-            {user && (
-              <Link
-                to="/my-bookings"
-                className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-medium text-sm"
+              ))}
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                asChild
               >
-                <User className="h-4 w-4" />
-                My Bookings
-              </Link>
-            )}
-            <Button
-              variant="outline"
-              size="sm"
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-              asChild
+                <a href="tel:[PHONE_DIGITS]" className="flex items-center gap-1.5">
+                  <Phone className="w-4 h-4" />
+                  Call Now
+                </a>
+              </Button>
+              <Button size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90" asChild>
+                <Link to="/booking">Book Now</Link>
+              </Button>
+            </div>
+
+            <button
+              className="md:hidden p-2"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle menu"
             >
-              <a href="tel:+17867967445" className="flex items-center gap-1.5">
-                <Phone className="w-4 h-4" />
-                Call Now
-              </a>
-            </Button>
-            <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={handleBookNowClick}>
-              Book Now
-            </Button>
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden py-4 border-t border-border animate-fade-in relative z-[60] bg-background">
-            <div className="flex flex-col gap-2">
-              <Link to="/" className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2" onClick={() => setIsOpen(false)}>Home</Link>
-              
-              <div className="py-2">
-                <span className="text-foreground font-medium">Services</span>
-                <div className="pl-4 mt-2 space-y-2">
-                  {serviceLinks.map((service) => (
-                    <Link key={service.href} to={service.href} className="block text-muted-foreground hover:text-foreground transition-colors py-1" onClick={() => setIsOpen(false)}>{service.label}</Link>
-                  ))}
+          {isOpen && (
+            <div className="md:hidden py-4 border-t border-border animate-fade-in bg-background">
+              <div className="flex flex-col gap-2">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    to={link.href}
+                    className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+                <div className="flex gap-2 mt-3">
+                  <Button variant="outline" className="flex-1 border-primary text-primary" asChild>
+                    <a href="tel:[PHONE_DIGITS]" className="flex items-center justify-center gap-1.5">
+                      <Phone className="w-4 h-4" />
+                      Call
+                    </a>
+                  </Button>
+                  <Button className="flex-1 bg-accent text-accent-foreground" asChild onClick={() => setIsOpen(false)}>
+                    <Link to="/booking">Book Now</Link>
+                  </Button>
                 </div>
               </div>
-
-              <button className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2 text-left" onClick={() => { setIsOpen(false); handlePricingClick(); }}>Pricing</button>
-              
-              <Link to="/service-areas" className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2" onClick={() => setIsOpen(false)}>Service Areas</Link>
-              <Link to="/blog" className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2" onClick={() => setIsOpen(false)}>Blog</Link>
-              <Link to="/faq" className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2" onClick={() => setIsOpen(false)}>FAQ</Link>
-              {user && (
-                <Link to="/my-bookings" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-medium py-2" onClick={() => setIsOpen(false)}>
-                  <User className="h-4 w-4" />
-                  My Bookings
-                </Link>
-              )}
-              <div className="flex gap-2 mt-2">
-                <Button variant="outline" className="flex-1 border-primary text-primary" asChild>
-                  <a href="tel:+17867967445" className="flex items-center justify-center gap-1.5">
-                    <Phone className="w-4 h-4" />
-                    Call
-                  </a>
-                </Button>
-                <Button className="flex-1 bg-primary text-primary-foreground" onClick={() => { setIsOpen(false); handleBookNowClick(); }}>
-                  Book Now
-                </Button>
-              </div>
             </div>
-          </div>
-        )}
-      </div>
-    </nav>
+          )}
+        </div>
+      </nav>
     </>
   );
 };
