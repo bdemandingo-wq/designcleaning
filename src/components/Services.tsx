@@ -8,7 +8,7 @@ const services = [
     icon: Sparkles,
     title: "Standard Cleaning",
     description: "Perfect for regular maintenance cleaning to keep your home fresh.",
-    price: "From [STD_PRICE]",
+    price: "From $120",
     badge: "Best Value",
     badgeColor: "bg-success text-success-foreground",
     features: [
@@ -22,7 +22,7 @@ const services = [
     icon: Home,
     title: "Deep Cleaning",
     description: "A thorough top-to-bottom clean for homes that need extra attention.",
-    price: "From [DEEP_PRICE]",
+    price: "From $200",
     badge: "Most Popular",
     badgeColor: "bg-accent text-accent-foreground",
     features: [
@@ -36,7 +36,7 @@ const services = [
     icon: Truck,
     title: "Move-In / Move-Out",
     description: "Get your deposit back or move into a spotless space.",
-    price: "From [MOVE_PRICE]",
+    price: "From $250",
     features: [
       "Top-to-bottom cleaning",
       "Inside appliances",

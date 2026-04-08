@@ -10,9 +10,9 @@ const services = [
   {
     icon: Sparkles,
     title: "Standard Cleaning",
-    h1: "Standard Cleaning Services in [PRIMARY_CITY]",
+    h1: "Standard Cleaning Services in Gaithersburg",
     description: "Perfect for regular maintenance cleaning. We keep your home fresh and spotless on your schedule.",
-    price: "From [STD_PRICE]",
+    price: "From $120",
     features: ["All rooms dusted & vacuumed", "Kitchen surfaces wiped", "Bathrooms sanitized", "Floors mopped", "Trash emptied", "Mirrors cleaned"],
     addons: "Inside fridge, inside oven, laundry, interior windows",
     cta: "Book a Standard Clean",
@@ -20,25 +20,25 @@ const services = [
   {
     icon: Home,
     title: "Deep Cleaning",
-    h1: "Deep Cleaning Services in [PRIMARY_CITY]",
+    h1: "Deep Cleaning Services in Gaithersburg",
     description: "A thorough top-to-bottom clean for homes that need extra attention.",
-    price: "From [DEEP_PRICE]",
+    price: "From $200",
     features: ["Everything in Standard", "Baseboards & trim", "Inside cabinets & drawers", "Light switches & door handles", "Window sills", "Detailed bathroom scrub", "Behind appliances"],
     cta: "Book a Deep Clean",
   },
   {
     icon: Truck,
     title: "Move-In / Move-Out Cleaning",
-    h1: "Move-In / Move-Out Cleaning in [REGION]",
+    h1: "Move-In / Move-Out Cleaning in DMV (DC, Maryland & Virginia)",
     description: "Get your full deposit back or move into a spotless space.",
-    price: "From [MOVE_PRICE]",
+    price: "From $250",
     features: ["Complete top-to-bottom", "Inside all appliances", "Windows & tracks", "Inside all cabinets", "Walls spot-cleaned", "Move-in ready condition"],
     cta: "Book a Move Clean",
   },
   {
     icon: RefreshCw,
     title: "Recurring Cleaning",
-    h1: "Recurring Cleaning Plans in [REGION]",
+    h1: "Recurring Cleaning Plans in DMV (DC, Maryland & Virginia)",
     description: "Consistent, automated cleaning on your schedule. Set it and forget it.",
     price: "Membership Pricing",
     features: ["Weekly / biweekly / monthly", "Discounted rates", "Priority scheduling", "Consistent cleaner when possible", "No need to rebook"],
@@ -52,8 +52,8 @@ const ServicesPage = () => {
     <>
       <SEOSchema
         pageTitle="Cleaning Services | Design Cleaning"
-        pageDescription="Professional cleaning services in [PRIMARY_CITY]. Standard, deep, move-in/out, and recurring cleaning plans. Book online today."
-        canonicalUrl="https://[DOMAIN]/services"
+        pageDescription="Professional cleaning services in Gaithersburg. Standard, deep, move-in/out, and recurring cleaning plans. Book online today."
+        canonicalUrl="https://designcleaningdmv.com/services"
         pageType="service"
       />
       <main id="main-content" className="min-h-screen">

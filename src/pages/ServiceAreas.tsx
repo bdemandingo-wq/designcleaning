@@ -6,8 +6,8 @@ import Footer from "@/components/Footer";
 import SEOSchema from "@/components/seo/SEOSchema";
 
 const serviceAreas = [
-  { name: "[CITY_1]", link: "/[CITY_1_SLUG]-cleaning", desc: "Professional home cleaning services" },
-  { name: "[CITY_2]", link: "/[CITY_2_SLUG]-cleaning", desc: "Professional home cleaning services" },
+  { name: "Gaithersburg", link: "/gaithersburg-cleaning", desc: "Professional home cleaning services" },
+  { name: "Washington DC", link: "/washington-dc-cleaning", desc: "Professional home cleaning services" },
 ];
 
 const ServiceAreas = () => {
@@ -15,12 +15,12 @@ const ServiceAreas = () => {
     <>
       <SEOSchema
         pageTitle="Service Areas | Design Cleaning"
-        pageDescription="Design Cleaning serves [CITY_1] and [CITY_2]. Book professional home cleaning online. Call [PHONE]."
-        canonicalUrl="https://[DOMAIN]/service-areas"
+        pageDescription="Design Cleaning serves Gaithersburg and Washington DC. Book professional home cleaning online. Call (202) 935-9934."
+        canonicalUrl="https://designcleaningdmv.com/service-areas"
         pageType="service"
         breadcrumbs={[
-          { name: "Home", url: "https://[DOMAIN]" },
-          { name: "Service Areas", url: "https://[DOMAIN]/service-areas" }
+          { name: "Home", url: "https://designcleaningdmv.com" },
+          { name: "Service Areas", url: "https://designcleaningdmv.com/service-areas" }
         ]}
       />
       <main className="min-h-screen">
@@ -28,14 +28,14 @@ const ServiceAreas = () => {
         <section className="pt-24 pb-12 bg-gradient-to-br from-primary/10 to-background">
           <div className="container mx-auto px-4 text-center">
             <div className="inline-flex items-center gap-2 bg-primary/15 text-primary border border-primary/30 px-4 py-2 rounded-full mb-6">
-              <MapPin className="w-4 h-4" /><span className="text-sm font-medium">[REGION]</span>
+              <MapPin className="w-4 h-4" /><span className="text-sm font-medium">DMV (DC, Maryland & Virginia)</span>
             </div>
             <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">Our Service Areas</h1>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-4">
-              Design Cleaning serves homeowners in [CITY_1] and [CITY_2].
+              Design Cleaning serves homeowners in Gaithersburg and Washington DC.
             </p>
             <Button size="lg" asChild>
-              <a href="tel:[PHONE_DIGITS]" className="flex items-center gap-2"><Phone className="w-5 h-5" />Call [PHONE]</a>
+              <a href="tel:2029359934" className="flex items-center gap-2"><Phone className="w-5 h-5" />Call (202) 935-9934</a>
             </Button>
           </div>
         </section>
@@ -65,7 +65,7 @@ const ServiceAreas = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary" asChild><Link to="/booking">Get Free Quote</Link></Button>
               <Button size="lg" className="border-2 border-white text-white hover:bg-white hover:text-primary font-semibold" asChild>
-                <a href="tel:[PHONE_DIGITS]">Call [PHONE]</a>
+                <a href="tel:2029359934">Call (202) 935-9934</a>
               </Button>
             </div>
           </div>

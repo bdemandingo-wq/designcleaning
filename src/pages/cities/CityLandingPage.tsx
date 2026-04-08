@@ -12,9 +12,9 @@ interface CityLandingPageProps {
 
 const CityLandingPage = ({ cityName, citySlug }: CityLandingPageProps) => {
   const services = [
-    { name: "Standard Cleaning", desc: "Routine maintenance cleaning to keep your home fresh.", price: "[STD_PRICE]" },
-    { name: "Deep Cleaning", desc: "Thorough top-to-bottom clean for homes that need extra attention.", price: "[DEEP_PRICE]" },
-    { name: "Move-In / Move-Out", desc: "Get your full deposit back or move into a spotless space.", price: "[MOVE_PRICE]" },
+    { name: "Standard Cleaning", desc: "Routine maintenance cleaning to keep your home fresh.", price: "$120" },
+    { name: "Deep Cleaning", desc: "Thorough top-to-bottom clean for homes that need extra attention.", price: "$200" },
+    { name: "Move-In / Move-Out", desc: "Get your full deposit back or move into a spotless space.", price: "$250" },
     { name: "Recurring Cleaning", desc: "Consistent, automated cleaning on your schedule.", price: "Membership Pricing" },
   ];
 
@@ -22,14 +22,14 @@ const CityLandingPage = ({ cityName, citySlug }: CityLandingPageProps) => {
     <>
       <SEOSchema
         pageTitle={`House Cleaning in ${cityName} | Design Cleaning`}
-        pageDescription={`Professional home cleaning in ${cityName}. Standard, deep, move-in/out & recurring plans. Book online in minutes. Call [PHONE].`}
-        canonicalUrl={`https://[DOMAIN]/${citySlug}-cleaning`}
+        pageDescription={`Professional home cleaning in ${cityName}. Standard, deep, move-in/out & recurring plans. Book online in minutes. Call (202) 935-9934.`}
+        canonicalUrl={`https://designcleaningdmv.com/${citySlug}-cleaning`}
         pageType="city"
         cityName={cityName}
         breadcrumbs={[
-          { name: "Home", url: "https://[DOMAIN]" },
-          { name: "Service Areas", url: "https://[DOMAIN]/service-areas" },
-          { name: cityName, url: `https://[DOMAIN]/${citySlug}-cleaning` },
+          { name: "Home", url: "https://designcleaningdmv.com" },
+          { name: "Service Areas", url: "https://designcleaningdmv.com/service-areas" },
+          { name: cityName, url: `https://designcleaningdmv.com/${citySlug}-cleaning` },
         ]}
       />
       <main className="min-h-screen">
@@ -48,7 +48,7 @@ const CityLandingPage = ({ cityName, citySlug }: CityLandingPageProps) => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" asChild><Link to="/booking">Book Your {cityName} Cleaning</Link></Button>
               <Button size="lg" variant="outline" asChild>
-                <a href="tel:[PHONE_DIGITS]">Call [PHONE]</a>
+                <a href="tel:2029359934">Call (202) 935-9934</a>
               </Button>
             </div>
           </div>
@@ -92,7 +92,7 @@ const CityLandingPage = ({ cityName, citySlug }: CityLandingPageProps) => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary" asChild><Link to="/booking">Book Now</Link></Button>
               <Button size="lg" className="border-2 border-white text-white hover:bg-white hover:text-primary font-semibold" asChild>
-                <a href="tel:[PHONE_DIGITS]">Call [PHONE]</a>
+                <a href="tel:2029359934">Call (202) 935-9934</a>
               </Button>
             </div>
           </div>

@@ -12,9 +12,9 @@ interface SEOSchemaProps {
   breadcrumbs?: Array<{ name: string; url: string }>;
 }
 
-const WEBSITE = "https://[DOMAIN]";
+const WEBSITE = "https://designcleaningdmv.com";
 const BUSINESS_NAME = "Design Cleaning";
-const PHONE = "[PHONE]";
+const PHONE = "(202) 935-9934";
 
 const cleaningServiceSchema = {
   "@context": "https://schema.org",
@@ -24,20 +24,20 @@ const cleaningServiceSchema = {
   "description": "Design Cleaning is a modern residential cleaning service built for reliability, simplicity, and professional execution.",
   "url": WEBSITE,
   "telephone": PHONE,
-  "email": "[EMAIL]",
+  "email": "DesignCleaning@proton.me",
   "foundingDate": "2025",
   "priceRange": "$$",
   "currenciesAccepted": "USD",
   "paymentAccepted": "Cash, Credit Card, Debit Card",
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "[CITY]",
-    "addressRegion": "[STATE]",
+    "addressLocality": "Gaithersburg",
+    "addressRegion": "MD",
     "addressCountry": "US"
   },
   "areaServed": [
-    { "@type": "City", "name": "[CITY_1]" },
-    { "@type": "City", "name": "[CITY_2]" },
+    { "@type": "City", "name": "Gaithersburg" },
+    { "@type": "City", "name": "Washington DC" },
   ],
   "knowsAbout": ["House Cleaning", "Deep Cleaning", "Move-In Cleaning", "Move-Out Cleaning", "Recurring Cleaning"],
   "hasOfferCatalog": {

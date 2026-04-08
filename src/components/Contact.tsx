@@ -9,9 +9,9 @@ import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
 const contactInfo = [
-  { icon: Phone, title: "Phone", value: "[PHONE]", subtitle: "Available Mon–Sun" },
-  { icon: Mail, title: "Email", value: "[EMAIL]", subtitle: "Response within 24 hours" },
-  { icon: MapPin, title: "Service Area", value: "[CITY], [STATE]", subtitle: "[CITY_1] & [CITY_2]" },
+  { icon: Phone, title: "Phone", value: "(202) 935-9934", subtitle: "Available Mon–Sun" },
+  { icon: Mail, title: "Email", value: "DesignCleaning@proton.me", subtitle: "Response within 24 hours" },
+  { icon: MapPin, title: "Service Area", value: "Gaithersburg, MD", subtitle: "Gaithersburg & Washington DC" },
 ];
 
 const Contact = () => {

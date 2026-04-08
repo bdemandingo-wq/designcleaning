@@ -2,11 +2,11 @@ import { Star, Shield, UserCheck } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const microTestimonials = [
-  '"Design Cleaning made the whole experience so easy. Booked online in 5 minutes!" — Amanda R., [CITY_1]',
-  '"Professional, reliable, and the results are consistently excellent." — James T., [CITY_2]',
-  '"The membership plan is a game changer. My home is always clean." — Sofia M., [CITY_1]',
-  '"Got my full deposit back with their move-out clean. Worth every penny." — David L., [CITY_2]',
-  '"Finally a cleaning service that actually feels professional." — Rachel K., [CITY_1]',
+  '"Design Cleaning made the whole experience so easy. Booked online in 5 minutes!" — Amanda R., Gaithersburg',
+  '"Professional, reliable, and the results are consistently excellent." — James T., Washington DC',
+  '"The membership plan is a game changer. My home is always clean." — Sofia M., Gaithersburg',
+  '"Got my full deposit back with their move-out clean. Worth every penny." — David L., Washington DC',
+  '"Finally a cleaning service that actually feels professional." — Rachel K., Gaithersburg',
 ];
 
 const SocialProofBar = () => {
@@ -30,7 +30,7 @@ const SocialProofBar = () => {
               ))}
             </div>
             <span className="font-semibold">5-Star Rated</span>
-            <span className="opacity-80">· [REGION]</span>
+            <span className="opacity-80">· DMV (DC, Maryland & Virginia)</span>
           </div>
 
           <p className="text-sm opacity-90 max-w-xl text-center md:text-right transition-opacity duration-300">

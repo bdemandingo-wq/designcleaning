@@ -4,31 +4,31 @@ import { useRef } from "react";
 const testimonials = [
   {
     name: "Amanda R.",
-    location: "[CITY_1]",
+    location: "Gaithersburg",
     rating: 5,
     text: "Design Cleaning made the whole experience so easy. Booked online in 5 minutes, they showed up on time, and my home was spotless. This is exactly what I needed.",
   },
   {
     name: "James T.",
-    location: "[CITY_2]",
+    location: "Washington DC",
     rating: 5,
     text: "I've tried other cleaning services before but Design Cleaning is on a different level. Professional, reliable, and the results are consistently excellent.",
   },
   {
     name: "Sofia M.",
-    location: "[CITY_1]",
+    location: "Gaithersburg",
     rating: 5,
     text: "The membership plan is a game changer. I never have to think about scheduling — my home is always clean and the pricing is unbeatable.",
   },
   {
     name: "David L.",
-    location: "[CITY_2]",
+    location: "Washington DC",
     rating: 5,
     text: "Used them for a move-out clean and got my full deposit back. They cleaned things I didn't even think about. Absolutely worth every penny.",
   },
   {
     name: "Rachel K.",
-    location: "[CITY_1]",
+    location: "Gaithersburg",
     rating: 5,
     text: "Finally a cleaning service that actually feels professional. The booking was smooth, communication was great, and the clean was immaculate.",
   },
@@ -54,7 +54,7 @@ const Testimonials = () => {
           What Our Clients Say
         </h2>
         <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
-          Real reviews from happy homeowners in [REGION].
+          Real reviews from happy homeowners in DMV (DC, Maryland & Virginia).
         </p>
 
         <div

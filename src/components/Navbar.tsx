@@ -54,7 +54,7 @@ const Navbar = () => {
                 className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
                 asChild
               >
-                <a href="tel:[PHONE_DIGITS]" className="flex items-center gap-1.5">
+                <a href="tel:2029359934" className="flex items-center gap-1.5">
                   <Phone className="w-4 h-4" />
                   Call Now
                 </a>
@@ -88,7 +88,7 @@ const Navbar = () => {
                 ))}
                 <div className="flex gap-2 mt-3">
                   <Button variant="outline" className="flex-1 border-primary text-primary" asChild>
-                    <a href="tel:[PHONE_DIGITS]" className="flex items-center justify-center gap-1.5">
+                    <a href="tel:2029359934" className="flex items-center justify-center gap-1.5">
                       <Phone className="w-4 h-4" />
                       Call
                     </a>

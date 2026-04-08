@@ -16,7 +16,7 @@ const AboutPage = () => {
       <SEOSchema
         pageTitle="About Us | Design Cleaning"
         pageDescription="Design Cleaning is a modern residential cleaning service built for reliability, simplicity, and professional execution."
-        canonicalUrl="https://[DOMAIN]/about"
+        canonicalUrl="https://designcleaningdmv.com/about"
       />
       <main id="main-content" className="min-h-screen">
         <Navbar />

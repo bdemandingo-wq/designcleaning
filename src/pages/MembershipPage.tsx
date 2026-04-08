@@ -47,7 +47,7 @@ const MembershipPage = () => {
       <SEOSchema
         pageTitle="Membership Plans | Design Cleaning"
         pageDescription="Save money with Design Cleaning membership plans. Weekly, biweekly, or monthly cleaning with discounted rates and priority scheduling."
-        canonicalUrl="https://[DOMAIN]/membership"
+        canonicalUrl="https://designcleaningdmv.com/membership"
         pageType="service"
       />
       <main id="main-content" className="min-h-screen">
