@@ -248,11 +248,11 @@ const CustomerPortal = () => {
               </div>
               <div className="flex items-center gap-4">
                 <a 
-                  href="tel:7867967445" 
+                  href="tel:2029359934" 
                   className="inline-flex items-center gap-2 text-primary hover:underline"
                 >
                   <Phone className="h-4 w-4" />
-                  (786) 796-7445
+                  (202) 935-9934
                 </a>
                 <a 
                   href="mailto:support@pleasantcleanings.com" 
