@@ -38,6 +38,10 @@ const cleaningServiceSchema = {
   "areaServed": [
     { "@type": "City", "name": "Gaithersburg" },
     { "@type": "City", "name": "Washington DC" },
+    { "@type": "City", "name": "Silver Spring" },
+    { "@type": "City", "name": "Rockville" },
+    { "@type": "City", "name": "Bethesda" },
+    { "@type": "City", "name": "Germantown" },
   ],
   "knowsAbout": ["House Cleaning", "Deep Cleaning", "Move-In Cleaning", "Move-Out Cleaning", "Recurring Cleaning"],
   "hasOfferCatalog": {

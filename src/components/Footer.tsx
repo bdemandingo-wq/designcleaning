@@ -46,6 +46,10 @@ const Footer = () => {
             <ul className="space-y-2 text-sm">
               <li><Link to="/gaithersburg-cleaning" className="text-background/70 hover:text-background transition-colors">Gaithersburg</Link></li>
               <li><Link to="/washington-dc-cleaning" className="text-background/70 hover:text-background transition-colors">Washington DC</Link></li>
+              <li><Link to="/silver-spring-cleaning" className="text-background/70 hover:text-background transition-colors">Silver Spring</Link></li>
+              <li><Link to="/rockville-cleaning" className="text-background/70 hover:text-background transition-colors">Rockville</Link></li>
+              <li><Link to="/bethesda-cleaning" className="text-background/70 hover:text-background transition-colors">Bethesda</Link></li>
+              <li><Link to="/germantown-cleaning" className="text-background/70 hover:text-background transition-colors">Germantown</Link></li>
             </ul>
           </div>
 
@@ -54,10 +58,10 @@ const Footer = () => {
             <h3 className="font-display font-semibold mb-4">Company</h3>
             <ul className="space-y-2 text-sm">
               <li><Link to="/about" className="text-background/70 hover:text-background transition-colors">About</Link></li>
+              <li><Link to="/blog" className="text-background/70 hover:text-background transition-colors">Blog</Link></li>
               <li><Link to="/booking" className="text-background/70 hover:text-background transition-colors">Booking</Link></li>
               <li><Link to="/contact" className="text-background/70 hover:text-background transition-colors">Contact</Link></li>
               <li><Link to="/faq" className="text-background/70 hover:text-background transition-colors">FAQ</Link></li>
-              <li><Link to="/contact" className="text-background/70 hover:text-background transition-colors">Careers</Link></li>
               <li><Link to="/sitemap" className="text-background/70 hover:text-background transition-colors">Sitemap</Link></li>
             </ul>
           </div>

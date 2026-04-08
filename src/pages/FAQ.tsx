@@ -21,7 +21,7 @@ const faqs = [
   ]},
   { category: "Policies", questions: [
     { q: "What is your cancellation policy?", a: "We ask for at least 24 hours notice for cancellations or rescheduling. We understand plans change and are always flexible." },
-    { q: "What areas do you serve?", a: "We currently serve Gaithersburg and Washington DC. Contact us to confirm coverage for your specific address." },
+    { q: "What areas do you serve?", a: "We serve Gaithersburg, Washington DC, Silver Spring, Rockville, Bethesda, and Germantown. Contact us to confirm coverage for your specific address." },
   ]},
 ];
 

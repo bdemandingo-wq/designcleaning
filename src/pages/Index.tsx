@@ -23,7 +23,7 @@ const homepageFaqs = [
   { q: "Do I need to be home during the cleaning?", a: "No. Many clients provide a key or door code. We're fully insured and bonded." },
   { q: "What's your cancellation policy?", a: "We ask for at least 24 hours notice for cancellations or rescheduling." },
   { q: "Do you offer recurring plans?", a: "Yes! Weekly, biweekly, or monthly cleaning with discounted rates and priority scheduling." },
-  { q: "What areas do you serve?", a: "We currently serve Gaithersburg and Washington DC." },
+  { q: "What areas do you serve?", a: "We serve Gaithersburg, Washington DC, Silver Spring, Rockville, Bethesda, and Germantown." },
 ];
 
 const LazySection = ({ children, minHeight = 200 }: { children: React.ReactNode; minHeight?: number }) => (
