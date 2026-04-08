@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Clock, ArrowRight, Tag } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -5,9 +6,45 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEOSchema from "@/components/seo/SEOSchema";
-import { blogPosts } from "@/data/blogPosts";
+import { blogPosts as staticPosts } from "@/data/blogPosts";
+import { supabase } from "@/integrations/supabase/client";
+
+interface BlogPost {
+  slug: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  readTime: string;
+}
 
 const Blog = () => {
+  const [posts, setPosts] = useState<BlogPost[]>(staticPosts);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const { data } = await supabase
+        .from("blog_posts")
+        .select("slug, title, excerpt, category, read_time")
+        .eq("is_published", true)
+        .order("published_at", { ascending: false });
+
+      if (data && data.length > 0) {
+        const dbPosts: BlogPost[] = data.map((p) => ({
+          slug: p.slug,
+          title: p.title,
+          excerpt: p.excerpt,
+          category: p.category,
+          readTime: p.read_time,
+        }));
+        // Merge: DB posts first, then static posts that aren't duplicates
+        const dbSlugs = new Set(dbPosts.map((p) => p.slug));
+        const uniqueStatic = staticPosts.filter((p) => !dbSlugs.has(p.slug));
+        setPosts([...dbPosts, ...uniqueStatic]);
+      }
+    };
+    fetchPosts();
+  }, []);
+
   return (
     <>
       <SEOSchema
@@ -30,7 +67,7 @@ const Blog = () => {
         <section className="py-20">
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              {blogPosts.map((post) => (
+              {posts.map((post) => (
                 <Card key={post.slug} className="border border-border shadow-sm hover:shadow-md transition-shadow group">
                   <CardContent className="p-6">
                     <div className="flex items-center gap-3 mb-4">

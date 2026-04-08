@@ -72,6 +72,7 @@ const Admin = () => {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [activeTab, setActiveTab] = useState("bookings");
+  const [generatingBlog, setGeneratingBlog] = useState(false);
   const { user, isAdmin, loading: authLoading, signOut } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -302,7 +303,7 @@ const Admin = () => {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
             <TabsList>
               <TabsTrigger value="bookings" className="gap-2">
                 <Calendar className="w-4 h-4" />
@@ -313,10 +314,15 @@ const Admin = () => {
                 Applicants ({applications.length})
               </TabsTrigger>
             </TabsList>
-            <Button variant="outline" size="sm" onClick={handleRefresh} disabled={refreshing}>
-              <RefreshCw className={`w-4 h-4 mr-2 ${refreshing ? "animate-spin" : ""}`} />
-              Refresh
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button variant="outline" size="sm" onClick={handleGenerateBlog} disabled={generatingBlog}>
+                {generatingBlog ? "Generating..." : "Generate Blog Post"}
+              </Button>
+              <Button variant="outline" size="sm" onClick={handleRefresh} disabled={refreshing}>
+                <RefreshCw className={`w-4 h-4 mr-2 ${refreshing ? "animate-spin" : ""}`} />
+                Refresh
+              </Button>
+            </div>
           </div>
 
           <TabsContent value="bookings">
