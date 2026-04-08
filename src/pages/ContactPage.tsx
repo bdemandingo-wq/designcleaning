@@ -8,8 +8,8 @@ const ContactPage = () => {
     <>
       <SEOSchema
         pageTitle="Contact Us | Design Cleaning"
-        pageDescription="Contact Design Cleaning for professional home cleaning in [PRIMARY_CITY]. Call [PHONE] or email [EMAIL]."
-        canonicalUrl="https://[DOMAIN]/contact"
+        pageDescription="Contact Design Cleaning for professional home cleaning in Gaithersburg. Call (202) 935-9934 or email DesignCleaning@proton.me."
+        canonicalUrl="https://designcleaningdmv.com/contact"
       />
       <main id="main-content" className="min-h-screen">
         <Navbar />

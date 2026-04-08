@@ -13,8 +13,8 @@ const Sitemap = () => {
   ];
 
   const areas = [
-    { name: "[CITY_1]", path: "/[CITY_1_SLUG]-cleaning" },
-    { name: "[CITY_2]", path: "/[CITY_2_SLUG]-cleaning" },
+    { name: "Gaithersburg", path: "/gaithersburg-cleaning" },
+    { name: "Washington DC", path: "/washington-dc-cleaning" },
   ];
 
   const pages = [
@@ -33,7 +33,7 @@ const Sitemap = () => {
       <Helmet>
         <title>Sitemap | Design Cleaning</title>
         <meta name="description" content="Complete sitemap for Design Cleaning. Find all our service pages and area locations." />
-        <link rel="canonical" href="https://[DOMAIN]/sitemap" />
+        <link rel="canonical" href="https://designcleaningdmv.com/sitemap" />
       </Helmet>
       <main className="min-h-screen">
         <Navbar />
@@ -68,7 +68,7 @@ const Sitemap = () => {
             <h2 className="font-display text-3xl font-bold text-foreground mb-4">Ready For A Cleaner Home?</h2>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/booking" className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90">Book Now</Link>
-              <a href="tel:[PHONE_DIGITS]" className="inline-flex items-center justify-center px-6 py-3 border-2 border-border text-foreground font-semibold rounded-lg hover:bg-muted">Call [PHONE]</a>
+              <a href="tel:2029359934" className="inline-flex items-center justify-center px-6 py-3 border-2 border-border text-foreground font-semibold rounded-lg hover:bg-muted">Call (202) 935-9934</a>
             </div>
           </div>
         </section>

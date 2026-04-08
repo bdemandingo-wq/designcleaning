@@ -20,9 +20,9 @@ const FinalCTA = () => {
             </a>
           </Button>
           <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold px-8 py-6 rounded-lg" asChild>
-            <a href="tel:[PHONE_DIGITS]" className="flex items-center gap-2">
+            <a href="tel:2029359934" className="flex items-center gap-2">
               <Phone className="w-5 h-5" />
-              Call [PHONE]
+              Call (202) 935-9934
             </a>
           </Button>
         </div>

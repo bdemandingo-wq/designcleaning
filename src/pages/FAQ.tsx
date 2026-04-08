@@ -21,7 +21,7 @@ const faqs = [
   ]},
   { category: "Policies", questions: [
     { q: "What is your cancellation policy?", a: "We ask for at least 24 hours notice for cancellations or rescheduling. We understand plans change and are always flexible." },
-    { q: "What areas do you serve?", a: "We currently serve [CITY_1] and [CITY_2]. Contact us to confirm coverage for your specific address." },
+    { q: "What areas do you serve?", a: "We currently serve Gaithersburg and Washington DC. Contact us to confirm coverage for your specific address." },
   ]},
 ];
 
@@ -30,8 +30,8 @@ const FAQ = () => {
     <>
       <Helmet>
         <title>FAQ | Design Cleaning</title>
-        <meta name="description" content="Find answers about Design Cleaning services, pricing, booking & cancellations. Call [PHONE]." />
-        <link rel="canonical" href="https://[DOMAIN]/faq" />
+        <meta name="description" content="Find answers about Design Cleaning services, pricing, booking & cancellations. Call (202) 935-9934." />
+        <link rel="canonical" href="https://designcleaningdmv.com/faq" />
       </Helmet>
       <main className="min-h-screen">
         <Navbar />
@@ -67,7 +67,7 @@ const FAQ = () => {
             <p className="text-muted-foreground mb-8 max-w-xl mx-auto">We're here to help.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" asChild>
-                <a href="tel:[PHONE_DIGITS]" className="flex items-center gap-2"><Phone className="w-5 h-5" />Call [PHONE]</a>
+                <a href="tel:2029359934" className="flex items-center gap-2"><Phone className="w-5 h-5" />Call (202) 935-9934</a>
               </Button>
               <Button size="lg" variant="outline" asChild><Link to="/contact">Send a Message</Link></Button>
             </div>

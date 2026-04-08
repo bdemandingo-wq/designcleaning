@@ -23,7 +23,7 @@ const homepageFaqs = [
   { q: "Do I need to be home during the cleaning?", a: "No. Many clients provide a key or door code. We're fully insured and bonded." },
   { q: "What's your cancellation policy?", a: "We ask for at least 24 hours notice for cancellations or rescheduling." },
   { q: "Do you offer recurring plans?", a: "Yes! Weekly, biweekly, or monthly cleaning with discounted rates and priority scheduling." },
-  { q: "What areas do you serve?", a: "We currently serve [CITY_1] and [CITY_2]." },
+  { q: "What areas do you serve?", a: "We currently serve Gaithersburg and Washington DC." },
 ];
 
 const LazySection = ({ children, minHeight = 200 }: { children: React.ReactNode; minHeight?: number }) => (
@@ -36,9 +36,9 @@ const Index = () => {
   return (
     <>
       <SEOSchema
-        pageTitle="Professional Home Cleaning in [PRIMARY_CITY] | Design Cleaning"
-        pageDescription="Design Cleaning offers reliable, professional home cleaning in [PRIMARY_CITY] and [CITY_2]. Book online in minutes. Standard, deep, move-in/out & recurring plans. Call [PHONE]."
-        canonicalUrl="https://[DOMAIN]"
+        pageTitle="Professional Home Cleaning in Gaithersburg | Design Cleaning"
+        pageDescription="Design Cleaning offers reliable, professional home cleaning in Gaithersburg and Washington DC. Book online in minutes. Standard, deep, move-in/out & recurring plans. Call (202) 935-9934."
+        canonicalUrl="https://designcleaningdmv.com"
         pageType="home"
         faqItems={homepageFaqs}
       />

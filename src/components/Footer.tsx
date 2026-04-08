@@ -13,17 +13,17 @@ const Footer = () => {
               Professional Home Cleaning Made Simple.
             </p>
             <div className="space-y-2 text-sm">
-              <a href="tel:[PHONE_DIGITS]" className="flex items-center gap-2 text-background/70 hover:text-background transition-colors">
+              <a href="tel:2029359934" className="flex items-center gap-2 text-background/70 hover:text-background transition-colors">
                 <Phone className="w-4 h-4" />
-                [PHONE]
+                (202) 935-9934
               </a>
-              <a href="mailto:[EMAIL]" className="flex items-center gap-2 text-background/70 hover:text-background transition-colors">
+              <a href="mailto:DesignCleaning@proton.me" className="flex items-center gap-2 text-background/70 hover:text-background transition-colors">
                 <Mail className="w-4 h-4" />
-                [EMAIL]
+                DesignCleaning@proton.me
               </a>
               <p className="flex items-center gap-2 text-background/70">
                 <MapPin className="w-4 h-4" />
-                [CITY], [STATE]
+                Gaithersburg, MD
               </p>
             </div>
           </div>
@@ -44,8 +44,8 @@ const Footer = () => {
           <div>
             <h3 className="font-display font-semibold mb-4">Service Areas</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/[CITY_1_SLUG]-cleaning" className="text-background/70 hover:text-background transition-colors">[CITY_1]</Link></li>
-              <li><Link to="/[CITY_2_SLUG]-cleaning" className="text-background/70 hover:text-background transition-colors">[CITY_2]</Link></li>
+              <li><Link to="/gaithersburg-cleaning" className="text-background/70 hover:text-background transition-colors">Gaithersburg</Link></li>
+              <li><Link to="/washington-dc-cleaning" className="text-background/70 hover:text-background transition-colors">Washington DC</Link></li>
             </ul>
           </div>
 

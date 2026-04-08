@@ -37,7 +37,7 @@ const faqs = [
   },
   {
     q: "What areas do you serve?",
-    a: "We currently serve [CITY_1] and [CITY_2]. Contact us to confirm coverage for your specific address.",
+    a: "We currently serve Gaithersburg and Washington DC. Contact us to confirm coverage for your specific address.",
   },
 ];
 
