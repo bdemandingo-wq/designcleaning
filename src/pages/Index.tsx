@@ -8,24 +8,22 @@ import SEOSchema from "@/components/seo/SEOSchema";
 import Footer from "@/components/Footer";
 
 const HowItWorks = lazy(() => import("@/components/HowItWorks"));
+const MembershipSection = lazy(() => import("@/components/MembershipSection"));
 const WhyChooseUs = lazy(() => import("@/components/WhyChooseUs"));
 const Testimonials = lazy(() => import("@/components/Testimonials"));
 const HomeFAQ = lazy(() => import("@/components/HomeFAQ"));
-const ContactOptions = lazy(() => import("@/components/ContactOptions"));
+const ServiceAreaSection = lazy(() => import("@/components/ServiceAreaSection"));
+const TrustSection = lazy(() => import("@/components/TrustSection"));
+const FinalCTA = lazy(() => import("@/components/FinalCTA"));
 const Contact = lazy(() => import("@/components/Contact"));
-const BlogPreview = lazy(() => import("@/components/BlogPreview"));
-const AIChatbot = lazy(() => import("@/components/AIChatbot"));
-const StickyCallButton = lazy(() => import("@/components/seo/StickyCallButton"));
 
 const homepageFaqs = [
-  { q: "How much does cleaning cost in South Florida?", a: "Our standard cleaning starts at $120 for homes up to 750 sq ft. Deep cleaning starts at $220 and move-in/out cleaning starts at $280. Use our instant price calculator for your exact quote." },
-  { q: "Are your cleaners background-checked?", a: "Yes! Every Pleasant Cleanings professional undergoes a thorough background check, is fully insured, and completes our professional training program." },
-  { q: "Do I need to be home during the cleaning?", a: "No, many clients provide a spare key or door code. We're fully insured and bonded." },
-  { q: "What cleaning products do you use?", a: "We use eco-friendly, non-toxic cleaning products safe for children, pets, and the environment." },
-  { q: "What's your cancellation policy?", a: "We ask for at least 24 hours notice for cancellations." },
-  { q: "Do you offer recurring cleaning discounts?", a: "Absolutely! Weekly service saves 15%, bi-weekly saves 10%, and monthly saves 5%." },
-  { q: "What areas do you serve?", a: "We serve 12+ cities across South Florida including Pembroke Pines, Miramar, Coral Springs, Aventura, Doral, and more." },
-  { q: "What's included in a deep clean vs. standard clean?", a: "A standard clean covers vacuuming, mopping, bathroom sanitization, kitchen cleaning, and dusting. A deep clean adds baseboards, inside cabinets, light fixtures, door handles, and detailed scrubbing." },
+  { q: "How do I book a cleaning?", a: "Visit our booking page, select your service, enter your home details, choose your preferred date and time, and confirm. Takes under 5 minutes." },
+  { q: "Are your cleaners background-checked?", a: "Yes. Every Design Cleaning professional is thoroughly background-checked, trained, and fully insured." },
+  { q: "Do I need to be home during the cleaning?", a: "No. Many clients provide a key or door code. We're fully insured and bonded." },
+  { q: "What's your cancellation policy?", a: "We ask for at least 24 hours notice for cancellations or rescheduling." },
+  { q: "Do you offer recurring plans?", a: "Yes! Weekly, biweekly, or monthly cleaning with discounted rates and priority scheduling." },
+  { q: "What areas do you serve?", a: "We currently serve [CITY_1] and [CITY_2]." },
 ];
 
 const LazySection = ({ children, minHeight = 200 }: { children: React.ReactNode; minHeight?: number }) => (
@@ -38,9 +36,9 @@ const Index = () => {
   return (
     <>
       <SEOSchema
-        pageTitle="House Cleaning Pembroke Pines, Broward County & South Florida | Pleasant Cleanings"
-        pageDescription="Top-rated house cleaning in Pembroke Pines and South Florida. Pleasant Cleanings serves 12+ cities including Miramar, Coral Springs, Aventura & more. Instant online quotes. Call (786) 796-7445."
-        canonicalUrl="https://pleasantcleanings.com"
+        pageTitle="Professional Home Cleaning in [PRIMARY_CITY] | Design Cleaning"
+        pageDescription="Design Cleaning offers reliable, professional home cleaning in [PRIMARY_CITY] and [CITY_2]. Book online in minutes. Standard, deep, move-in/out & recurring plans. Call [PHONE]."
+        canonicalUrl="https://[DOMAIN]"
         pageType="home"
         faqItems={homepageFaqs}
       />
@@ -48,20 +46,18 @@ const Index = () => {
         <Navbar />
         <Hero />
         <SocialProofBar />
-        <Services />
         <LazySection minHeight={350}><HowItWorks /></LazySection>
-        <PricingCalculator />
-        
+        <Services />
+        <LazySection minHeight={400}><MembershipSection /></LazySection>
         <LazySection minHeight={400}><WhyChooseUs /></LazySection>
+        <PricingCalculator />
+        <LazySection minHeight={300}><ServiceAreaSection /></LazySection>
+        <LazySection minHeight={300}><TrustSection /></LazySection>
         <LazySection minHeight={400}><Testimonials /></LazySection>
         <LazySection minHeight={400}><HomeFAQ /></LazySection>
-        <LazySection minHeight={200}><ContactOptions /></LazySection>
-        <LazySection minHeight={300}><BlogPreview /></LazySection>
+        <LazySection minHeight={200}><FinalCTA /></LazySection>
         <LazySection minHeight={400}><Contact /></LazySection>
-        
         <Footer />
-        <LazySection minHeight={0}><StickyCallButton /></LazySection>
-        <LazySection minHeight={0}><AIChatbot /></LazySection>
       </main>
     </>
   );
