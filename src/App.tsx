@@ -53,8 +53,8 @@ const AppRoutes = () => {
         <Route path="/sitemap" element={<Sitemap />} />
         
         {/* City Landing Pages */}
-        <Route path="/[CITY_1_SLUG]-cleaning" element={<CityLandingPage cityName="[CITY_1]" slug="[CITY_1_SLUG]" />} />
-        <Route path="/[CITY_2_SLUG]-cleaning" element={<CityLandingPage cityName="[CITY_2]" slug="[CITY_2_SLUG]" />} />
+        <Route path="/[CITY_1_SLUG]-cleaning" element={<CityLandingPage cityName="[CITY_1]" citySlug="[CITY_1_SLUG]" />} />
+        <Route path="/[CITY_2_SLUG]-cleaning" element={<CityLandingPage cityName="[CITY_2]" citySlug="[CITY_2_SLUG]" />} />
         
         <Route path="*" element={<NotFound />} />
       </Routes>
