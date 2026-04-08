@@ -119,9 +119,9 @@ SERVICE AREA:
 
 SATISFACTION & SUPPORT:
 - If you're not satisfied, we'll return to re-clean the area at no extra charge.
-- You can reach us by phone at (786) 796-7445, email at support@pleasantcleanings.com, or through our website.
+- You can reach us by phone at (202) 935-9934, email at DesignCleaning@proton.me, or through our website.
 
-Always be helpful, professional, and encourage users to book a cleaning or contact Pleasant Cleanings for more details.` 
+Always be helpful, professional, and encourage users to book a cleaning or contact Design Cleaning for more details.`
           },
           ...messages,
         ],
