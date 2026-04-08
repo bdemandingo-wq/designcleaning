@@ -1,48 +1,45 @@
-import { Calculator, CalendarDays, Sparkles, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { CalendarCheck, SprayCan, Sparkles } from "lucide-react";
 
 const steps = [
   {
-    icon: Calculator,
+    icon: CalendarCheck,
     number: "1",
-    title: "Get Your Quote",
-    description: "Enter your home size and service type. See transparent pricing instantly. No hidden fees.",
+    title: "Book Online",
+    description: "Choose your service, home size, and preferred time in minutes.",
   },
   {
-    icon: CalendarDays,
+    icon: SprayCan,
     number: "2",
-    title: "Pick Your Date",
-    description: "Choose a date and time that works for you. We're available 7 days a week.",
+    title: "We Clean",
+    description: "Our vetted, background-checked professionals handle everything.",
   },
   {
     icon: Sparkles,
     number: "3",
-    title: "Relax, We Handle It",
-    description: "Our vetted, background-checked cleaners arrive on time and leave your home spotless.",
+    title: "Enjoy Your Space",
+    description: "Come home to a spotless, fresh, professionally cleaned space.",
   },
 ];
 
 const HowItWorks = () => {
   return (
-    <section className="py-20 bg-background">
+    <section className="py-20 bg-muted">
       <div className="container mx-auto px-4">
         <div className="text-center mb-14">
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Booking Is Effortless
+            How It Works
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Three simple steps to a sparkling clean home
+            Three simple steps to a spotless home
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
+        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           {steps.map((step, index) => (
             <div key={step.title} className="text-center relative">
-              {/* Connector line (desktop only) */}
               {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-10 left-[60%] w-[80%] h-0.5 bg-gradient-to-r from-primary/30 to-primary/10" />
+                <div className="hidden md:block absolute top-10 left-[60%] w-[80%] h-0.5 bg-border" />
               )}
-
               <div className="relative z-10">
                 <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5 border-2 border-primary/20">
                   <span className="text-2xl font-bold text-primary font-display">{step.number}</span>
@@ -59,19 +56,6 @@ const HowItWorks = () => {
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="text-center">
-          <Button
-            size="lg"
-            className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-lg px-10 py-6 group hover:scale-[1.02] transition-all"
-            asChild
-          >
-            <a href="#booking" className="flex items-center gap-2">
-              Start My Booking
-              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-            </a>
-          </Button>
         </div>
       </div>
     </section>
