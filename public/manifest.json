@@ -1,0 +1,13 @@
+{
+  "name": "Pleasant Cleanings",
+  "short_name": "Pleasant Cleanings",
+  "description": "Professional house cleaning in Pembroke Pines & South Florida",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#b45309",
+  "icons": [
+    { "src": "/favicon.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}
