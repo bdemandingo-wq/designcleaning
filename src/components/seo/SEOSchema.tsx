@@ -42,6 +42,10 @@ const cleaningServiceSchema = {
     { "@type": "City", "name": "Rockville" },
     { "@type": "City", "name": "Bethesda" },
     { "@type": "City", "name": "Germantown" },
+    { "@type": "City", "name": "Potomac" },
+    { "@type": "City", "name": "Bowie" },
+    { "@type": "City", "name": "College Park" },
+    { "@type": "City", "name": "Laurel" },
   ],
   "knowsAbout": ["House Cleaning", "Deep Cleaning", "Move-In Cleaning", "Move-Out Cleaning", "Recurring Cleaning"],
   "hasOfferCatalog": {

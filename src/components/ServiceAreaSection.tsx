@@ -8,6 +8,10 @@ const cities = [
   { name: "Rockville", link: "/rockville-cleaning" },
   { name: "Bethesda", link: "/bethesda-cleaning" },
   { name: "Germantown", link: "/germantown-cleaning" },
+  { name: "Potomac", link: "/potomac-cleaning" },
+  { name: "Bowie", link: "/bowie-cleaning" },
+  { name: "College Park", link: "/college-park-cleaning" },
+  { name: "Laurel", link: "/laurel-cleaning" },
 ];
 
 const ServiceAreaSection = () => {
