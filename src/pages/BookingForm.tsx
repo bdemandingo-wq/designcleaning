@@ -74,7 +74,7 @@ const BookingForm = () => {
               <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
               <div>
                 <p className="font-display font-bold text-amber-800 dark:text-amber-400 uppercase tracking-wide">Same / Next Day Cleaning?</p>
-                <p className="text-sm text-amber-700 dark:text-amber-500">Call us at <a href="tel:+17867967445" className="font-semibold underline">(786) 796-7445</a></p>
+                <p className="text-sm text-amber-700 dark:text-amber-500"><p className="text-sm text-amber-700 dark:text-amber-500">Call us at <a href="tel:2029359934" className="font-semibold underline">(202) 935-9934</a></p></p>
               </div>
             </div>
 

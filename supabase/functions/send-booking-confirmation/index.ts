@@ -3,7 +3,7 @@ import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 
 const OPENPHONE_API_KEY = Deno.env.get("OPENPHONE_API_KEY");
 const OPENPHONE_PHONE_NUMBER_ID = "PNr7XukuaV";
-const ADMIN_PHONE_NUMBER = "+17867967445";
+const ADMIN_PHONE_NUMBER = "+12029359934";
 const PERSONAL_PHONE_NUMBER = "+18137356859";
 
 const corsHeaders = {

@@ -38,9 +38,9 @@ const NotFound = () => {
               </Link>
             </Button>
             <Button variant="outline" asChild>
-              <a href="tel:+17867967445" className="flex items-center gap-2">
+              <a href="tel:2029359934" className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
-                Call (786) 796-7445
+                Call (202) 935-9934
               </a>
             </Button>
           </div>

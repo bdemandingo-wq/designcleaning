@@ -51,7 +51,7 @@ const Confirmation = () => {
             <p className="text-sm text-muted-foreground">A team member will reach out within <strong>15 minutes</strong> to confirm.</p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Button variant="outline" className="flex-1" asChild>
-                <a href="tel:+17867967445" className="flex items-center justify-center gap-2"><Phone className="w-4 h-4" />Call Us Now</a>
+                <a <a href="tel:2029359934" className="flex items-center justify-center gap-2"><Phone className="w-4 h-4" />Call Us Now</a> className="flex items-center justify-center gap-2"><Phone className="w-4 h-4" />Call Us Now</a>
               </Button>
               <Button className="flex-1" onClick={() => navigate("/")}><Home className="w-4 h-4 mr-2" />Return Home</Button>
             </div>

@@ -2,7 +2,7 @@ import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 
 const OPENPHONE_API_KEY = Deno.env.get("OPENPHONE_API_KEY");
 const OPENPHONE_PHONE_NUMBER_ID = "PNr7XukuaV";
-const NOTIFY_PHONE_NUMBER = "+17867967445";
+const NOTIFY_PHONE_NUMBER = "+12029359934";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",

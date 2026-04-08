@@ -3,7 +3,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const OPENPHONE_API_KEY = Deno.env.get("OPENPHONE_API_KEY");
 const OPENPHONE_PHONE_NUMBER_ID = "PNr7XukuaV";
-const ADMIN_PHONE_NUMBER = "+17867967445";
+const ADMIN_PHONE_NUMBER = "+12029359934";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
