@@ -72,6 +72,7 @@ const Admin = () => {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [activeTab, setActiveTab] = useState("bookings");
+  const [generatingBlog, setGeneratingBlog] = useState(false);
   const { user, isAdmin, loading: authLoading, signOut } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -163,6 +164,28 @@ const Admin = () => {
     setRefreshing(true);
     fetchBookings();
     fetchApplications();
+  };
+
+  const handleGenerateBlog = async () => {
+    setGeneratingBlog(true);
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) throw new Error("Not authenticated");
+      const res = await supabase.functions.invoke("generate-blog-post", {
+        headers: { Authorization: `Bearer ${session.access_token}` },
+      });
+      if (res.error) throw res.error;
+      const result = res.data;
+      if (result.skipped) {
+        toast({ title: "Skipped", description: "A similar blog post already exists." });
+      } else {
+        toast({ title: "Blog Post Created!", description: `"${result.post?.title}" has been published.` });
+      }
+    } catch (error: any) {
+      toast({ title: "Error", description: error.message || "Failed to generate blog post.", variant: "destructive" });
+    } finally {
+      setGeneratingBlog(false);
+    }
   };
 
   const updateStatus = async (bookingId: string, newStatus: BookingStatus) => {
@@ -302,7 +325,7 @@ const Admin = () => {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
             <TabsList>
               <TabsTrigger value="bookings" className="gap-2">
                 <Calendar className="w-4 h-4" />
@@ -313,10 +336,15 @@ const Admin = () => {
                 Applicants ({applications.length})
               </TabsTrigger>
             </TabsList>
-            <Button variant="outline" size="sm" onClick={handleRefresh} disabled={refreshing}>
-              <RefreshCw className={`w-4 h-4 mr-2 ${refreshing ? "animate-spin" : ""}`} />
-              Refresh
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button variant="outline" size="sm" onClick={handleGenerateBlog} disabled={generatingBlog}>
+                {generatingBlog ? "Generating..." : "Generate Blog Post"}
+              </Button>
+              <Button variant="outline" size="sm" onClick={handleRefresh} disabled={refreshing}>
+                <RefreshCw className={`w-4 h-4 mr-2 ${refreshing ? "animate-spin" : ""}`} />
+                Refresh
+              </Button>
+            </div>
           </div>
 
           <TabsContent value="bookings">

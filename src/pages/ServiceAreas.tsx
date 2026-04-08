@@ -12,6 +12,10 @@ const serviceAreas = [
   { name: "Rockville", link: "/rockville-cleaning", desc: "Dependable cleaning services in Rockville, MD." },
   { name: "Bethesda", link: "/bethesda-cleaning", desc: "Premium home cleaning in Bethesda, MD." },
   { name: "Germantown", link: "/germantown-cleaning", desc: "Professional cleaning in Germantown, MD." },
+  { name: "Potomac", link: "/potomac-cleaning", desc: "Premium home cleaning in Potomac, MD." },
+  { name: "Bowie", link: "/bowie-cleaning", desc: "Reliable home cleaning in Bowie, MD." },
+  { name: "College Park", link: "/college-park-cleaning", desc: "Professional cleaning in College Park, MD." },
+  { name: "Laurel", link: "/laurel-cleaning", desc: "Trusted home cleaning in Laurel, MD." },
 ];
 
 const ServiceAreas = () => {

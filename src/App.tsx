@@ -63,6 +63,10 @@ const AppRoutes = () => {
         <Route path="/rockville-cleaning" element={<CityLandingPage cityName="Rockville" citySlug="rockville" />} />
         <Route path="/bethesda-cleaning" element={<CityLandingPage cityName="Bethesda" citySlug="bethesda" />} />
         <Route path="/germantown-cleaning" element={<CityLandingPage cityName="Germantown" citySlug="germantown" />} />
+        <Route path="/potomac-cleaning" element={<CityLandingPage cityName="Potomac" citySlug="potomac" />} />
+        <Route path="/bowie-cleaning" element={<CityLandingPage cityName="Bowie" citySlug="bowie" />} />
+        <Route path="/college-park-cleaning" element={<CityLandingPage cityName="College Park" citySlug="college-park" />} />
+        <Route path="/laurel-cleaning" element={<CityLandingPage cityName="Laurel" citySlug="laurel" />} />
         
         <Route path="*" element={<NotFound />} />
       </Routes>

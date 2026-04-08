@@ -19,6 +19,10 @@ const Sitemap = () => {
     { name: "Rockville", path: "/rockville-cleaning" },
     { name: "Bethesda", path: "/bethesda-cleaning" },
     { name: "Germantown", path: "/germantown-cleaning" },
+    { name: "Potomac", path: "/potomac-cleaning" },
+    { name: "Bowie", path: "/bowie-cleaning" },
+    { name: "College Park", path: "/college-park-cleaning" },
+    { name: "Laurel", path: "/laurel-cleaning" },
   ];
 
   const pages = [

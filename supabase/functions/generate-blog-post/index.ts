@@ -1,70 +1,54 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-// Restricted CORS - only allow specific origins
-const ALLOWED_ORIGINS = [
-  'https://pleasantcleanings.com',
-  'https://www.pleasantcleanings.com',
-  'https://ekseakjxarhjujngoklz.supabase.co',
-];
-
-const DEV_ORIGINS = [
-  'http://localhost:5173',
-  'http://localhost:8080',
-  'http://localhost:3000',
-];
-
 function getCorsHeaders(req: Request): Record<string, string> {
   const origin = req.headers.get('Origin') || '';
-  const isAllowed = ALLOWED_ORIGINS.includes(origin) || 
-    DEV_ORIGINS.includes(origin) ||
-    origin.includes('.lovable.app') ||
-    origin.includes('.lovableproject.com');
-  
+  const isAllowed = origin.includes('.lovable.app') || origin.includes('.lovableproject.com') ||
+    origin.includes('designcleaningdmv.com') ||
+    origin.startsWith('http://localhost:');
   return {
-    'Access-Control-Allow-Origin': isAllowed ? origin : ALLOWED_ORIGINS[0],
+    'Access-Control-Allow-Origin': isAllowed ? origin : 'https://designcleaningdmv.com',
     'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
   };
 }
 
 const CLEANING_TOPICS = [
-  "Quick cleaning hacks for busy Florida professionals",
-  "How to maintain a clean home during hurricane season",
-  "Pet-friendly cleaning solutions for South Florida homes",
-  "Best practices for cleaning luxury condos in Pembroke Pines",
-  "Seasonal deep cleaning checklist for Florida homeowners",
-  "How to prevent sand and salt buildup in coastal homes",
-  "Green cleaning tips for eco-conscious Floridians",
-  "Organizing tips for small apartments in Pembroke Pines",
-  "How to clean and maintain tile floors in humid climates",
+  "Quick cleaning hacks for busy DMV professionals",
+  "How to maintain a clean home during allergy season in Maryland",
+  "Pet-friendly cleaning solutions for DMV homeowners",
+  "Best practices for cleaning homes in Gaithersburg",
+  "Seasonal deep cleaning checklist for Maryland homeowners",
+  "Green cleaning tips for eco-conscious families in the DMV",
+  "Organizing tips for apartments in Washington DC",
+  "How to clean and maintain hardwood floors in humid climates",
   "Tips for keeping your Airbnb spotless between guests",
-  "Cleaning tips for homes with allergies in humid Florida",
-  "How to maintain outdoor furniture in the Florida sun",
+  "Cleaning tips for homes with allergies in the DMV",
   "Best products for removing mildew in bathrooms",
   "Kitchen deep cleaning tips for holiday entertaining",
   "How to prepare your home for professional cleaners",
   "Decluttering strategies for a stress-free home",
-  "Cleaning tips for new parents in South Florida",
+  "Cleaning tips for new parents in the DMV area",
   "How to maintain pristine white surfaces in your home",
-  "Tips for cleaning after a Florida rainstorm",
+  "Tips for cleaning after a rainstorm in Maryland",
   "How to keep your garage clean and organized",
   "Cleaning checklist for vacation rental properties",
-  "Best practices for cleaning glass and mirrors",
   "How to deep clean upholstery and fabric furniture",
-  "Tips for maintaining hardwood floors in humid climates",
+  "Tips for maintaining hardwood floors in Maryland homes",
   "Cleaning tips for home offices and workspaces",
   "How to clean and sanitize children's toys and playrooms",
-  "Best practices for cleaning outdoor pools and patios",
   "Tips for removing tough stains from carpets",
   "How to maintain a clean and fresh-smelling closet",
-  "Cleaning tips for multi-generational Florida homes"
+  "Move-in cleaning checklist for DMV renters",
+  "How to keep your Bethesda home sparkling year-round",
+  "Spring cleaning guide for Silver Spring homeowners",
+  "Best cleaning routines for busy Rockville families",
+  "Deep cleaning tips before hosting guests in your DC home",
 ];
 
 const CATEGORIES = ["Tips", "Guides", "Seasonal", "Health", "Home Care"];
 
 serve(async (req) => {
   const corsHeaders = getCorsHeaders(req);
-
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
@@ -75,99 +59,34 @@ serve(async (req) => {
     const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
     const SUPABASE_ANON_KEY = Deno.env.get('SUPABASE_ANON_KEY');
 
-    if (!LOVABLE_API_KEY) {
-      throw new Error('LOVABLE_API_KEY is not configured');
-    }
+    if (!LOVABLE_API_KEY) throw new Error('LOVABLE_API_KEY is not configured');
+    if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY || !SUPABASE_ANON_KEY) throw new Error('Supabase credentials not configured');
 
-    if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY || !SUPABASE_ANON_KEY) {
-      throw new Error('Supabase credentials not configured');
-    }
-
-    // ============ AUTHENTICATION CHECK ============
-    // Check if this is an internal cron call
+    // Auth check
     const authHeader = req.headers.get('Authorization');
     const token = authHeader?.replace('Bearer ', '').trim();
-    
-    // The anon key JWT used by pg_cron - this is a static, long-lived token
-    // that doesn't represent a user session but allows internal scheduled calls
-    const CRON_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVrc2Vha2p4YXJoanVqbmdva2x6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU3MzMzOTcsImV4cCI6MjA4MTMwOTM5N30.TWAsnXvAgSCtbQSLYq7cX9Ga7uKJQBKRqIWAnfpP_CE';
-    
-    // Check if this is a cron job call using the anon key
-    const isCronCall = token === CRON_ANON_KEY;
-    
-    console.log('Auth check - isCronCall:', isCronCall);
-    
-    if (isCronCall) {
-      console.log('Internal cron job call detected - bypassing user auth');
-    } else {
-      // Manual call - require admin user authentication
+
+    if (token !== SUPABASE_ANON_KEY) {
+      // Manual call - require admin
       if (!authHeader?.startsWith('Bearer ')) {
-        console.log('Missing or invalid Authorization header');
-        return new Response(JSON.stringify({ error: 'Unauthorized: Missing authentication' }), {
-          status: 401,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        });
+        return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
       }
-
-      // Create a client with the user's token to verify their identity
-      const userSupabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-        global: { headers: { Authorization: authHeader } }
-      });
-
-      // Verify the user is authenticated
+      const userSupabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, { global: { headers: { Authorization: authHeader } } });
       const { data: { user }, error: authError } = await userSupabase.auth.getUser();
       if (authError || !user) {
-        console.log('Auth verification failed:', authError?.message);
-        return new Response(JSON.stringify({ error: 'Unauthorized: Invalid token' }), {
-          status: 401,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        });
+        return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
       }
-
-      console.log('User authenticated:', user.id);
-
-      // ============ ADMIN ROLE CHECK ============
-      // Use service role client to check admin status (bypasses RLS)
       const adminCheckSupabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
-      
-      const { data: roleData, error: roleError } = await adminCheckSupabase
-        .from('user_roles')
-        .select('role')
-        .eq('user_id', user.id)
-        .eq('role', 'admin')
-        .maybeSingle();
-
-      if (roleError) {
-        console.error('Role check failed:', roleError.message);
-        return new Response(JSON.stringify({ error: 'Failed to verify permissions' }), {
-          status: 500,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        });
-      }
-
+      const { data: roleData } = await adminCheckSupabase.from('user_roles').select('role').eq('user_id', user.id).eq('role', 'admin').maybeSingle();
       if (!roleData) {
-        console.log('User is not an admin:', user.id);
-        return new Response(JSON.stringify({ error: 'Forbidden: Admin access required' }), {
-          status: 403,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        });
+        return new Response(JSON.stringify({ error: 'Forbidden: Admin access required' }), { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
       }
-
-      console.log('Admin access verified for user:', user.id);
     }
 
-    // ============ BLOG GENERATION LOGIC ============
-    // Use service role client for database operations
     const serviceSupabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
-
-    // Get existing blog post slugs to avoid duplicates
-    const { data: existingPosts } = await serviceSupabase
-      .from('blog_posts')
-      .select('slug, title');
-
+    const { data: existingPosts } = await serviceSupabase.from('blog_posts').select('slug, title');
     const existingTitles = new Set((existingPosts || []).map((p: { title: string }) => p.title.toLowerCase()));
 
-    // Pick a random topic that hasn't been used
     let topic = CLEANING_TOPICS[Math.floor(Math.random() * CLEANING_TOPICS.length)];
     let attempts = 0;
     while (existingTitles.has(topic.toLowerCase()) && attempts < 10) {
@@ -176,26 +95,17 @@ serve(async (req) => {
     }
 
     const category = CATEGORIES[Math.floor(Math.random() * CATEGORIES.length)];
-
     console.log(`Generating blog post about: ${topic}`);
 
-    // Generate blog content using Lovable AI
     const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
       method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${LOVABLE_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Authorization': `Bearer ${LOVABLE_API_KEY}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: 'google/gemini-2.5-flash',
         messages: [
           {
             role: 'system',
-            content: `You are a professional content writer for Pleasant Cleanings, a cleaning service company in South Florida. 
-Write engaging, SEO-optimized blog posts about cleaning tips and home care.
-Your content should be helpful, practical, and relevant to South Florida homeowners.
-Focus on actionable advice that readers can implement immediately.
-Include local references to Pembroke Pines, Pembroke Pines, St. Johns, and other South Florida areas when appropriate.`
+            content: `You are a professional content writer for Design Cleaning, a modern residential cleaning service in the DMV region (DC, Maryland & Virginia). Write engaging, SEO-optimized blog posts about cleaning tips and home care. Your content should be helpful and relevant to DMV homeowners. Include local references to Gaithersburg, Washington DC, Silver Spring, Rockville, Bethesda, Germantown, Potomac, Bowie, College Park, and Laurel when appropriate.`
           },
           {
             role: 'user',
@@ -213,7 +123,7 @@ The content should include:
 - An engaging introduction
 - 3-5 main sections with subheadings
 - Practical tips and actionable advice
-- A call-to-action mentioning Pleasant Cleanings services
+- A call-to-action mentioning Design Cleaning services
 - Proper HTML formatting (use <h2>, <h3>, <p>, <ul>, <li>, <strong> tags)`
           }
         ],
@@ -224,111 +134,44 @@ The content should include:
     if (!response.ok) {
       const errorText = await response.text();
       console.error('AI gateway error:', response.status, errorText);
-      
-      if (response.status === 429) {
-        return new Response(JSON.stringify({ error: 'Rate limit exceeded, please try again later' }), {
-          status: 429,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        });
-      }
-      if (response.status === 402) {
-        return new Response(JSON.stringify({ error: 'Payment required for AI usage' }), {
-          status: 402,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        });
-      }
+      if (response.status === 429) return new Response(JSON.stringify({ error: 'Rate limit exceeded' }), { status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+      if (response.status === 402) return new Response(JSON.stringify({ error: 'Payment required' }), { status: 402, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
       throw new Error(`AI gateway error: ${response.status}`);
     }
 
     const aiData = await response.json();
     const aiContent = aiData.choices?.[0]?.message?.content;
+    if (!aiContent) throw new Error('No content generated');
 
-    if (!aiContent) {
-      throw new Error('No content generated from AI');
-    }
-
-    console.log('AI response received, parsing content...');
-
-    // Parse the JSON response from AI
     let blogData;
     try {
-      // Extract JSON from the response (handle markdown code blocks)
-      const jsonMatch = aiContent.match(/```json\s*([\s\S]*?)\s*```/) || 
-                        aiContent.match(/```\s*([\s\S]*?)\s*```/) ||
-                        [null, aiContent];
-      const jsonStr = jsonMatch[1] || aiContent;
-      blogData = JSON.parse(jsonStr.trim());
-    } catch (parseError) {
-      console.error('Failed to parse AI response:', parseError);
-      console.log('Raw AI content:', aiContent);
+      const jsonMatch = aiContent.match(/```json\s*([\s\S]*?)\s*```/) || aiContent.match(/```\s*([\s\S]*?)\s*```/) || [null, aiContent];
+      blogData = JSON.parse((jsonMatch[1] || aiContent).trim());
+    } catch {
       throw new Error('Failed to parse AI-generated content');
     }
 
-    // Generate slug from title
-    const slug = blogData.title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-|-$/g, '')
-      .substring(0, 100);
-
-    // Check if slug already exists
-    const { data: existingSlug } = await serviceSupabase
-      .from('blog_posts')
-      .select('slug')
-      .eq('slug', slug)
-      .single();
-
+    const slug = blogData.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').substring(0, 100);
+    const { data: existingSlug } = await serviceSupabase.from('blog_posts').select('slug').eq('slug', slug).single();
     if (existingSlug) {
-      console.log('Slug already exists, skipping:', slug);
-      return new Response(JSON.stringify({ 
-        message: 'Blog post with similar title already exists',
-        skipped: true 
-      }), {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
+      return new Response(JSON.stringify({ message: 'Blog post with similar title already exists', skipped: true }), { headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
     }
 
-    // Insert the new blog post
-    const { data: newPost, error: insertError } = await serviceSupabase
-      .from('blog_posts')
-      .insert({
-        title: blogData.title,
-        slug: slug,
-        excerpt: blogData.excerpt,
-        content: blogData.content,
-        category: category,
-        read_time: blogData.read_time || '5 min read',
-        is_published: true,
-      })
-      .select()
-      .single();
+    const { data: newPost, error: insertError } = await serviceSupabase.from('blog_posts').insert({
+      title: blogData.title, slug, excerpt: blogData.excerpt, content: blogData.content,
+      category, read_time: blogData.read_time || '5 min read', is_published: true,
+    }).select().single();
 
-    if (insertError) {
-      console.error('Failed to insert blog post:', insertError);
-      throw new Error(`Failed to save blog post: ${insertError.message}`);
-    }
+    if (insertError) throw new Error(`Failed to save blog post: ${insertError.message}`);
+    console.log('Blog post created:', newPost.title);
 
-    console.log('Blog post created successfully:', newPost.title);
-
-    return new Response(JSON.stringify({ 
-      success: true, 
-      post: {
-        id: newPost.id,
-        title: newPost.title,
-        slug: newPost.slug,
-        category: newPost.category
-      }
-    }), {
+    return new Response(JSON.stringify({ success: true, post: { id: newPost.id, title: newPost.title, slug: newPost.slug, category: newPost.category } }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
-
   } catch (error) {
-    console.error('Error generating blog post:', error);
-    return new Response(JSON.stringify({ 
-      error: error instanceof Error ? error.message : 'Unknown error' 
-    }), {
-      status: 500,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    console.error('Error:', error);
+    return new Response(JSON.stringify({ error: error instanceof Error ? error.message : 'Unknown error' }), {
+      status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   }
 });
