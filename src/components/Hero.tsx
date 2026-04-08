@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Phone, Check } from "lucide-react";
 import { Link } from "react-router-dom";
+import heroBg from "@/assets/hero-cleaning.jpg";
 
 const trustItems = [
   "Reliable Cleaners",
@@ -14,7 +15,7 @@ const Hero = () => {
       id="home"
       className="relative min-h-screen flex items-center pt-16"
       style={{
-        backgroundImage: "url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1920&q=75')",
+        backgroundImage: `url(${heroBg})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
