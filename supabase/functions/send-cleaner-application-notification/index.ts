@@ -115,13 +115,13 @@ const handler = async (req: Request): Promise<Response> => {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "Pleasant Cleanings <support@pleasantcleanings.com>",
+        from: "Design Cleaning <support@pleasantcleanings.com>",
         to: ["support@pleasantcleanings.com"],
         subject: `New Cleaner Application from ${application.name}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <div style="text-align: center; padding: 25px; background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);">
-              <img src="https://pleasantcleanings.com/logo-email.png" alt="Pleasant Cleanings" style="height: 60px; width: auto;" />
+              <img src="https://pleasantcleanings.com/logo-email.png" alt="Design Cleaning" style="height: 60px; width: auto;" />
               <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0; font-size: 14px;">New Cleaner Application</p>
             </div>
             
@@ -153,7 +153,7 @@ const handler = async (req: Request): Promise<Response> => {
             </div>
             
             <div style="text-align: center; padding: 20px; background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);">
-              <p style="color: rgba(255,255,255,0.9); margin: 0; font-size: 14px;">Pleasant Cleanings - Professional Cleaning Services</p>
+              <p style="color: rgba(255,255,255,0.9); margin: 0; font-size: 14px;">Design Cleaning - Professional Cleaning Services</p>
             </div>
           </div>
         `,

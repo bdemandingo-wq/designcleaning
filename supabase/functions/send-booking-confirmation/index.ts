@@ -87,7 +87,7 @@ serve(async (req) => {
     }
 
     // SMS to customer
-    const customerSms = `✅ Pleasant Cleanings Booking Confirmed!\n\n📅 Date: ${booking.preferredDate}\n🧽 Service: ${booking.serviceType}\n📍 Address: ${booking.address}\n🏠 ${booking.beds} bed, ${booking.baths} bath (${booking.sqft.toLocaleString()} sq ft)\n🔄 Frequency: ${booking.frequency}\n💰 Total: $${booking.totalPrice}\n\nPlease be home for the final walkthrough.\n\nThank you for choosing Pleasant Cleanings! 💙`;
+    const customerSms = `✅ Design Cleaning Booking Confirmed!\n\n📅 Date: ${booking.preferredDate}\n🧽 Service: ${booking.serviceType}\n📍 Address: ${booking.address}\n🏠 ${booking.beds} bed, ${booking.baths} bath (${booking.sqft.toLocaleString()} sq ft)\n🔄 Frequency: ${booking.frequency}\n💰 Total: $${booking.totalPrice}\n\nPlease be home for the final walkthrough.\n\nThank you for choosing Design Cleaning! 💙`;
 
     const customerRes = await fetch("https://api.openphone.com/v1/messages", {
       method: "POST",

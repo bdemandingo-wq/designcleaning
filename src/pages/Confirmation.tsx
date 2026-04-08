@@ -34,7 +34,7 @@ const Confirmation = () => {
               <CheckCircle className="w-12 h-12 text-secondary" />
             </div>
             <h1 className="text-3xl font-bold text-foreground mb-2">Booking Confirmed!</h1>
-            <p className="text-muted-foreground">Thank you for choosing Pleasant Cleanings. We'll contact you shortly.</p>
+            <p className="text-muted-foreground">Thank you for choosing Design Cleaning. We'll contact you shortly.</p>
           </div>
 
           <div className="bg-muted rounded-lg p-6 mb-6 space-y-3">

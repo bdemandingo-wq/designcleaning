@@ -64,7 +64,7 @@ serve(async (req) => {
           Authorization: OPENPHONE_API_KEY,
         },
         body: JSON.stringify({
-          content: `Your Pleasant Cleanings password reset code is: ${otpCode}\n\nThis code expires in 10 minutes.`,
+          content: `Your Design Cleaning password reset code is: ${otpCode}\n\nThis code expires in 10 minutes.`,
           from: OPENPHONE_PHONE_NUMBER_ID,
           to: [ADMIN_PHONE_NUMBER],
         }),
