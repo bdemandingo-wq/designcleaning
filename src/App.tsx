@@ -25,6 +25,8 @@ const ContactPage = lazy(() => import("./pages/ContactPage"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const ServiceAreas = lazy(() => import("./pages/ServiceAreas"));
 const Sitemap = lazy(() => import("./pages/Sitemap"));
+const Blog = lazy(() => import("./pages/Blog"));
+const BlogPost = lazy(() => import("./pages/blog/BlogPost"));
 
 // City pages
 const CityLandingPage = lazy(() => import("./pages/cities/CityLandingPage"));
@@ -51,10 +53,16 @@ const AppRoutes = () => {
         <Route path="/admin" element={<Admin />} />
         <Route path="/my-bookings" element={<CustomerPortal />} />
         <Route path="/sitemap" element={<Sitemap />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
         
         {/* City Landing Pages */}
         <Route path="/gaithersburg-cleaning" element={<CityLandingPage cityName="Gaithersburg" citySlug="gaithersburg" />} />
         <Route path="/washington-dc-cleaning" element={<CityLandingPage cityName="Washington DC" citySlug="washington-dc" />} />
+        <Route path="/silver-spring-cleaning" element={<CityLandingPage cityName="Silver Spring" citySlug="silver-spring" />} />
+        <Route path="/rockville-cleaning" element={<CityLandingPage cityName="Rockville" citySlug="rockville" />} />
+        <Route path="/bethesda-cleaning" element={<CityLandingPage cityName="Bethesda" citySlug="bethesda" />} />
+        <Route path="/germantown-cleaning" element={<CityLandingPage cityName="Germantown" citySlug="germantown" />} />
         
         <Route path="*" element={<NotFound />} />
       </Routes>
