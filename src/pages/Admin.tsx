@@ -166,6 +166,28 @@ const Admin = () => {
     fetchApplications();
   };
 
+  const handleGenerateBlog = async () => {
+    setGeneratingBlog(true);
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) throw new Error("Not authenticated");
+      const res = await supabase.functions.invoke("generate-blog-post", {
+        headers: { Authorization: `Bearer ${session.access_token}` },
+      });
+      if (res.error) throw res.error;
+      const result = res.data;
+      if (result.skipped) {
+        toast({ title: "Skipped", description: "A similar blog post already exists." });
+      } else {
+        toast({ title: "Blog Post Created!", description: `"${result.post?.title}" has been published.` });
+      }
+    } catch (error: any) {
+      toast({ title: "Error", description: error.message || "Failed to generate blog post.", variant: "destructive" });
+    } finally {
+      setGeneratingBlog(false);
+    }
+  };
+
   const updateStatus = async (bookingId: string, newStatus: BookingStatus) => {
     try {
       const { error } = await supabase
