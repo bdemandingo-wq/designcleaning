@@ -15,6 +15,10 @@ const Sitemap = () => {
   const areas = [
     { name: "Gaithersburg", path: "/gaithersburg-cleaning" },
     { name: "Washington DC", path: "/washington-dc-cleaning" },
+    { name: "Silver Spring", path: "/silver-spring-cleaning" },
+    { name: "Rockville", path: "/rockville-cleaning" },
+    { name: "Bethesda", path: "/bethesda-cleaning" },
+    { name: "Germantown", path: "/germantown-cleaning" },
   ];
 
   const pages = [
@@ -22,6 +26,7 @@ const Sitemap = () => {
     { name: "Services", path: "/services" },
     { name: "Membership", path: "/membership" },
     { name: "About", path: "/about" },
+    { name: "Blog", path: "/blog" },
     { name: "Booking", path: "/booking" },
     { name: "Contact", path: "/contact" },
     { name: "FAQ", path: "/faq" },
