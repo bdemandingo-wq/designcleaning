@@ -98,7 +98,7 @@ const CustomerPortal = () => {
           <div className="flex items-center justify-between">
             <Link to="/" className="flex items-center gap-2">
               
-              <span className="font-display text-xl font-bold text-foreground">Pleasant Cleanings</span>
+              <span className="font-display text-xl font-bold text-foreground">Design Cleaning</span>
             </Link>
             <div className="flex items-center gap-4">
               <span className="text-sm text-muted-foreground hidden sm:block">
@@ -248,14 +248,14 @@ const CustomerPortal = () => {
               </div>
               <div className="flex items-center gap-4">
                 <a 
-                  href="tel:7867967445" 
+                  href="tel:2029359934" 
                   className="inline-flex items-center gap-2 text-primary hover:underline"
                 >
                   <Phone className="h-4 w-4" />
-                  (786) 796-7445
+                  (202) 935-9934
                 </a>
                 <a 
-                  href="mailto:support@pleasantcleanings.com" 
+                  href="mailto:DesignCleaning@proton.me" 
                   className="inline-flex items-center gap-2 text-primary hover:underline"
                 >
                   <Mail className="h-4 w-4" />

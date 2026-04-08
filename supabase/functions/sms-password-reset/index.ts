@@ -3,7 +3,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const OPENPHONE_API_KEY = Deno.env.get("OPENPHONE_API_KEY");
 const OPENPHONE_PHONE_NUMBER_ID = "PNr7XukuaV";
-const ADMIN_PHONE_NUMBER = "+17867967445";
+const ADMIN_PHONE_NUMBER = "+12029359934";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -64,7 +64,7 @@ serve(async (req) => {
           Authorization: OPENPHONE_API_KEY,
         },
         body: JSON.stringify({
-          content: `Your Pleasant Cleanings password reset code is: ${otpCode}\n\nThis code expires in 10 minutes.`,
+          content: `Your Design Cleaning password reset code is: ${otpCode}\n\nThis code expires in 10 minutes.`,
           from: OPENPHONE_PHONE_NUMBER_ID,
           to: [ADMIN_PHONE_NUMBER],
         }),

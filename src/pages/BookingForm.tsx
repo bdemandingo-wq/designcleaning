@@ -74,7 +74,7 @@ const BookingForm = () => {
               <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
               <div>
                 <p className="font-display font-bold text-amber-800 dark:text-amber-400 uppercase tracking-wide">Same / Next Day Cleaning?</p>
-                <p className="text-sm text-amber-700 dark:text-amber-500">Call us at <a href="tel:+17867967445" className="font-semibold underline">(786) 796-7445</a></p>
+                <p className="text-sm text-amber-700 dark:text-amber-500"><p className="text-sm text-amber-700 dark:text-amber-500">Call us at <a href="tel:2029359934" className="font-semibold underline">(202) 935-9934</a></p></p>
               </div>
             </div>
 
@@ -97,14 +97,14 @@ const BookingForm = () => {
                 <h2 className="font-semibold text-foreground flex items-center gap-2"><User className="w-4 h-4 text-primary" />Contact</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2"><Label htmlFor="name">Full Name *</Label><Input id="name" value={formData.name} onChange={e => handleInputChange("name", e.target.value)} required /></div>
-                  <div className="space-y-2"><Label htmlFor="phone">Phone *</Label><div className="relative"><Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" /><Input id="phone" type="tel" placeholder="(786) 555-0123" className="pl-10" value={formData.phone} onChange={e => handleInputChange("phone", e.target.value)} required /></div></div>
+                  <div className="space-y-2"><Label htmlFor="phone">Phone *</Label><div className="relative"><Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" /><Input id="phone" type="tel" placeholder="(202) 555-0123" className="pl-10" value={formData.phone} onChange={e => handleInputChange("phone", e.target.value)} required /></div></div>
                 </div>
                 <div className="space-y-2"><Label htmlFor="email">Email *</Label><div className="relative"><Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" /><Input id="email" type="email" className="pl-10" value={formData.email} onChange={e => handleInputChange("email", e.target.value)} required /></div></div>
               </div>
 
               <div className="space-y-4">
                 <h2 className="font-semibold text-foreground flex items-center gap-2"><Home className="w-4 h-4 text-primary" />Property</h2>
-                <div className="space-y-2"><Label htmlFor="address">Address *</Label><div className="relative"><MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" /><Input id="address" placeholder="123 Main St, Pembroke Pines, FL" className="pl-10" value={formData.address} onChange={e => handleInputChange("address", e.target.value)} required /></div></div>
+                <div className="space-y-2"><Label htmlFor="address">Address *</Label><div className="relative"><MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" /><Input id="address" placeholder="123 Main St, Gaithersburg, MD" className="pl-10" value={formData.address} onChange={e => handleInputChange("address", e.target.value)} required /></div></div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2"><Label>Bedrooms *</Label><Select value={formData.beds} onValueChange={v => handleInputChange("beds", v)}><SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger><SelectContent>{["1","2","3","4","5","6+"].map(v => <SelectItem key={v} value={v}>{v} Bedroom{v!=="1"?"s":""}</SelectItem>)}</SelectContent></Select></div>
                   <div className="space-y-2"><Label>Bathrooms *</Label><Select value={formData.baths} onValueChange={v => handleInputChange("baths", v)}><SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger><SelectContent>{["1","1.5","2","2.5","3","3.5","4+"].map(v => <SelectItem key={v} value={v}>{v} Bathroom{v!=="1"?"s":""}</SelectItem>)}</SelectContent></Select></div>
