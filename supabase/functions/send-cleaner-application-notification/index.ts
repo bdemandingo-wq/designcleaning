@@ -6,8 +6,8 @@ const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
 
 const ALLOWED_ORIGINS = [
-  'https://pleasantcleanings.com',
-  'https://www.pleasantcleanings.com',
+  'https://designcleaningdmv.com',
+  'https://www.designcleaningdmv.com',
   'https://ekseakjxarhjujngoklz.supabase.co',
 ];
 
@@ -45,9 +45,9 @@ interface CleanerApplicationRequest {
 }
 
 const workAreaLabels: Record<string, string> = {
-  "jacksonville": "Pembroke Pines",
-  "jax-beach": "Pembroke Pines Beach / Beaches",
-  "ponte-vedra": "Ponte Vedra / Palm Beach County",
+  "jacksonville": "Gaithersburg",
+  "jax-beach": "Silver Spring / Beaches",
+  "ponte-vedra": "Bethesda / Montgomery County",
   "mandarin": "Mandarin / Southside",
   "riverside": "Riverside / Avondale",
 };
@@ -115,13 +115,13 @@ const handler = async (req: Request): Promise<Response> => {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "Design Cleaning <support@pleasantcleanings.com>",
-        to: ["support@pleasantcleanings.com"],
+        from: "Design Cleaning <DesignCleaning@proton.me>",
+        to: ["DesignCleaning@proton.me"],
         subject: `New Cleaner Application from ${application.name}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <div style="text-align: center; padding: 25px; background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);">
-              <img src="https://pleasantcleanings.com/logo-email.png" alt="Design Cleaning" style="height: 60px; width: auto;" />
+              <img src="https://designcleaningdmv.com/logo-email.png" alt="Design Cleaning" style="height: 60px; width: auto;" />
               <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0; font-size: 14px;">New Cleaner Application</p>
             </div>
             
