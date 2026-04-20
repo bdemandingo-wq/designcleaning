@@ -65,7 +65,7 @@ const Navbar = () => {
             </div>
 
             <button
-              className="lg:hidden p-2"
+              className="lg:hidden p-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
               aria-expanded={isOpen}
@@ -81,7 +81,7 @@ const Navbar = () => {
                   <Link
                     key={link.href}
                     to={link.href}
-                    className={`transition-colors font-medium py-2.5 px-2 rounded ${
+                    className={`transition-colors font-medium py-3 px-3 rounded min-h-[44px] flex items-center ${
                       location.pathname === link.href
                         ? "text-primary bg-primary/5"
                         : "text-muted-foreground hover:text-foreground hover:bg-muted"

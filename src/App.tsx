@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ScrollToHash from "@/components/ScrollToHash";
 import ChatbotWidget from "@/components/ChatbotWidget";
+import StickyMobileCTA from "@/components/StickyMobileCTA";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { HelmetProvider } from "react-helmet-async";
 import usePageTracking from "@/hooks/usePageTracking";
@@ -113,6 +114,7 @@ const App = () => (
           <BrowserRouter>
             <ScrollToHash />
             <AppRoutes />
+            <StickyMobileCTA />
             <ChatbotWidget />
           </BrowserRouter>
         </TooltipProvider>
