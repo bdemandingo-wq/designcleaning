@@ -41,64 +41,64 @@ const CityLandingPage = ({ cityName, citySlug }: CityLandingPageProps) => {
       />
       <main className="min-h-screen">
         <Navbar />
-        <section className="pt-24 pb-12 bg-gradient-to-br from-primary/10 to-background">
+        <section className="pt-20 sm:pt-24 pb-10 sm:pb-12 bg-gradient-to-br from-primary/10 to-background">
           <div className="container mx-auto px-4 text-center">
-            <div className="inline-flex items-center gap-2 bg-primary/15 text-primary border border-primary/30 px-4 py-2 rounded-full mb-6">
+            <div className="inline-flex items-center gap-2 bg-primary/15 text-primary border border-primary/30 px-4 py-2 rounded-full mb-5 sm:mb-6">
               <MapPin className="w-4 h-4" /><span className="text-sm font-medium">{cityName}</span>
             </div>
-            <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
+            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 break-words">
               House Cleaning in {cityName}
             </h1>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-8">
+            <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto mb-7 sm:mb-8">
               {introCopy}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" asChild><Link to="/booking">Book Your {cityName} Cleaning</Link></Button>
-              <Button size="lg" variant="outline" asChild>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+              <Button size="lg" className="min-h-[52px] w-full sm:w-auto" asChild><Link to="/booking">Book Your {cityName} Cleaning</Link></Button>
+              <Button size="lg" variant="outline" className="min-h-[52px] w-full sm:w-auto" asChild>
                 <a href="tel:2029359934">Call (202) 935-9934</a>
               </Button>
             </div>
           </div>
         </section>
 
-        <section className="py-20">
+        <section className="py-16 sm:py-20">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-4">Our Services in {cityName}</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto text-center mb-12">From routine maintenance to deep cleans — we handle it all.</p>
-            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground text-center mb-3 sm:mb-4">Our Services in {cityName}</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto text-center mb-10 sm:mb-12 text-sm sm:text-base">From routine maintenance to deep cleans — we handle it all.</p>
+            <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto">
               {services.map((service) => (
-                <div key={service.name} className="bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                  <h3 className="font-display text-xl font-bold text-foreground mb-2">{service.name}</h3>
-                  <p className="text-muted-foreground mb-3">{service.desc}</p>
+                <div key={service.name} className="bg-card border border-border rounded-xl p-5 sm:p-6 shadow-sm hover:shadow-md transition-shadow">
+                  <h3 className="font-display text-lg sm:text-xl font-bold text-foreground mb-2">{service.name}</h3>
+                  <p className="text-muted-foreground mb-3 text-sm sm:text-base">{service.desc}</p>
                   <p className="text-primary font-semibold mb-4">From {service.price}</p>
-                  <Button asChild className="w-full"><Link to="/booking">Book Now</Link></Button>
+                  <Button asChild className="w-full min-h-[48px]"><Link to="/booking">Book Now</Link></Button>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="py-20 bg-muted">
+        <section className="py-16 sm:py-20 bg-muted">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-12">Why {cityName} Chooses Design Cleaning</h2>
-            <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground text-center mb-10 sm:mb-12">Why {cityName} Chooses Design Cleaning</h2>
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto">
               {["Vetted, background-checked professionals", "Simple online booking — no phone call needed", "Transparent pricing with no hidden fees", "Reliable, on-time scheduling", "Structured cleaning checklist", "Easy communication before & after"].map((item) => (
                 <div key={item} className="flex items-start gap-3">
                   <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <p className="text-foreground">{item}</p>
+                  <p className="text-foreground text-sm sm:text-base">{item}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="py-20 bg-primary text-primary-foreground">
+        <section className="py-16 sm:py-20 bg-primary text-primary-foreground">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="font-display text-3xl font-bold mb-4">Book Your {cityName} Cleaning Today</h2>
-            <p className="text-primary-foreground/80 mb-8 max-w-xl mx-auto">Professional home cleaning made simple.</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary" asChild><Link to="/booking">Book Now</Link></Button>
-              <Button size="lg" className="border-2 border-white text-white hover:bg-white hover:text-primary font-semibold" asChild>
+            <h2 className="font-display text-2xl sm:text-3xl font-bold mb-4">Book Your {cityName} Cleaning Today</h2>
+            <p className="text-primary-foreground/80 mb-7 sm:mb-8 max-w-xl mx-auto text-sm sm:text-base">Professional home cleaning made simple.</p>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+              <Button size="lg" variant="secondary" className="min-h-[52px] w-full sm:w-auto" asChild><Link to="/booking">Book Now</Link></Button>
+              <Button size="lg" className="min-h-[52px] w-full sm:w-auto border-2 border-white text-white hover:bg-white hover:text-primary font-semibold bg-transparent" asChild>
                 <a href="tel:2029359934">Call (202) 935-9934</a>
               </Button>
             </div>
