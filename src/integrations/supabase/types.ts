@@ -109,6 +109,27 @@ export type Database = {
         }
         Relationships: []
       }
+      booking_blocked_dates: {
+        Row: {
+          blocked_date: string
+          created_at: string
+          id: string
+          reason: string | null
+        }
+        Insert: {
+          blocked_date: string
+          created_at?: string
+          id?: string
+          reason?: string | null
+        }
+        Update: {
+          blocked_date?: string
+          created_at?: string
+          id?: string
+          reason?: string | null
+        }
+        Relationships: []
+      }
       bookings: {
         Row: {
           add_ons: string[] | null
@@ -124,10 +145,12 @@ export type Database = {
           id: string
           pet_info: string | null
           preferred_date: string
+          review_email_sent_at: string | null
           service_type: string
           special_instructions: string | null
           sqft: number
           status: Database["public"]["Enums"]["booking_status"]
+          time_slot: string | null
           total_price: number
           updated_at: string
         }
@@ -145,10 +168,12 @@ export type Database = {
           id?: string
           pet_info?: string | null
           preferred_date: string
+          review_email_sent_at?: string | null
           service_type: string
           special_instructions?: string | null
           sqft: number
           status?: Database["public"]["Enums"]["booking_status"]
+          time_slot?: string | null
           total_price: number
           updated_at?: string
         }
@@ -166,10 +191,12 @@ export type Database = {
           id?: string
           pet_info?: string | null
           preferred_date?: string
+          review_email_sent_at?: string | null
           service_type?: string
           special_instructions?: string | null
           sqft?: number
           status?: Database["public"]["Enums"]["booking_status"]
+          time_slot?: string | null
           total_price?: number
           updated_at?: string
         }
@@ -492,6 +519,53 @@ export type Database = {
           zip?: string
         }
         Relationships: []
+      }
+      reviews: {
+        Row: {
+          booking_id: string | null
+          created_at: string
+          customer_name: string
+          id: string
+          location: string | null
+          rating: number
+          review_text: string
+          review_token: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          booking_id?: string | null
+          created_at?: string
+          customer_name: string
+          id?: string
+          location?: string | null
+          rating: number
+          review_text: string
+          review_token?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          booking_id?: string | null
+          created_at?: string
+          customer_name?: string
+          id?: string
+          location?: string | null
+          rating?: number
+          review_text?: string
+          review_token?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       service_areas: {
         Row: {
