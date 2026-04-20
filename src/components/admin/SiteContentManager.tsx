@@ -702,6 +702,86 @@ const SiteContentManager = () => {
         </CardContent>
       </Card>
 
+      {/* About Page Copy */}
+      <Card>
+        <CardHeader>
+          <CardTitle>About Page Copy</CardTitle>
+          <p className="text-sm text-muted-foreground">
+            Edit hero, mission, standards, and the six value cards on /about.
+          </p>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <Field label="Hero title" k="about_hero_title" />
+          <Field label="Hero subhead" k="about_hero_sub" multi rows={3} />
+          <div className="border-t pt-4 space-y-3">
+            <Field label="Mission heading" k="about_mission_title" />
+            <Field label="Mission body" k="about_mission_body" multi rows={4} />
+          </div>
+          <div className="border-t pt-4 space-y-3">
+            <Field label="Standards heading" k="about_standards_title" />
+            <Field label="Standards body" k="about_standards_body" multi rows={4} />
+          </div>
+          <div className="border-t pt-4 space-y-3">
+            <p className="text-sm font-semibold text-foreground">Value cards (6)</p>
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <div key={i} className="grid md:grid-cols-2 gap-3">
+                <Field label={`Value ${i} title`} k={`about_value_${i}_title`} />
+                <Field label={`Value ${i} description`} k={`about_value_${i}_desc`} multi rows={2} />
+              </div>
+            ))}
+          </div>
+          <Button
+            onClick={() =>
+              saveKeys(
+                [
+                  "about_hero_title", "about_hero_sub",
+                  "about_mission_title", "about_mission_body",
+                  "about_standards_title", "about_standards_body",
+                  ...[1, 2, 3, 4, 5, 6].flatMap((i) => [`about_value_${i}_title`, `about_value_${i}_desc`]),
+                ],
+                "About Copy"
+              )
+            }
+            disabled={savingKey === "About Copy"}
+          >
+            <Save className="w-4 h-4 mr-2" />
+            {savingKey === "About Copy" ? "Saving…" : "Save About Copy"}
+          </Button>
+        </CardContent>
+      </Card>
+
+      {/* Contact Page Copy */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Contact Page Copy</CardTitle>
+          <p className="text-sm text-muted-foreground">
+            Edit heading, lead, hours, and contact details on /contact.
+          </p>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <Field label="Heading" k="contact_heading" />
+          <Field label="Lead paragraph" k="contact_lead" multi rows={3} />
+          <div className="grid md:grid-cols-2 gap-3">
+            <Field label="Phone (display)" k="contact_phone" />
+            <Field label="Email" k="contact_email" />
+          </div>
+          <Field label="Hours" k="contact_hours" />
+          <Field label="Service area summary" k="contact_area_summary" />
+          <Button
+            onClick={() =>
+              saveKeys(
+                ["contact_heading", "contact_lead", "contact_phone", "contact_email", "contact_hours", "contact_area_summary"],
+                "Contact Copy"
+              )
+            }
+            disabled={savingKey === "Contact Copy"}
+          >
+            <Save className="w-4 h-4 mr-2" />
+            {savingKey === "Contact Copy" ? "Saving…" : "Save Contact Copy"}
+          </Button>
+        </CardContent>
+      </Card>
+
       {/* Chatbot Copy */}
       <Card>
         <CardHeader>
