@@ -173,6 +173,111 @@ export type Database = {
         }
         Relationships: []
       }
+      commercial_requests: {
+        Row: {
+          address: string | null
+          city: string | null
+          company_name: string
+          contact_name: string
+          created_at: string
+          email: string
+          frequency: string | null
+          id: string
+          message: string | null
+          phone: string
+          property_type: string
+          square_feet: string | null
+          state: string | null
+          status: string
+          updated_at: string
+          zip: string | null
+        }
+        Insert: {
+          address?: string | null
+          city?: string | null
+          company_name: string
+          contact_name: string
+          created_at?: string
+          email: string
+          frequency?: string | null
+          id?: string
+          message?: string | null
+          phone: string
+          property_type: string
+          square_feet?: string | null
+          state?: string | null
+          status?: string
+          updated_at?: string
+          zip?: string | null
+        }
+        Update: {
+          address?: string | null
+          city?: string | null
+          company_name?: string
+          contact_name?: string
+          created_at?: string
+          email?: string
+          frequency?: string | null
+          id?: string
+          message?: string | null
+          phone?: string
+          property_type?: string
+          square_feet?: string | null
+          state?: string | null
+          status?: string
+          updated_at?: string
+          zip?: string | null
+        }
+        Relationships: []
+      }
+      gift_cards: {
+        Row: {
+          amount: number
+          buyer_email: string | null
+          buyer_name: string | null
+          code: string
+          created_at: string
+          id: string
+          message: string | null
+          recipient_email: string | null
+          recipient_name: string | null
+          redeemed_at: string | null
+          status: string
+          stripe_session_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          amount: number
+          buyer_email?: string | null
+          buyer_name?: string | null
+          code: string
+          created_at?: string
+          id?: string
+          message?: string | null
+          recipient_email?: string | null
+          recipient_name?: string | null
+          redeemed_at?: string | null
+          status?: string
+          stripe_session_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          amount?: number
+          buyer_email?: string | null
+          buyer_name?: string | null
+          code?: string
+          created_at?: string
+          id?: string
+          message?: string | null
+          recipient_email?: string | null
+          recipient_name?: string | null
+          redeemed_at?: string | null
+          status?: string
+          stripe_session_id?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       password_reset_otps: {
         Row: {
           created_at: string
@@ -290,6 +395,81 @@ export type Database = {
           status?: string
           updated_at?: string
           zip?: string
+        }
+        Relationships: []
+      }
+      service_areas: {
+        Row: {
+          created_at: string
+          id: string
+          is_active: boolean
+          name: string
+          slug: string
+          sort_order: number
+          state: string
+          tier: string
+          travel_fee: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          name: string
+          slug: string
+          sort_order?: number
+          state?: string
+          tier?: string
+          travel_fee?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          name?: string
+          slug?: string
+          sort_order?: number
+          state?: string
+          tier?: string
+          travel_fee?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      service_pricing: {
+        Row: {
+          base_price: number
+          created_at: string
+          id: string
+          is_active: boolean
+          label: string
+          max_sqft: number
+          service_type: string
+          tier_index: number
+          updated_at: string
+        }
+        Insert: {
+          base_price: number
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          label: string
+          max_sqft: number
+          service_type: string
+          tier_index: number
+          updated_at?: string
+        }
+        Update: {
+          base_price?: number
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          label?: string
+          max_sqft?: number
+          service_type?: string
+          tier_index?: number
+          updated_at?: string
         }
         Relationships: []
       }
