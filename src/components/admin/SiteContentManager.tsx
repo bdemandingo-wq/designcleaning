@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Save } from "lucide-react";
 
 type ContentMap = Record<string, string>;
@@ -156,6 +157,72 @@ const SiteContentManager = () => {
           >
             <Save className="w-4 h-4 mr-2" />
             {savingKey === "Testimonials" ? "Saving…" : "Save Testimonials"}
+          </Button>
+        </CardContent>
+      </Card>
+
+      {/* Chatbot */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Chatbot Widget</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div>
+            <Label htmlFor="chatbot_provider">Provider</Label>
+            <Select
+              value={content.chatbot_provider || "none"}
+              onValueChange={(v) => setField("chatbot_provider", v)}
+            >
+              <SelectTrigger id="chatbot_provider">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="none">None — show built-in placeholder</SelectItem>
+                <SelectItem value="tidio">Tidio</SelectItem>
+                <SelectItem value="intercom">Intercom</SelectItem>
+                <SelectItem value="custom">Custom (paste &lt;script&gt; tag)</SelectItem>
+              </SelectContent>
+            </Select>
+            <p className="text-xs text-muted-foreground mt-1">
+              "None" shows our built-in chat bubble with phone/email links. Pick a provider and paste your key/script below to swap it in.
+            </p>
+          </div>
+          <div>
+            <Label htmlFor="chatbot_key">
+              {content.chatbot_provider === "tidio" && "Tidio Public Key"}
+              {content.chatbot_provider === "intercom" && "Intercom App ID"}
+              {content.chatbot_provider === "custom" && "Custom <script> markup"}
+              {(!content.chatbot_provider || content.chatbot_provider === "none") && "Key / Script (unused for None)"}
+            </Label>
+            {content.chatbot_provider === "custom" ? (
+              <Textarea
+                id="chatbot_key"
+                rows={6}
+                value={content.chatbot_key || ""}
+                onChange={(e) => setField("chatbot_key", e.target.value)}
+                placeholder="<script>...</script>"
+              />
+            ) : (
+              <Input
+                id="chatbot_key"
+                value={content.chatbot_key || ""}
+                onChange={(e) => setField("chatbot_key", e.target.value)}
+                placeholder={
+                  content.chatbot_provider === "tidio"
+                    ? "abc123xyz"
+                    : content.chatbot_provider === "intercom"
+                    ? "xxxxxxxx"
+                    : ""
+                }
+              />
+            )}
+          </div>
+          <Button
+            onClick={() => saveKeys(["chatbot_provider", "chatbot_key"], "Chatbot")}
+            disabled={savingKey === "Chatbot"}
+          >
+            <Save className="w-4 h-4 mr-2" />
+            {savingKey === "Chatbot" ? "Saving…" : "Save Chatbot"}
           </Button>
         </CardContent>
       </Card>
