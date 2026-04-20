@@ -7,7 +7,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { LogOut, Calendar, DollarSign, Users, Clock, RefreshCw, Trash2, UserCheck, Briefcase, Phone, Mail, MapPin, Car, Shield, Star } from "lucide-react";
+import { LogOut, Calendar, DollarSign, Users, Clock, RefreshCw, Trash2, UserCheck, Briefcase, Phone, Mail, MapPin, Car, Shield, Star, Image } from "lucide-react";
+import OurWorkManager from "@/components/admin/OurWorkManager";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   AlertDialog,
@@ -335,6 +336,10 @@ const Admin = () => {
                 <Briefcase className="w-4 h-4" />
                 Applicants ({applications.length})
               </TabsTrigger>
+              <TabsTrigger value="ourwork" className="gap-2">
+                <Image className="w-4 h-4" />
+                Our Work
+              </TabsTrigger>
             </TabsList>
             <div className="flex items-center gap-2">
               <Button variant="outline" size="sm" onClick={handleGenerateBlog} disabled={generatingBlog}>
@@ -513,6 +518,10 @@ const Admin = () => {
                 )}
               </CardContent>
             </Card>
+          </TabsContent>
+
+          <TabsContent value="ourwork">
+            <OurWorkManager />
           </TabsContent>
         </Tabs>
       </main>

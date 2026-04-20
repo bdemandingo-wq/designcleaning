@@ -27,6 +27,7 @@ const ServiceAreas = lazy(() => import("./pages/ServiceAreas"));
 const Sitemap = lazy(() => import("./pages/Sitemap"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/blog/BlogPost"));
+const OurWorkPage = lazy(() => import("./pages/OurWorkPage"));
 
 // City pages
 const CityLandingPage = lazy(() => import("./pages/cities/CityLandingPage"));
@@ -55,6 +56,7 @@ const AppRoutes = () => {
         <Route path="/sitemap" element={<Sitemap />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/our-work" element={<OurWorkPage />} />
         
         {/* City Landing Pages */}
         <Route path="/gaithersburg-cleaning" element={<CityLandingPage cityName="Gaithersburg" citySlug="gaithersburg" />} />
