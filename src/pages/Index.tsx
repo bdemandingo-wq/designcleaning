@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import QuoteForm from "@/components/QuoteForm";
 import TrustBadges from "@/components/TrustBadges";
 import ServiceCards from "@/components/ServiceCards";
 import HowItWorks from "@/components/HowItWorks";
