@@ -9,10 +9,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { ArrowLeft, User, Mail, Phone, Home, MapPin, MessageSquare, PawPrint, CalendarIcon, AlertTriangle } from "lucide-react";
+import { ArrowLeft, User, Mail, Phone, Home, MapPin, MessageSquare, PawPrint, CalendarIcon, AlertTriangle, Sun, Moon } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
+import { useBookingAvailability } from "@/hooks/useBookingAvailability";
 
 interface BookingState { sqft: number; serviceType: string; frequency: string; addOns: string[]; totalPrice: string; }
 
@@ -24,10 +25,19 @@ const BookingForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", address: "", beds: "", baths: "", accessInstructions: "", focusAreas: "", hasPets: "", petDetails: "" });
   const [preferredDate, setPreferredDate] = useState<Date | undefined>();
+  const [timeSlot, setTimeSlot] = useState<"morning" | "afternoon" | "">("");
+  const { isDateUnavailable, slotAvailable, loading: availLoading } = useBookingAvailability();
 
   const minDate = new Date();
   minDate.setDate(minDate.getDate() + 2);
   minDate.setHours(0, 0, 0, 0);
+
+  // Reset slot if it becomes unavailable for chosen date
+  useEffect(() => {
+    if (preferredDate && timeSlot && !slotAvailable(preferredDate, timeSlot as "morning" | "afternoon")) {
+      setTimeSlot("");
+    }
+  }, [preferredDate, timeSlot, slotAvailable]);
 
   useEffect(() => { if (!booking) navigate({ pathname: "/", hash: "#booking" }, { replace: true }); }, [booking, navigate]);
   if (!booking) return null;

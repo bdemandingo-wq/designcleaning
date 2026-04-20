@@ -113,7 +113,7 @@ const ReviewSubmit = () => {
 
               {!loading && valid && alreadySubmitted && (
                 <div className="text-center py-8">
-                  <CheckCircle2 className="w-12 h-12 text-green-600 mx-auto mb-3" />
+                  <CheckCircle2 className="w-12 h-12 text-primary mx-auto mb-3" />
                   <p className="font-semibold text-foreground mb-1">You've already submitted a review</p>
                   <p className="text-sm text-muted-foreground mb-6">Thank you!</p>
                   <Button asChild variant="outline"><Link to="/">Back to Home</Link></Button>
@@ -122,7 +122,7 @@ const ReviewSubmit = () => {
 
               {!loading && valid && !alreadySubmitted && submitted && (
                 <div className="text-center py-8">
-                  <CheckCircle2 className="w-12 h-12 text-green-600 mx-auto mb-3" />
+                  <CheckCircle2 className="w-12 h-12 text-primary mx-auto mb-3" />
                   <p className="font-semibold text-foreground mb-1">Thank you!</p>
                   <p className="text-sm text-muted-foreground mb-6">
                     {submitted === "approved"
