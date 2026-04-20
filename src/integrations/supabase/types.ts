@@ -173,57 +173,6 @@ export type Database = {
         }
         Relationships: []
       }
-      site_content: {
-        Row: {
-          id: string
-          key: string
-          value: string
-          updated_at: string
-        }
-        Insert: {
-          id?: string
-          key: string
-          value: string
-          updated_at?: string
-        }
-        Update: {
-          id?: string
-          key?: string
-          value?: string
-          updated_at?: string
-        }
-        Relationships: []
-      }
-      work_cards: {
-        Row: {
-          id: string
-          platform: string
-          image_url: string
-          caption: string
-          post_url: string
-          sort_order: number
-          created_at: string
-        }
-        Insert: {
-          id?: string
-          platform?: string
-          image_url: string
-          caption?: string
-          post_url?: string
-          sort_order?: number
-          created_at?: string
-        }
-        Update: {
-          id?: string
-          platform?: string
-          image_url?: string
-          caption?: string
-          post_url?: string
-          sort_order?: number
-          created_at?: string
-        }
-        Relationships: []
-      }
       password_reset_otps: {
         Row: {
           created_at: string
