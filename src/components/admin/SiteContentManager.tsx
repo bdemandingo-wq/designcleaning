@@ -180,6 +180,34 @@ const SiteContentManager = () => {
         </CardContent>
       </Card>
 
+      {/* Commercial Page Copy */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Commercial Page Copy</CardTitle>
+          <p className="text-sm text-muted-foreground">
+            Edit the headline, scope list, and add-ons shown on the Commercial & Office page. One item per line for lists.
+          </p>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <Field label="Hero title" k="commercial_hero_title" />
+          <Field label="Hero subhead" k="commercial_hero_sub" multi rows={3} />
+          <Field label="What's Included list (one item per line)" k="commercial_scope_list" multi rows={8} />
+          <Field label="Available Add-Ons list (one item per line)" k="commercial_addons_list" multi rows={8} />
+          <Button
+            onClick={() =>
+              saveKeys(
+                ["commercial_hero_title", "commercial_hero_sub", "commercial_scope_list", "commercial_addons_list"],
+                "Commercial Page Copy"
+              )
+            }
+            disabled={savingKey === "Commercial Page Copy"}
+          >
+            <Save className="w-4 h-4 mr-2" />
+            {savingKey === "Commercial Page Copy" ? "Saving…" : "Save Commercial Copy"}
+          </Button>
+        </CardContent>
+      </Card>
+
       {/* Links */}
       <Card>
         <CardHeader>
