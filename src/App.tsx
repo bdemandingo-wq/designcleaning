@@ -32,6 +32,7 @@ const OurWorkPage = lazy(() => import("./pages/OurWorkPage"));
 const ResidentialPage = lazy(() => import("./pages/ResidentialPage"));
 const CommercialPage = lazy(() => import("./pages/CommercialPage"));
 const PricingPage = lazy(() => import("./pages/PricingPage"));
+const AirbnbTurnoverPage = lazy(() => import("./pages/AirbnbTurnoverPage"));
 
 // City pages
 const CityLandingPage = lazy(() => import("./pages/cities/CityLandingPage"));
@@ -64,6 +65,7 @@ const AppRoutes = () => {
         <Route path="/residential" element={<ResidentialPage />} />
         <Route path="/commercial" element={<CommercialPage />} />
         <Route path="/pricing" element={<PricingPage />} />
+        <Route path="/airbnb-turnover" element={<AirbnbTurnoverPage />} />
 
         {/* City Landing Pages */}
         <Route path="/gaithersburg-cleaning" element={<CityLandingPage cityName="Gaithersburg" citySlug="gaithersburg" />} />
