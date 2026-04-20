@@ -60,14 +60,14 @@ const BookingForm = () => {
   const handleInputChange = (field: string, value: string) => setFormData(prev => ({ ...prev, [field]: value }));
 
   return (
-    <div className="min-h-screen bg-muted py-12 px-4">
+    <div className="min-h-screen bg-muted py-8 sm:py-12 px-3 sm:px-4">
       <div className="max-w-2xl mx-auto">
-        <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-6"><ArrowLeft className="w-4 h-4" />Back to pricing</button>
+        <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-4 sm:mb-6 min-h-[44px]"><ArrowLeft className="w-4 h-4" />Back to pricing</button>
         <Card className="shadow-elevated">
-          <CardContent className="p-8">
-            <div className="text-center mb-8">
-              <h1 className="font-display text-3xl font-bold text-foreground mb-2">Complete Your Booking</h1>
-              <p className="text-muted-foreground">Provide your details to schedule your cleaning.</p>
+          <CardContent className="p-4 sm:p-6 md:p-8">
+            <div className="text-center mb-6 sm:mb-8">
+              <h1 className="font-display text-2xl sm:text-3xl font-bold text-foreground mb-2">Complete Your Booking</h1>
+              <p className="text-sm sm:text-base text-muted-foreground">Provide your details to schedule your cleaning.</p>
             </div>
 
             <div className="bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mb-8 flex gap-3">
