@@ -1,27 +1,39 @@
-import { CalendarCheck, SprayCan, Sparkles } from "lucide-react";
-
-const steps = [
-  {
-    icon: CalendarCheck,
-    number: "1",
-    title: "Book Online",
-    description: "Choose your service, home size, and preferred time in minutes.",
-  },
-  {
-    icon: SprayCan,
-    number: "2",
-    title: "We Clean",
-    description: "Our vetted, background-checked professionals handle everything.",
-  },
-  {
-    icon: Sparkles,
-    number: "3",
-    title: "Enjoy Your Space",
-    description: "Come home to a spotless, fresh, professionally cleaned space.",
-  },
-];
+import { Calculator, CalendarCheck, Sparkles } from "lucide-react";
+import { useSiteContent } from "@/hooks/useSiteContent";
 
 const HowItWorks = () => {
+  const { get } = useSiteContent();
+
+  const steps = [
+    {
+      icon: Calculator,
+      number: "1",
+      title: get("home_howitworks_step_1_title", "Get Free Estimate"),
+      description: get(
+        "home_howitworks_step_1_desc",
+        "Tell us your home size and service in under 60 seconds. See your price instantly."
+      ),
+    },
+    {
+      icon: CalendarCheck,
+      number: "2",
+      title: get("home_howitworks_step_2_title", "Pick Your Date"),
+      description: get(
+        "home_howitworks_step_2_desc",
+        "Choose a time that works for you. Confirm online — no phone tag required."
+      ),
+    },
+    {
+      icon: Sparkles,
+      number: "3",
+      title: get("home_howitworks_step_3_title", "We Clean"),
+      description: get(
+        "home_howitworks_step_3_desc",
+        "Our background-checked pros arrive on time and leave your home spotless."
+      ),
+    },
+  ];
+
   return (
     <section className="py-20 bg-muted">
       <div className="container mx-auto px-4">
@@ -45,7 +57,7 @@ const HowItWorks = () => {
                   <span className="text-2xl font-bold text-primary font-display">{step.number}</span>
                 </div>
                 <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center mx-auto mb-4">
-                  <step.icon className="w-5 h-5 text-primary" />
+                  <step.icon className="w-5 h-5 text-primary" aria-hidden="true" />
                 </div>
                 <h3 className="font-display text-xl font-semibold text-foreground mb-3">
                   {step.title}

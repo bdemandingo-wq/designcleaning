@@ -29,6 +29,9 @@ const Sitemap = lazy(() => import("./pages/Sitemap"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/blog/BlogPost"));
 const OurWorkPage = lazy(() => import("./pages/OurWorkPage"));
+const ResidentialPage = lazy(() => import("./pages/ResidentialPage"));
+const CommercialPage = lazy(() => import("./pages/CommercialPage"));
+const PricingPage = lazy(() => import("./pages/PricingPage"));
 
 // City pages
 const CityLandingPage = lazy(() => import("./pages/cities/CityLandingPage"));
@@ -58,7 +61,10 @@ const AppRoutes = () => {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/our-work" element={<OurWorkPage />} />
-        
+        <Route path="/residential" element={<ResidentialPage />} />
+        <Route path="/commercial" element={<CommercialPage />} />
+        <Route path="/pricing" element={<PricingPage />} />
+
         {/* City Landing Pages */}
         <Route path="/gaithersburg-cleaning" element={<CityLandingPage cityName="Gaithersburg" citySlug="gaithersburg" />} />
         <Route path="/washington-dc-cleaning" element={<CityLandingPage cityName="Washington DC" citySlug="washington-dc" />} />
