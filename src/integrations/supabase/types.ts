@@ -14,6 +14,59 @@ export type Database = {
   }
   public: {
     Tables: {
+      abandoned_leads: {
+        Row: {
+          answers: Json
+          conversation_id: string | null
+          created_at: string
+          customer_email: string
+          customer_name: string | null
+          customer_phone: string | null
+          estimate_amount: number | null
+          flow_type: string
+          followup_sent: boolean
+          followup_sent_at: string | null
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          answers?: Json
+          conversation_id?: string | null
+          created_at?: string
+          customer_email: string
+          customer_name?: string | null
+          customer_phone?: string | null
+          estimate_amount?: number | null
+          flow_type: string
+          followup_sent?: boolean
+          followup_sent_at?: string | null
+          id?: string
+          updated_at?: string
+        }
+        Update: {
+          answers?: Json
+          conversation_id?: string | null
+          created_at?: string
+          customer_email?: string
+          customer_name?: string | null
+          customer_phone?: string | null
+          estimate_amount?: number | null
+          flow_type?: string
+          followup_sent?: boolean
+          followup_sent_at?: string | null
+          id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "abandoned_leads_conversation_id_fkey"
+            columns: ["conversation_id"]
+            isOneToOne: false
+            referencedRelation: "chatbot_conversations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       blog_posts: {
         Row: {
           category: string
@@ -118,6 +171,48 @@ export type Database = {
           sqft?: number
           status?: Database["public"]["Enums"]["booking_status"]
           total_price?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      chatbot_conversations: {
+        Row: {
+          answers: Json
+          converted_to_booking: boolean
+          created_at: string
+          customer_email: string | null
+          customer_name: string | null
+          customer_phone: string | null
+          estimate_amount: number | null
+          flow_type: string
+          id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          answers?: Json
+          converted_to_booking?: boolean
+          created_at?: string
+          customer_email?: string | null
+          customer_name?: string | null
+          customer_phone?: string | null
+          estimate_amount?: number | null
+          flow_type: string
+          id?: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          answers?: Json
+          converted_to_booking?: boolean
+          created_at?: string
+          customer_email?: string | null
+          customer_name?: string | null
+          customer_phone?: string | null
+          estimate_amount?: number | null
+          flow_type?: string
+          id?: string
+          status?: string
           updated_at?: string
         }
         Relationships: []
