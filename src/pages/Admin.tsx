@@ -7,9 +7,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { LogOut, Calendar, DollarSign, Users, Clock, RefreshCw, Trash2, UserCheck, Briefcase, Phone, Mail, MapPin, Car, Shield, Star, Image, FileText } from "lucide-react";
+import { LogOut, Calendar, DollarSign, Users, Clock, RefreshCw, Trash2, UserCheck, Briefcase, Phone, Mail, MapPin, Car, Shield, Star, Image, FileText, MessageSquare } from "lucide-react";
 import OurWorkManager from "@/components/admin/OurWorkManager";
 import SiteContentManager from "@/components/admin/SiteContentManager";
+import QuoteRequestsManager from "@/components/admin/QuoteRequestsManager";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   AlertDialog,
@@ -337,6 +338,10 @@ const Admin = () => {
                 <Briefcase className="w-4 h-4" />
                 Applicants ({applications.length})
               </TabsTrigger>
+              <TabsTrigger value="quotes" className="gap-2">
+                <MessageSquare className="w-4 h-4" />
+                Quote Requests
+              </TabsTrigger>
               <TabsTrigger value="ourwork" className="gap-2">
                 <Image className="w-4 h-4" />
                 Our Work
@@ -523,6 +528,10 @@ const Admin = () => {
                 )}
               </CardContent>
             </Card>
+          </TabsContent>
+
+          <TabsContent value="quotes">
+            <QuoteRequestsManager />
           </TabsContent>
 
           <TabsContent value="ourwork">
