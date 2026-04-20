@@ -6,29 +6,15 @@ import { Slider } from "@/components/ui/slider";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { Loader2 } from "lucide-react";
+import { useServicePricing, getPriceForSqft as getDbPriceForSqft } from "@/hooks/useServicePricing";
 
-const pricingTiers = [
-  { maxSqft: 750, label: "Up to 750 sf" },
-  { maxSqft: 1000, label: "Up to 1000 sf" },
-  { maxSqft: 1250, label: "Up to 1250 sf" },
-  { maxSqft: 1500, label: "Up to 1500 sf" },
-  { maxSqft: 1800, label: "Up to 1800 sf" },
-  { maxSqft: 2100, label: "Up to 2100 sf" },
-  { maxSqft: 2400, label: "Up to 2400 sf" },
-  { maxSqft: 2700, label: "Up to 2700 sf" },
-  { maxSqft: 3000, label: "Up to 3000 sf" },
-  { maxSqft: 3300, label: "Up to 3300 sf" },
-  { maxSqft: 3600, label: "Up to 3600 sf" },
-  { maxSqft: 4000, label: "Up to 4000 sf" },
-  { maxSqft: 4400, label: "Up to 4400 sf" },
-];
-
-const serviceTypes = [
-  { value: "standard", label: "Standard Cleaning", prices: [80, 90, 100, 115, 130, 145, 160, 175, 190, 210, 230, 250, 275], minimum: 99 },
-  { value: "deep", label: "Deep Cleaning", prices: [105, 120, 135, 150, 175, 195, 220, 240, 265, 285, 315, 345, 375], minimum: 149 },
-  { value: "moveinout", label: "Move In/Move Out", prices: [120, 135, 150, 165, 190, 215, 240, 265, 290, 315, 345, 375, 405], minimum: 169 },
-  { value: "recurring", label: "Recurring Cleaning", prices: [80, 90, 100, 115, 130, 145, 160, 175, 190, 210, 230, 250, 275], minimum: 99 },
-];
+const SERVICE_MINIMUMS: Record<string, number> = {
+  standard: 99,
+  deep: 149,
+  moveinout: 169,
+  recurring: 99,
+};
 
 const frequencies = [
   { value: "onetime", label: "One-Time", discount: 0 },
@@ -52,13 +38,6 @@ const addOns = [
   { id: "dishes", label: "Dishes", price: 20 },
   { id: "basement", label: "Finished Basement", price: 80 },
 ];
-
-const getPriceForSqft = (sqft: number, prices: number[], minimum: number): number => {
-  for (let i = 0; i < pricingTiers.length; i++) {
-    if (sqft <= pricingTiers[i].maxSqft) return Math.max(prices[i], minimum);
-  }
-  return Math.max(prices[prices.length - 1], minimum);
-};
 
 const PricingCalculator = () => {
   const navigate = useNavigate();
