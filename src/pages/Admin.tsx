@@ -530,6 +530,10 @@ const Admin = () => {
             </Card>
           </TabsContent>
 
+          <TabsContent value="quotes">
+            <QuoteRequestsManager />
+          </TabsContent>
+
           <TabsContent value="ourwork">
             <OurWorkManager />
           </TabsContent>
