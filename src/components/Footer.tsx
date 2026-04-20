@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Phone, Mail, MapPin, Star, Gift } from "lucide-react";
+import { Phone, Mail, MapPin, Star, Gift, Instagram } from "lucide-react";
 import { useSiteContent } from "@/hooks/useSiteContent";
 
 const Footer = () => {
@@ -55,6 +55,29 @@ const Footer = () => {
                   Gift Cards
                 </a>
               )}
+            </div>
+            {/* Social media */}
+            <div className="flex items-center gap-3 mt-4">
+              <a
+                href={get("instagram_url", "https://www.instagram.com/designcleaningdmv/")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-background/10 hover:bg-background/20 flex items-center justify-center transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
+              <a
+                href={get("tiktok_url", "https://www.tiktok.com/@designcleaningdmv")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-background/10 hover:bg-background/20 flex items-center justify-center transition-colors"
+                aria-label="TikTok"
+              >
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.1a8.16 8.16 0 0 0 4.76 1.52v-3.4a4.85 4.85 0 0 1-1-.47z" />
+                </svg>
+              </a>
             </div>
           </div>
 
