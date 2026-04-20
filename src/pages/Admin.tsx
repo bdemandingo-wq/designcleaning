@@ -587,6 +587,14 @@ const Admin = () => {
           <TabsContent value="content">
             <SiteContentManager />
           </TabsContent>
+
+          <TabsContent value="reviews">
+            <ReviewsManager />
+          </TabsContent>
+
+          <TabsContent value="calendar">
+            <BlockedDatesManager />
+          </TabsContent>
         </Tabs>
       </main>
     </div>
