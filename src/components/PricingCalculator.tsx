@@ -16,6 +16,22 @@ const SERVICE_MINIMUMS: Record<string, number> = {
   recurring: 99,
 };
 
+// Pet modifiers (same for Standard and Deep/Move-In)
+const petOptions = [
+  { value: "0", label: "No Pets", price: 0 },
+  { value: "1", label: "1 Pet (+$15)", price: 15 },
+  { value: "2", label: "2 Pets (+$30)", price: 30 },
+  { value: "3", label: "3+ Pets (+$45)", price: 45 },
+];
+
+// Condition modifiers — different price for Standard vs Deep/Move-In
+const conditionOptions = [
+  { value: "good", label: "Good / normal upkeep", standard: 25, deep: 40 },
+  { value: "fair", label: "Fair / some areas need attention", standard: 50, deep: 75 },
+  { value: "needswork", label: "Needs Work / heavy effort", standard: 90, deep: 110 },
+  { value: "verydirty", label: "Very Dirty / deep recovery", standard: 120, deep: 150 },
+];
+
 const frequencies = [
   { value: "onetime", label: "One-Time", discount: 0 },
   { value: "weekly", label: "Weekly (15% off)", discount: 0.15 },
