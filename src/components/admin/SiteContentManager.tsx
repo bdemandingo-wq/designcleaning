@@ -96,6 +96,10 @@ const SiteContentManager = () => {
     "home_why_transparency_title", "home_why_transparency_desc",
     "home_why_scheduling_title", "home_why_scheduling_desc",
     "home_final_cta_headline", "home_final_cta_subhead",
+    "safe_insured_heading", "safe_insured_lead",
+    "safe_insured_point_1_title", "safe_insured_point_1_desc",
+    "safe_insured_point_2_title", "safe_insured_point_2_desc",
+    "safe_insured_point_3_title", "safe_insured_point_3_desc",
   ];
 
   return (
@@ -163,6 +167,18 @@ const SiteContentManager = () => {
               <div key={k} className="grid md:grid-cols-2 gap-3">
                 <Field label={`${k} title`} k={`home_why_${k}_title`} />
                 <Field label={`${k} description`} k={`home_why_${k}_desc`} multi rows={2} />
+              </div>
+            ))}
+          </div>
+
+          <div className="space-y-3 border-t pt-4">
+            <p className="text-sm font-semibold text-foreground">Safe and Insured Section</p>
+            <Field label="Heading" k="safe_insured_heading" />
+            <Field label="Lead paragraph" k="safe_insured_lead" multi rows={3} />
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="grid md:grid-cols-2 gap-3">
+                <Field label={`Point ${i} title`} k={`safe_insured_point_${i}_title`} />
+                <Field label={`Point ${i} description`} k={`safe_insured_point_${i}_desc`} multi rows={2} />
               </div>
             ))}
           </div>
