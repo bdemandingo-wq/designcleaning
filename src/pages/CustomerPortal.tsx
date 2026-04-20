@@ -255,7 +255,7 @@ const CustomerPortal = () => {
                   (202) 935-9934
                 </a>
                 <a 
-                  href="mailto:support@tidywisecleaning.com" 
+                  href="mailto:DesignCleaning@proton.me" 
                   className="inline-flex items-center gap-2 text-primary hover:underline"
                 >
                   <Mail className="h-4 w-4" />

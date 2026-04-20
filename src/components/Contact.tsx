@@ -26,7 +26,7 @@ const Contact = () => {
   );
   const phoneNumber = get("contact_phone", "(202) 935-9934");
   const phoneTel = phoneNumber.replace(/\D/g, "");
-  const emailAddr = get("contact_email", "support@tidywisecleaning.com");
+  const emailAddr = get("contact_email", "DesignCleaning@proton.me");
   const hours = get("contact_hours", "Mon–Sat: 7am–7pm · Sun: 9am–5pm");
   const areaSummary = get("contact_area_summary", "Serving Gaithersburg, DC, and the greater DMV");
 

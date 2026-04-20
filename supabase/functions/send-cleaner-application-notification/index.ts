@@ -115,8 +115,8 @@ const handler = async (req: Request): Promise<Response> => {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "Design Cleaning <support@tidywisecleaning.com>",
-        to: ["support@tidywisecleaning.com"],
+        from: "Design Cleaning <DesignCleaning@proton.me>",
+        to: ["DesignCleaning@proton.me"],
         subject: `New Cleaner Application from ${application.name}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">

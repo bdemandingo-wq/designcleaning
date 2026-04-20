@@ -25,9 +25,9 @@ const Footer = () => {
                 <Phone className="w-4 h-4" />
                 (202) 935-9934
               </a>
-              <a href="mailto:support@tidywisecleaning.com" className="flex items-center gap-2 text-background/70 hover:text-background transition-colors">
+              <a href="mailto:DesignCleaning@proton.me" className="flex items-center gap-2 text-background/70 hover:text-background transition-colors">
                 <Mail className="w-4 h-4" />
-                support@tidywisecleaning.com
+                DesignCleaning@proton.me
               </a>
               <p className="flex items-center gap-2 text-background/70">
                 <MapPin className="w-4 h-4" />
