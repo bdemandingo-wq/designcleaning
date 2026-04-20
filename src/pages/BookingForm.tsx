@@ -79,9 +79,9 @@ const BookingForm = () => {
             </div>
 
             <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mb-8">
-              <div className="flex justify-between items-center">
-                <div><p className="text-sm text-muted-foreground">Your Service</p><p className="font-semibold text-foreground">{booking.serviceType} • {booking.frequency}</p><p className="text-sm text-muted-foreground">{booking.sqft.toLocaleString()} sq ft</p></div>
-                <div className="text-right"><p className="text-sm text-muted-foreground">Total</p><p className="text-2xl font-bold text-primary">${booking.totalPrice}</p></div>
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+                <div className="min-w-0"><p className="text-sm text-muted-foreground">Your Service</p><p className="font-semibold text-foreground break-words">{booking.serviceType} • {booking.frequency}</p><p className="text-sm text-muted-foreground">{booking.sqft.toLocaleString()} sq ft</p></div>
+                <div className="sm:text-right"><p className="text-sm text-muted-foreground">Total</p><p className="text-2xl font-bold text-primary">${booking.totalPrice}</p></div>
               </div>
             </div>
 
