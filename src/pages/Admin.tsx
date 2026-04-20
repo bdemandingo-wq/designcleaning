@@ -528,6 +528,10 @@ const Admin = () => {
           <TabsContent value="ourwork">
             <OurWorkManager />
           </TabsContent>
+
+          <TabsContent value="content">
+            <SiteContentManager />
+          </TabsContent>
         </Tabs>
       </main>
     </div>
