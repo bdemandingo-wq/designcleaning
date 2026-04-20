@@ -29,16 +29,24 @@ const addOns = [
 const PricingCalculator = () => {
   const navigate = useNavigate();
   const { services, loading } = useServicePricing();
+  const { areas } = useServiceAreas(true);
   const [sqft, setSqft] = useState([1500]);
   const [serviceType, setServiceType] = useState("standard");
   const [frequency, setFrequency] = useState("onetime");
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
+  const [cityOrZip, setCityOrZip] = useState("");
 
   const selectedService = useMemo(
     () => services.find((s) => s.value === serviceType) || services[0],
     [services, serviceType]
   );
   const selectedFrequency = frequencies.find((f) => f.value === frequency)!;
+
+  const matchedArea = useMemo(
+    () => matchServiceArea(cityOrZip, areas),
+    [cityOrZip, areas]
+  );
+  const travelFee = matchedArea ? Number(matchedArea.travel_fee) || 0 : 0;
 
   const totalPrice = useMemo(() => {
     if (!selectedService || !selectedService.tiers.length) return 0;
@@ -49,8 +57,9 @@ const PricingCalculator = () => {
     }, 0);
     price += addOnTotal;
     price = price * (1 - selectedFrequency.discount);
+    price += travelFee; // Travel fee is not discounted
     return price;
-  }, [sqft, selectedService, selectedFrequency, selectedAddOns]);
+  }, [sqft, selectedService, selectedFrequency, selectedAddOns, travelFee]);
 
   const toggleAddOn = (id: string) => {
     setSelectedAddOns((prev) => prev.includes(id) ? prev.filter((a) => a !== id) : [...prev, id]);
@@ -65,6 +74,8 @@ const PricingCalculator = () => {
         frequency: selectedFrequency.label,
         addOns: selectedAddOns.map(id => addOns.find(a => a.id === id)?.label).filter(Boolean),
         totalPrice: totalPrice?.toFixed(2),
+        city: matchedArea?.name || cityOrZip,
+        travelFee,
       },
     });
   };
