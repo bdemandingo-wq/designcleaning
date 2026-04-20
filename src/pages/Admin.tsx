@@ -7,13 +7,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { LogOut, Calendar, DollarSign, Users, Clock, RefreshCw, Trash2, UserCheck, Briefcase, Phone, Mail, MapPin, Car, Shield, Star, Image, FileText, MessageSquare, Tag, Building2 } from "lucide-react";
+import { LogOut, Calendar, DollarSign, Users, Clock, RefreshCw, Trash2, UserCheck, Briefcase, Phone, Mail, MapPin, Car, Shield, Star, Image, FileText, MessageSquare, Tag, Building2, Bot } from "lucide-react";
 import OurWorkManager from "@/components/admin/OurWorkManager";
 import SiteContentManager from "@/components/admin/SiteContentManager";
 import QuoteRequestsManager from "@/components/admin/QuoteRequestsManager";
 import ServicePricingManager from "@/components/admin/ServicePricingManager";
 import ServiceAreasManager from "@/components/admin/ServiceAreasManager";
 import CommercialRequestsManager from "@/components/admin/CommercialRequestsManager";
+import ChatbotLeadsManager from "@/components/admin/ChatbotLeadsManager";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   AlertDialog,
@@ -348,6 +349,10 @@ const Admin = () => {
               <TabsTrigger value="commercial" className="gap-2">
                 <Building2 className="w-4 h-4" />
                 Commercial
+              </TabsTrigger>
+              <TabsTrigger value="chatbot" className="gap-2">
+                <Bot className="w-4 h-4" />
+                Chatbot
               </TabsTrigger>
               <TabsTrigger value="pricing" className="gap-2">
                 <Tag className="w-4 h-4" />
