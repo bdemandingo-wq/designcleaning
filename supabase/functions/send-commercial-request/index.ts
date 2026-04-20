@@ -45,7 +45,9 @@ serve(async (req) => {
       });
     }
     const q = parsed.data;
+    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!RESEND_API_KEY) throw new Error("RESEND_API_KEY not configured");
+    if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY not configured");
 
     const html = `
       <h2>New Commercial Quote Request</h2>
@@ -66,9 +68,13 @@ serve(async (req) => {
       <p>${escape(q.message).replace(/\n/g, "<br/>")}</p>
     `;
 
-    const res = await fetch("https://api.resend.com/emails", {
+    const res = await fetch("https://connector-gateway.lovable.dev/resend/emails", {
       method: "POST",
-      headers: { Authorization: `Bearer ${RESEND_API_KEY}`, "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${LOVABLE_API_KEY}`,
+        "X-Connection-Api-Key": RESEND_API_KEY,
+      },
       body: JSON.stringify({
         from: "Design Cleaning <onboarding@resend.dev>",
         to: [ADMIN_EMAIL],
