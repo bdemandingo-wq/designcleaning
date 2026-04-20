@@ -32,7 +32,7 @@ const StickyMobileCTA = () => {
           </a>
           <Link
             to="/booking"
-            className="flex-1 inline-flex items-center justify-center min-h-[48px] px-4 rounded-lg bg-accent text-accent-foreground font-semibold text-base hover:bg-accent/90 transition-colors mr-[60px]"
+            className="flex-1 inline-flex items-center justify-center min-h-[48px] px-4 rounded-lg bg-accent text-accent-foreground font-semibold text-base hover:bg-accent/90 transition-colors"
           >
             Book Now
           </Link>
