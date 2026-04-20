@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import QuoteForm from "@/components/QuoteForm";
 import SocialProofBar from "@/components/SocialProofBar";
 import Services from "@/components/Services";
 import PricingCalculator from "@/components/PricingCalculator";
@@ -45,6 +46,7 @@ const Index = () => {
       <main id="main-content" className="min-h-screen">
         <Navbar />
         <Hero />
+        <QuoteForm />
         <SocialProofBar />
         <LazySection minHeight={350}><HowItWorks /></LazySection>
         <Services />

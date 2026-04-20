@@ -227,6 +227,72 @@ export type Database = {
         }
         Relationships: []
       }
+      quote_requests: {
+        Row: {
+          address: string
+          bathrooms: string
+          bedrooms: string
+          city: string
+          consent_email: boolean
+          consent_sms: boolean
+          created_at: string
+          current_clean_level: string
+          email: string
+          first_name: string
+          frequency: string
+          id: string
+          last_name: string
+          phone: string
+          square_feet: string
+          state: string
+          status: string
+          updated_at: string
+          zip: string
+        }
+        Insert: {
+          address: string
+          bathrooms: string
+          bedrooms: string
+          city: string
+          consent_email?: boolean
+          consent_sms?: boolean
+          created_at?: string
+          current_clean_level: string
+          email: string
+          first_name: string
+          frequency: string
+          id?: string
+          last_name: string
+          phone: string
+          square_feet: string
+          state: string
+          status?: string
+          updated_at?: string
+          zip: string
+        }
+        Update: {
+          address?: string
+          bathrooms?: string
+          bedrooms?: string
+          city?: string
+          consent_email?: boolean
+          consent_sms?: boolean
+          created_at?: string
+          current_clean_level?: string
+          email?: string
+          first_name?: string
+          frequency?: string
+          id?: string
+          last_name?: string
+          phone?: string
+          square_feet?: string
+          state?: string
+          status?: string
+          updated_at?: string
+          zip?: string
+        }
+        Relationships: []
+      }
       site_content: {
         Row: {
           id: string
