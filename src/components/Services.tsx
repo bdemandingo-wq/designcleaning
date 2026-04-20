@@ -7,53 +7,53 @@ const services = [
   {
     icon: Sparkles,
     title: "Standard Cleaning",
-    description: "Perfect for regular maintenance cleaning to keep your home fresh.",
+    description: "An easy refresh that keeps your home calm, comfortable, and effortlessly inviting.",
     price: "From $108",
     badge: "Best Value",
     badgeColor: "bg-success text-success-foreground",
     features: [
       "All rooms dusted & vacuumed",
-      "Kitchen & bathrooms sanitized",
-      "Floors mopped",
-      "Trash emptied",
+      "Kitchens & bathrooms beautifully refreshed",
+      "Floors softly mopped",
+      "Tidied so you can simply enjoy it",
     ],
   },
   {
     icon: Home,
     title: "Deep Cleaning",
-    description: "A thorough top-to-bottom clean for homes that need extra attention.",
+    description: "An immersive top-to-bottom reset for a home that feels brand new.",
     price: "From $208",
     badge: "Most Popular",
     badgeColor: "bg-accent text-accent-foreground",
     features: [
-      "Everything in Standard",
-      "Baseboards & trim",
+      "Everything in Standard, elevated",
+      "Baseboards, trim & detail work",
       "Inside cabinets & drawers",
-      "Light switches & handles",
+      "The little touches you never have time for",
     ],
   },
   {
     icon: Truck,
     title: "Move-In / Move-Out",
-    description: "Get your deposit back or move into a spotless space.",
+    description: "Step into your next chapter spotless — or close one without lifting a finger.",
     price: "From $283",
     features: [
-      "Top-to-bottom cleaning",
-      "Inside appliances",
-      "Windows & tracks",
-      "Move-in ready",
+      "True top-to-bottom transformation",
+      "Inside appliances & cabinetry",
+      "Windows, tracks & overlooked details",
+      "Walk-in ready, stress-free",
     ],
   },
   {
     icon: RefreshCw,
     title: "Recurring Cleaning",
-    description: "Consistent, automated cleaning on your schedule.",
+    description: "Quiet luxury, on repeat. A consistently beautiful home without ever thinking about it.",
     price: "Membership Pricing",
     features: [
-      "Weekly / biweekly / monthly",
+      "Weekly, biweekly, or monthly",
       "Priority scheduling",
-      "Discounted rates",
-      "Consistent cleaner",
+      "Member-only pricing",
+      "The same trusted team",
     ],
   },
 ];
@@ -80,10 +80,10 @@ const Services = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-14">
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Our Cleaning Services
+            Choose Your Calm
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            From routine maintenance to deep cleans — we handle it all.
+            Thoughtful cleaning, tailored to your life — so you can spend your time on the things (and people) that matter most.
           </p>
         </div>
 
@@ -122,7 +122,7 @@ const Services = () => {
                   onClick={handleBookClick}
                 >
                   Book This Service
-                  <ArrowRight className="w-4 h-4 ml-2" />
+                  <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
                 </Button>
               </CardContent>
             </Card>
