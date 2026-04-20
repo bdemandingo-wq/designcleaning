@@ -152,23 +152,23 @@ const PricingCalculator = () => {
               )}
             </div>
 
-            <div className="bg-primary/5 rounded-lg p-6 text-center">
-              <p className="text-muted-foreground mb-2">Estimated Price</p>
-              <p className="text-4xl font-bold text-primary">
+            <div className="bg-primary/5 rounded-lg p-4 sm:p-6 text-center">
+              <p className="text-muted-foreground mb-2 text-sm sm:text-base">Estimated Price</p>
+              <p className="text-3xl sm:text-4xl font-bold text-primary break-words">
                 {loading ? "..." : `$${totalPrice?.toFixed(2)}`}
               </p>
-              <p className="text-sm text-muted-foreground mt-1">
+              <p className="text-xs sm:text-sm text-muted-foreground mt-1">
                 {travelFee > 0 ? `Includes $${travelFee.toFixed(0)} travel fee • + add-ons` : "+ add-ons"}
               </p>
             </div>
 
             <div className="space-y-4">
               <Label className="text-base font-medium">Add-On Services:</Label>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3">
                 {addOns.map((addOn) => (
                   <div
                     key={addOn.id}
-                    className={`flex items-center gap-2 p-3 rounded-lg border cursor-pointer transition-all ${
+                    className={`flex items-center gap-2 p-3 min-h-[48px] rounded-lg border cursor-pointer transition-all ${
                       selectedAddOns.includes(addOn.id)
                         ? "bg-primary/10 border-primary"
                         : "bg-background border-border hover:border-primary/50"
@@ -176,7 +176,7 @@ const PricingCalculator = () => {
                     onClick={() => toggleAddOn(addOn.id)}
                   >
                     <Checkbox id={addOn.id} checked={selectedAddOns.includes(addOn.id)} onCheckedChange={() => toggleAddOn(addOn.id)} />
-                    <label htmlFor={addOn.id} className="text-sm cursor-pointer">
+                    <label htmlFor={addOn.id} className="text-sm cursor-pointer flex-1">
                       {addOn.label} (+${addOn.price})
                     </label>
                   </div>
@@ -184,7 +184,7 @@ const PricingCalculator = () => {
               </div>
             </div>
 
-            <Button size="lg" className="w-full text-lg font-semibold bg-accent text-accent-foreground hover:bg-accent/90 rounded-lg" onClick={handleBooking} disabled={loading}>
+            <Button size="lg" className="w-full text-base sm:text-lg font-semibold bg-accent text-accent-foreground hover:bg-accent/90 rounded-lg min-h-[52px]" onClick={handleBooking} disabled={loading}>
               Book This Clean
             </Button>
           </CardContent>
