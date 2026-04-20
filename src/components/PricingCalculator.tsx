@@ -6,7 +6,10 @@ import { Slider } from "@/components/ui/slider";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 import { useServicePricing, getPriceForSqft } from "@/hooks/useServicePricing";
+import { useServiceAreas } from "@/hooks/useServiceAreas";
+import { matchServiceArea } from "@/lib/travel-fee";
 
 const frequencies = [
   { value: "onetime", label: "One-Time", discount: 0 },
