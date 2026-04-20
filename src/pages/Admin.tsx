@@ -549,6 +549,18 @@ const Admin = () => {
             <QuoteRequestsManager />
           </TabsContent>
 
+          <TabsContent value="commercial">
+            <CommercialRequestsManager />
+          </TabsContent>
+
+          <TabsContent value="pricing">
+            <ServicePricingManager />
+          </TabsContent>
+
+          <TabsContent value="areas">
+            <ServiceAreasManager />
+          </TabsContent>
+
           <TabsContent value="ourwork">
             <OurWorkManager />
           </TabsContent>
