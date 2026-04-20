@@ -81,9 +81,9 @@ const PricingCalculator = () => {
   };
 
   return (
-    <section id="booking" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+    <section id="booking" className="py-16 sm:py-20 bg-background">
+      <div className="container mx-auto px-3 sm:px-4">
+        <div className="text-center mb-10 sm:mb-12">
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
             Transparent Pricing
           </h2>
@@ -93,10 +93,10 @@ const PricingCalculator = () => {
         </div>
 
         <Card className="max-w-2xl mx-auto shadow-elevated">
-          <CardHeader>
+          <CardHeader className="px-4 sm:px-6">
             <CardTitle className="text-xl font-display">Select Your Service</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-8">
+          <CardContent className="space-y-6 sm:space-y-8 px-4 sm:px-6">
             <div className="space-y-4">
               <div className="flex justify-between items-center">
                 <Label className="text-base font-medium">Property Size</Label>
