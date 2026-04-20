@@ -782,6 +782,37 @@ const SiteContentManager = () => {
         </CardContent>
       </Card>
 
+      {/* FAQ Copy */}
+      <Card>
+        <CardHeader>
+          <CardTitle>FAQ (12 questions)</CardTitle>
+          <p className="text-sm text-muted-foreground">
+            Edit the 12 Q&amp;A pairs shown on /faq. The first 8 also appear on the homepage.
+          </p>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {Array.from({ length: 12 }, (_, i) => i + 1).map((i) => (
+            <div key={i} className="space-y-2 border-b border-border pb-4 last:border-b-0 last:pb-0">
+              <p className="text-sm font-semibold text-foreground">Question {i}{i <= 8 ? " (also on homepage)" : ""}</p>
+              <Field label={`Q${i}`} k={`faq_q${i}`} />
+              <Field label={`A${i}`} k={`faq_a${i}`} multi rows={3} />
+            </div>
+          ))}
+          <Button
+            onClick={() =>
+              saveKeys(
+                Array.from({ length: 12 }, (_, i) => i + 1).flatMap((i) => [`faq_q${i}`, `faq_a${i}`]),
+                "FAQ Copy"
+              )
+            }
+            disabled={savingKey === "FAQ Copy"}
+          >
+            <Save className="w-4 h-4 mr-2" />
+            {savingKey === "FAQ Copy" ? "Saving…" : "Save FAQ Copy"}
+          </Button>
+        </CardContent>
+      </Card>
+
       {/* Chatbot Copy */}
       <Card>
         <CardHeader>

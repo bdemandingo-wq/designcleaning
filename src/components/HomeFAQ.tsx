@@ -5,43 +5,73 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Link } from "react-router-dom";
+import { useSiteContent } from "@/hooks/useSiteContent";
 
-const faqs = [
+// 12 admin-editable Q&A defaults. Keys: faq_q1..faq_q12 / faq_a1..faq_a12
+export const FAQ_DEFAULTS: { q: string; a: string }[] = [
   {
     q: "How do I book a cleaning?",
-    a: "Booking is simple — visit our booking page, select your service, enter your home details, choose your preferred date and time, and confirm. The whole process takes under 5 minutes.",
+    a: "Booking takes under two minutes. Visit our booking page, choose your service, enter your home details, pick a date, and confirm. You'll see the full price up front — no calls required.",
   },
   {
     q: "How is pricing determined?",
-    a: "Pricing is based on your home size, service type, and any add-ons you select. You'll see the full estimated price before you confirm — no hidden fees, no surprises.",
+    a: "Pricing is based on your home size, service type, and any add-ons. Everything is calculated transparently before you confirm — no hidden fees, no surprises.",
   },
   {
     q: "Are your cleaners background-checked?",
-    a: "Yes. Every Design Cleaning professional is thoroughly background-checked, trained to our service standards, and fully insured before their first assignment.",
+    a: "Yes. Every Design Cleaning professional is identity-verified, background-checked, trained to our standards, and fully insured before their first assignment.",
+  },
+  {
+    q: "Are you fully insured and bonded?",
+    a: "We carry comprehensive liability insurance and are bonded on every clean. If something isn't right, we make it right.",
   },
   {
     q: "Do I need to be home during the cleaning?",
-    a: "Not at all. Many clients provide a key or door code. We're fully insured and bonded. You're also welcome to be home if you prefer.",
-  },
-  {
-    q: "What is your cancellation policy?",
-    a: "We ask for at least 24 hours notice for cancellations or rescheduling. We understand plans change and are always flexible.",
+    a: "Not at all. Most clients give us a key code or lockbox access. You're also welcome to be home — whichever you prefer.",
   },
   {
     q: "What's the difference between standard and deep cleaning?",
-    a: "Standard cleaning covers all routine cleaning tasks — vacuuming, mopping, bathroom and kitchen cleaning, dusting. Deep cleaning includes all of that plus baseboards, inside cabinets, light fixtures, window sills, and detailed scrubbing throughout the home.",
+    a: "Standard cleaning covers routine work — vacuuming, mopping, bathroom and kitchen cleaning, dusting. Deep cleaning adds baseboards, inside cabinets, light fixtures, window sills, and detailed scrubbing throughout.",
+  },
+  {
+    q: "Do you bring your own supplies?",
+    a: "Yes. Our cleaners arrive fully equipped with professional-grade supplies and equipment. Eco-friendly products available on request — just note it in your booking.",
+  },
+  {
+    q: "What is your cancellation policy?",
+    a: "We ask for at least 24 hours notice for cancellations or rescheduling. Plans change — we're happy to be flexible whenever possible.",
   },
   {
     q: "Do you offer membership or recurring plans?",
-    a: "Yes! Our membership plans offer weekly, biweekly, or monthly cleaning with discounted rates, priority scheduling, and automated booking. Visit our Membership page to learn more.",
+    a: "Yes. Weekly, biweekly, and monthly memberships unlock discounted rates, priority scheduling, and automatic booking. See our Membership page for details.",
   },
   {
     q: "What areas do you serve?",
-    a: "We currently serve Gaithersburg and Washington DC. Contact us to confirm coverage for your specific address.",
+    a: "We serve Gaithersburg, Washington DC, Silver Spring, Rockville, Bethesda, Germantown, and the greater DMV. Not sure about your ZIP? Use the checker on our Contact page.",
+  },
+  {
+    q: "What if I'm not satisfied with the cleaning?",
+    a: "If anything isn't right, let us know within 24 hours and we'll come back to make it right at no extra cost. Your satisfaction is our standard.",
+  },
+  {
+    q: "How do I pay?",
+    a: "Payment is handled securely after the clean is complete. We accept all major credit cards. Memberships auto-charge on a schedule you control.",
   },
 ];
 
-const HomeFAQ = () => {
+interface Props {
+  /** When true, render only the first N (default 8) for the homepage. */
+  homepage?: boolean;
+}
+
+const HomeFAQ = ({ homepage = true }: Props) => {
+  const { get } = useSiteContent();
+  const items = FAQ_DEFAULTS.map((d, i) => ({
+    q: get(`faq_q${i + 1}`, d.q),
+    a: get(`faq_a${i + 1}`, d.a),
+  }));
+  const visible = homepage ? items.slice(0, 8) : items;
+
   return (
     <section className="py-20 bg-muted">
       <div className="container mx-auto px-4 max-w-3xl">
@@ -55,7 +85,7 @@ const HomeFAQ = () => {
         </div>
 
         <Accordion type="single" collapsible className="space-y-3">
-          {faqs.map((faq, index) => (
+          {visible.map((faq, index) => (
             <AccordionItem
               key={index}
               value={`faq-${index}`}
@@ -71,11 +101,13 @@ const HomeFAQ = () => {
           ))}
         </Accordion>
 
-        <div className="text-center mt-8">
-          <Link to="/faq" className="text-primary font-semibold hover:underline">
-            More questions? Visit our full FAQ →
-          </Link>
-        </div>
+        {homepage && (
+          <div className="text-center mt-8">
+            <Link to="/faq" className="text-primary font-semibold hover:underline">
+              See all {FAQ_DEFAULTS.length} questions →
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );
