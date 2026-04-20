@@ -1,25 +1,22 @@
 import { useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone } from "lucide-react";
-import { useAuth } from "@/contexts/AuthContext";
+
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/residential", label: "Residential Cleaning" },
+  { href: "/commercial", label: "Commercial & Office" },
+  { href: "/service-areas", label: "Service Areas" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/about", label: "About" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/contact", label: "Contact" },
+];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user } = useAuth();
-  const navigate = useNavigate();
   const location = useLocation();
-
-  const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/services", label: "Services" },
-    { href: "/membership", label: "Membership" },
-    { href: "/about", label: "About" },
-    { href: "/our-work", label: "Our Work" },
-    { href: "/blog", label: "Blog" },
-    { href: "/booking", label: "Booking" },
-    { href: "/contact", label: "Contact" },
-  ];
 
   return (
     <>
@@ -32,16 +29,17 @@ const Navbar = () => {
       <nav className="fixed top-0 left-0 right-0 z-[60] bg-background/95 backdrop-blur-md border-b border-border shadow-sm">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            <Link to="/" className="flex items-center">
+            <Link to="/" className="flex items-center flex-shrink-0">
               <span className="font-display text-xl font-bold text-foreground">Design Cleaning</span>
             </Link>
 
-            <div className="hidden md:flex items-center gap-6">
+            {/* Desktop nav */}
+            <div className="hidden lg:flex items-center gap-5 xl:gap-6">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   to={link.href}
-                  className={`text-sm font-medium transition-colors ${
+                  className={`text-sm font-medium transition-colors whitespace-nowrap ${
                     location.pathname === link.href
                       ? "text-primary"
                       : "text-muted-foreground hover:text-foreground"
@@ -58,7 +56,7 @@ const Navbar = () => {
               >
                 <a href="tel:2029359934" className="flex items-center gap-1.5">
                   <Phone className="w-4 h-4" />
-                  Call Now
+                  Call
                 </a>
               </Button>
               <Button size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90" asChild>
@@ -67,22 +65,27 @@ const Navbar = () => {
             </div>
 
             <button
-              className="md:hidden p-2"
+              className="lg:hidden p-2"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
+              aria-expanded={isOpen}
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
 
           {isOpen && (
-            <div className="md:hidden py-4 border-t border-border animate-fade-in bg-background">
-              <div className="flex flex-col gap-2">
+            <div className="lg:hidden py-4 border-t border-border animate-fade-in bg-background">
+              <div className="flex flex-col gap-1">
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
                     to={link.href}
-                    className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
+                    className={`transition-colors font-medium py-2.5 px-2 rounded ${
+                      location.pathname === link.href
+                        ? "text-primary bg-primary/5"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    }`}
                     onClick={() => setIsOpen(false)}
                   >
                     {link.label}
