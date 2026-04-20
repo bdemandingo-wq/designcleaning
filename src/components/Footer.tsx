@@ -1,7 +1,15 @@
 import { Link } from "react-router-dom";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, Star, Gift } from "lucide-react";
+import { useSiteContent } from "@/hooks/useSiteContent";
 
 const Footer = () => {
+  const { get } = useSiteContent();
+  const googleReviewsUrl = get(
+    "google_reviews_url",
+    "https://www.google.com/search?q=Design+Cleaning+DMV"
+  );
+  const giftCardUrl = get("gift_card_url", "");
+
   return (
     <footer className="bg-foreground text-background py-16">
       <div className="container mx-auto px-4">
@@ -25,6 +33,28 @@ const Footer = () => {
                 <MapPin className="w-4 h-4" />
                 Gaithersburg, MD
               </p>
+              {googleReviewsUrl && (
+                <a
+                  href={googleReviewsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-background/70 hover:text-background transition-colors"
+                >
+                  <Star className="w-4 h-4" />
+                  Leave a Google Review
+                </a>
+              )}
+              {giftCardUrl && (
+                <a
+                  href={giftCardUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-background/70 hover:text-background transition-colors"
+                >
+                  <Gift className="w-4 h-4" />
+                  Gift Cards
+                </a>
+              )}
             </div>
           </div>
 

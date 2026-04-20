@@ -1,41 +1,48 @@
 import { Star, MapPin } from "lucide-react";
 import { useRef } from "react";
+import { useSiteContent } from "@/hooks/useSiteContent";
 
-const testimonials = [
+const fallback = [
   {
+    text: "Design Cleaning made the whole experience so easy. Booked online in 5 minutes, they showed up on time, and my home was spotless. This is exactly what I needed.",
     name: "Amanda R.",
     location: "Gaithersburg",
-    rating: 5,
-    text: "Design Cleaning made the whole experience so easy. Booked online in 5 minutes, they showed up on time, and my home was spotless. This is exactly what I needed.",
   },
   {
+    text: "I've tried other cleaning services before but Design Cleaning is on a different level. Professional, reliable, and the results are consistently excellent.",
     name: "James T.",
     location: "Washington DC",
-    rating: 5,
-    text: "I've tried other cleaning services before but Design Cleaning is on a different level. Professional, reliable, and the results are consistently excellent.",
   },
   {
+    text: "The membership plan is a game changer. I never have to think about scheduling — my home is always clean and the pricing is unbeatable.",
     name: "Sofia M.",
     location: "Gaithersburg",
-    rating: 5,
-    text: "The membership plan is a game changer. I never have to think about scheduling — my home is always clean and the pricing is unbeatable.",
   },
   {
+    text: "Used them for a move-out clean and got my full deposit back. They cleaned things I didn't even think about. Absolutely worth every penny.",
     name: "David L.",
     location: "Washington DC",
-    rating: 5,
-    text: "Used them for a move-out clean and got my full deposit back. They cleaned things I didn't even think about. Absolutely worth every penny.",
   },
   {
+    text: "Finally a cleaning service that actually feels professional. The booking was smooth, communication was great, and the clean was immaculate.",
     name: "Rachel K.",
     location: "Gaithersburg",
-    rating: 5,
-    text: "Finally a cleaning service that actually feels professional. The booking was smooth, communication was great, and the clean was immaculate.",
   },
 ];
 
 const Testimonials = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { get } = useSiteContent();
+
+  const testimonials = fallback.map((f, idx) => {
+    const i = idx + 1;
+    return {
+      text: get(`testimonial_${i}_text`, f.text),
+      name: get(`testimonial_${i}_name`, f.name),
+      location: get(`testimonial_${i}_location`, f.location),
+      rating: 5,
+    };
+  });
 
   return (
     <section className="py-20 bg-background">
