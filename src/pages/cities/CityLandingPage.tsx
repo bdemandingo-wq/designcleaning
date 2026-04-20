@@ -19,9 +19,9 @@ const CityLandingPage = ({ cityName, citySlug }: CityLandingPageProps) => {
   );
 
   const services = [
-    { name: "Standard Cleaning", desc: "Routine maintenance cleaning to keep your home fresh.", price: "$120" },
-    { name: "Deep Cleaning", desc: "Thorough top-to-bottom clean for homes that need extra attention.", price: "$200" },
-    { name: "Move-In / Move-Out", desc: "Get your full deposit back or move into a spotless space.", price: "$250" },
+    { name: "Standard Cleaning", desc: "Routine maintenance cleaning to keep your home fresh.", price: "From $99" },
+    { name: "Deep Cleaning", desc: "Thorough top-to-bottom clean for homes that need extra attention.", price: "From $149" },
+    { name: "Move-In / Move-Out", desc: "Get your full deposit back or move into a spotless space.", price: "From $169" },
     { name: "Recurring Cleaning", desc: "Consistent, automated cleaning on your schedule.", price: "Membership Pricing" },
   ];
 

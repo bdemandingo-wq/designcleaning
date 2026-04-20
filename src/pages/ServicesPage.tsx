@@ -11,38 +11,38 @@ const services = [
     icon: Sparkles,
     title: "Standard Cleaning",
     h1: "Standard Cleaning Services in Gaithersburg",
-    description: "An effortless reset for everyday life. We keep your home feeling calm, cared for, and ready for whatever the week brings — so you don't have to.",
-    price: "From $108",
-    features: ["All rooms dusted & vacuumed", "Kitchen surfaces beautifully refreshed", "Bathrooms gleaming and sanitized", "Floors softly mopped", "Tidied so you can simply enjoy it", "Mirrors polished to a soft shine"],
+    description: "Perfect for regular maintenance cleaning. We keep your home fresh and spotless on your schedule.",
+    price: "From $99",
+    features: ["All rooms dusted & vacuumed", "Kitchen surfaces wiped", "Bathrooms sanitized", "Floors mopped", "Trash emptied", "Mirrors cleaned"],
     addons: "Inside fridge, inside oven, laundry, interior windows",
-    cta: "Reclaim Your Weekend",
+    cta: "Book a Standard Clean",
   },
   {
     icon: Home,
     title: "Deep Cleaning",
     h1: "Deep Cleaning Services in Gaithersburg",
-    description: "An immersive, top-to-bottom transformation for the moments your home deserves a true reset. Walk back in and feel the difference instantly.",
-    price: "From $208",
-    features: ["Everything in Standard, elevated", "Baseboards & trim", "Inside cabinets & drawers", "Light switches & door handles", "Window sills & overlooked details", "An unhurried bathroom scrub", "Behind and beneath appliances"],
-    cta: "Book a Deep Reset",
+    description: "A thorough top-to-bottom clean for homes that need extra attention.",
+    price: "From $149",
+    features: ["Everything in Standard", "Baseboards & trim", "Inside cabinets & drawers", "Light switches & door handles", "Window sills", "Detailed bathroom scrub", "Behind appliances"],
+    cta: "Book a Deep Clean",
   },
   {
     icon: Truck,
     title: "Move-In / Move-Out Cleaning",
     h1: "Move-In / Move-Out Cleaning in DMV (DC, Maryland & Virginia)",
-    description: "Move with peace of mind. Whether you're closing one chapter or stepping into the next, we handle every detail so the only thing you carry is excitement.",
-    price: "From $283",
-    features: ["A true top-to-bottom transformation", "Inside every appliance", "Windows & tracks", "Inside all cabinets", "Walls thoughtfully spot-cleaned", "Walk-in ready, stress-free"],
-    cta: "Book a Stress-Free Move",
+    description: "Get your full deposit back or move into a spotless space.",
+    price: "From $169",
+    features: ["Complete top-to-bottom", "Inside all appliances", "Windows & tracks", "Inside all cabinets", "Walls spot-cleaned", "Move-in ready condition"],
+    cta: "Book a Move Clean",
   },
   {
     icon: RefreshCw,
     title: "Recurring Cleaning",
     h1: "Recurring Cleaning Plans in DMV (DC, Maryland & Virginia)",
-    description: "Quiet luxury, on repeat. A consistently beautiful home without the mental load — set it once, and let your weekends belong to you again.",
+    description: "Consistent, automated cleaning on your schedule. Set it and forget it.",
     price: "Membership Pricing",
-    features: ["Weekly, biweekly, or monthly", "Member-only pricing", "Priority scheduling", "The same trusted team whenever possible", "No rebooking, no reminders"],
-    cta: "Make Calm a Habit",
+    features: ["Weekly / biweekly / monthly", "Discounted rates", "Priority scheduling", "Consistent cleaner when possible", "No need to rebook"],
+    cta: "Start a Recurring Plan",
     ctaLink: "/membership",
   },
 ];
@@ -61,9 +61,9 @@ const ServicesPage = () => {
         <div className="pt-16">
           <section className="py-20 bg-primary text-primary-foreground">
             <div className="container mx-auto px-4 text-center">
-              <h1 className="font-display text-4xl md:text-5xl font-bold mb-4">Cleaning, Reimagined Around Your Life</h1>
+              <h1 className="font-display text-4xl md:text-5xl font-bold mb-4">Our Cleaning Services</h1>
               <p className="text-primary-foreground/80 max-w-2xl mx-auto text-lg">
-                Thoughtful, detail-obsessed cleaning for people who'd rather spend their time living. Choose the level of care that fits your home — we'll handle the rest.
+                From routine maintenance to deep cleans — we handle it all with professionalism and care.
               </p>
             </div>
           </section>
