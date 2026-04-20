@@ -685,6 +685,23 @@ const SiteContentManager = () => {
           </Button>
         </CardContent>
       </Card>
+
+      {/* Chatbot Copy */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Chatbot Copy</CardTitle>
+          <p className="text-sm text-muted-foreground">
+            Edit the greeting shown when visitors open the chatbot widget.
+          </p>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <Field label="Greeting message" k="chatbot_greeting" multi rows={3} />
+          <Button onClick={() => saveKeys(["chatbot_greeting"], "Chatbot Copy")} disabled={savingKey === "Chatbot Copy"}>
+            <Save className="w-4 h-4 mr-2" />
+            {savingKey === "Chatbot Copy" ? "Saving…" : "Save Chatbot Copy"}
+          </Button>
+        </CardContent>
+      </Card>
     </div>
   );
 };
