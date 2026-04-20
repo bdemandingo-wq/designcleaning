@@ -8,7 +8,7 @@ const navLinks = [
   { href: "/residential", label: "Residential Cleaning" },
   { href: "/commercial", label: "Commercial & Office" },
   { href: "/service-areas", label: "Service Areas" },
-  { href: "/pricing", label: "Pricing" },
+  { href: "/pricing", label: "Pricing / Free Estimate" },
   { href: "/about", label: "About" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },

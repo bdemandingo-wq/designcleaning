@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ShieldCheck, Star, Leaf, BadgeCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-cleaning.jpg";
 import { useSiteContent } from "@/hooks/useSiteContent";
@@ -65,6 +65,14 @@ const Hero = () => {
             >
               <Link to="/booking">{ctaSecondary}</Link>
             </Button>
+          </div>
+
+          {/* Trust stack */}
+          <div className="flex flex-wrap gap-x-5 gap-y-2 mt-8 text-white/80 text-sm">
+            <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-green-400" /> Licensed & Insured</span>
+            <span className="flex items-center gap-1.5"><Star className="w-4 h-4 text-yellow-400" /> 5-Star Reviews</span>
+            <span className="flex items-center gap-1.5"><Leaf className="w-4 h-4 text-green-400" /> Eco-Friendly Options</span>
+            <span className="flex items-center gap-1.5"><BadgeCheck className="w-4 h-4 text-blue-400" /> Satisfaction Guarantee</span>
           </div>
         </div>
       </div>
