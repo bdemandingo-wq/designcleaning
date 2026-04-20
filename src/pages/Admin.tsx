@@ -558,6 +558,10 @@ const Admin = () => {
             <CommercialRequestsManager />
           </TabsContent>
 
+          <TabsContent value="chatbot">
+            <ChatbotLeadsManager />
+          </TabsContent>
+
           <TabsContent value="pricing">
             <ServicePricingManager />
           </TabsContent>
