@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-cleaning.jpg";
 
 const trustItems = [
-  "Reliable Cleaners",
-  "Easy Scheduling",
-  "Quality Service Standards",
+  "Trusted in your home",
+  "Effortless scheduling",
+  "Spotless, every time",
 ];
 
 const Hero = () => {
@@ -32,11 +32,11 @@ const Hero = () => {
           </div>
 
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-            Professional Home Cleaning Made Simple
+            Come Home to Calm. Spend Your Time on What Matters.
           </h1>
 
           <p className="text-lg md:text-xl text-white/80 max-w-xl leading-relaxed mb-8">
-            Book reliable home cleaning in minutes. Simple pricing. Professional service. No hassle.
+            A quietly luxurious home cleaning service for busy lives. We handle every detail so you can breathe easier, host without worry, and reclaim your weekends.
           </p>
 
           <div className="flex flex-wrap gap-4 mb-8">
@@ -55,7 +55,7 @@ const Hero = () => {
               asChild
             >
               <Link to="/booking" className="flex items-center gap-2">
-                Book Now
+                Reclaim Your Weekend
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
@@ -65,7 +65,7 @@ const Hero = () => {
               asChild
             >
               <a href="#booking" className="flex items-center gap-2">
-                Get a Quote
+                See Your Price
               </a>
             </Button>
           </div>
