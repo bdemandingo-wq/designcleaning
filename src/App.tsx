@@ -67,17 +67,35 @@ const AppRoutes = () => {
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/airbnb-turnover" element={<AirbnbTurnoverPage />} />
 
-        {/* City Landing Pages */}
-        <Route path="/gaithersburg-cleaning" element={<CityLandingPage cityName="Gaithersburg" citySlug="gaithersburg" />} />
-        <Route path="/washington-dc-cleaning" element={<CityLandingPage cityName="Washington DC" citySlug="washington-dc" />} />
-        <Route path="/silver-spring-cleaning" element={<CityLandingPage cityName="Silver Spring" citySlug="silver-spring" />} />
-        <Route path="/rockville-cleaning" element={<CityLandingPage cityName="Rockville" citySlug="rockville" />} />
-        <Route path="/bethesda-cleaning" element={<CityLandingPage cityName="Bethesda" citySlug="bethesda" />} />
-        <Route path="/germantown-cleaning" element={<CityLandingPage cityName="Germantown" citySlug="germantown" />} />
-        <Route path="/potomac-cleaning" element={<CityLandingPage cityName="Potomac" citySlug="potomac" />} />
-        <Route path="/bowie-cleaning" element={<CityLandingPage cityName="Bowie" citySlug="bowie" />} />
-        <Route path="/college-park-cleaning" element={<CityLandingPage cityName="College Park" citySlug="college-park" />} />
-        <Route path="/laurel-cleaning" element={<CityLandingPage cityName="Laurel" citySlug="laurel" />} />
+        {/* City Landing Pages — Core MD */}
+        <Route path="/gaithersburg-cleaning" element={<CityLandingPage cityName="Gaithersburg" citySlug="gaithersburg-cleaning" />} />
+        <Route path="/rockville-cleaning" element={<CityLandingPage cityName="Rockville" citySlug="rockville-cleaning" />} />
+        <Route path="/bethesda-cleaning" element={<CityLandingPage cityName="Bethesda" citySlug="bethesda-cleaning" />} />
+        <Route path="/silver-spring-cleaning" element={<CityLandingPage cityName="Silver Spring" citySlug="silver-spring-cleaning" />} />
+        <Route path="/germantown-cleaning" element={<CityLandingPage cityName="Germantown" citySlug="germantown-cleaning" />} />
+
+        {/* Extended Maryland */}
+        <Route path="/potomac-cleaning" element={<CityLandingPage cityName="Potomac" citySlug="potomac-cleaning" />} />
+        <Route path="/north-bethesda-cleaning" element={<CityLandingPage cityName="North Bethesda" citySlug="north-bethesda-cleaning" />} />
+        <Route path="/chevy-chase-cleaning" element={<CityLandingPage cityName="Chevy Chase" citySlug="chevy-chase-cleaning" />} />
+        <Route path="/kensington-cleaning" element={<CityLandingPage cityName="Kensington" citySlug="kensington-cleaning" />} />
+        <Route path="/takoma-park-cleaning" element={<CityLandingPage cityName="Takoma Park" citySlug="takoma-park-cleaning" />} />
+        <Route path="/bowie-cleaning" element={<CityLandingPage cityName="Bowie" citySlug="bowie-cleaning" />} />
+        <Route path="/college-park-cleaning" element={<CityLandingPage cityName="College Park" citySlug="college-park-cleaning" />} />
+        <Route path="/laurel-cleaning" element={<CityLandingPage cityName="Laurel" citySlug="laurel-cleaning" />} />
+
+        {/* Washington DC */}
+        <Route path="/washington-dc-cleaning" element={<CityLandingPage cityName="Washington DC" citySlug="washington-dc-cleaning" />} />
+        <Route path="/northwest-dc-cleaning" element={<CityLandingPage cityName="Northwest DC" citySlug="northwest-dc-cleaning" />} />
+        <Route path="/northeast-dc-cleaning" element={<CityLandingPage cityName="Northeast DC" citySlug="northeast-dc-cleaning" />} />
+        <Route path="/downtown-dc-cleaning" element={<CityLandingPage cityName="Downtown DC" citySlug="downtown-dc-cleaning" />} />
+
+        {/* Northern Virginia */}
+        <Route path="/arlington-cleaning" element={<CityLandingPage cityName="Arlington" citySlug="arlington-cleaning" />} />
+        <Route path="/alexandria-cleaning" element={<CityLandingPage cityName="Alexandria" citySlug="alexandria-cleaning" />} />
+        <Route path="/falls-church-cleaning" element={<CityLandingPage cityName="Falls Church" citySlug="falls-church-cleaning" />} />
+        <Route path="/mclean-cleaning" element={<CityLandingPage cityName="McLean" citySlug="mclean-cleaning" />} />
+        <Route path="/tysons-cleaning" element={<CityLandingPage cityName="Tysons" citySlug="tysons-cleaning" />} />
         
         <Route path="*" element={<NotFound />} />
       </Routes>

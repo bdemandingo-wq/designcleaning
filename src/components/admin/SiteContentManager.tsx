@@ -208,6 +208,102 @@ const SiteContentManager = () => {
         </CardContent>
       </Card>
 
+      {/* Service Areas Page Copy */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Service Areas Page Copy</CardTitle>
+          <p className="text-sm text-muted-foreground">
+            Edit the intro, travel-fee policy text, fee bands, and FAQ shown on /service-areas. Per-city blurbs are below.
+          </p>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <Field label="Page intro" k="service_areas_intro" multi rows={3} />
+          <Field label="Travel fee policy" k="service_areas_travel_policy" multi rows={4} />
+          <Field label="Commercial note" k="service_areas_commercial_note" multi rows={3} />
+          <div className="grid md:grid-cols-2 gap-3">
+            <Field label="Fee band 1" k="service_areas_fee_band_1" />
+            <Field label="Fee band 2" k="service_areas_fee_band_2" />
+            <Field label="Fee band 3" k="service_areas_fee_band_3" />
+            <Field label="Fee band 4" k="service_areas_fee_band_4" />
+          </div>
+          <div className="border-t pt-4 space-y-3">
+            <p className="text-sm font-semibold text-foreground">FAQ (4 items)</p>
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="grid md:grid-cols-2 gap-3">
+                <Field label={`Q${i}`} k={`service_areas_faq_q${i}`} />
+                <Field label={`A${i}`} k={`service_areas_faq_a${i}`} multi rows={2} />
+              </div>
+            ))}
+          </div>
+          <Button
+            onClick={() =>
+              saveKeys(
+                [
+                  "service_areas_intro",
+                  "service_areas_travel_policy",
+                  "service_areas_commercial_note",
+                  "service_areas_fee_band_1",
+                  "service_areas_fee_band_2",
+                  "service_areas_fee_band_3",
+                  "service_areas_fee_band_4",
+                  ...[1, 2, 3, 4].flatMap((i) => [`service_areas_faq_q${i}`, `service_areas_faq_a${i}`]),
+                ],
+                "Service Areas Copy"
+              )
+            }
+            disabled={savingKey === "Service Areas Copy"}
+          >
+            <Save className="w-4 h-4 mr-2" />
+            {savingKey === "Service Areas Copy" ? "Saving…" : "Save Service Areas Copy"}
+          </Button>
+        </CardContent>
+      </Card>
+
+      {/* Per-city blurbs */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Per-City Blurbs</CardTitle>
+          <p className="text-sm text-muted-foreground">
+            Local copy shown on the city accordion and on the city landing page hero. 2-4 sentences per city.
+          </p>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {[
+            "germantown-cleaning", "gaithersburg-cleaning", "rockville-cleaning", "bethesda-cleaning", "silver-spring-cleaning",
+            "potomac-cleaning", "north-bethesda-cleaning", "chevy-chase-cleaning", "kensington-cleaning", "takoma-park-cleaning",
+            "bowie-cleaning", "college-park-cleaning", "laurel-cleaning",
+            "washington-dc-cleaning", "northwest-dc-cleaning", "northeast-dc-cleaning", "downtown-dc-cleaning",
+            "arlington-cleaning", "alexandria-cleaning", "falls-church-cleaning", "mclean-cleaning", "tysons-cleaning",
+          ].map((slug) => (
+            <Field
+              key={slug}
+              label={slug.replace("-cleaning", "").replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
+              k={`city_${slug}_intro`}
+              multi
+              rows={3}
+            />
+          ))}
+          <Button
+            onClick={() =>
+              saveKeys(
+                [
+                  "germantown-cleaning", "gaithersburg-cleaning", "rockville-cleaning", "bethesda-cleaning", "silver-spring-cleaning",
+                  "potomac-cleaning", "north-bethesda-cleaning", "chevy-chase-cleaning", "kensington-cleaning", "takoma-park-cleaning",
+                  "bowie-cleaning", "college-park-cleaning", "laurel-cleaning",
+                  "washington-dc-cleaning", "northwest-dc-cleaning", "northeast-dc-cleaning", "downtown-dc-cleaning",
+                  "arlington-cleaning", "alexandria-cleaning", "falls-church-cleaning", "mclean-cleaning", "tysons-cleaning",
+                ].map((s) => `city_${s}_intro`),
+                "Per-City Blurbs"
+              )
+            }
+            disabled={savingKey === "Per-City Blurbs"}
+          >
+            <Save className="w-4 h-4 mr-2" />
+            {savingKey === "Per-City Blurbs" ? "Saving…" : "Save All City Blurbs"}
+          </Button>
+        </CardContent>
+      </Card>
+
       {/* Links */}
       <Card>
         <CardHeader>

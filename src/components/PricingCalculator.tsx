@@ -6,7 +6,10 @@ import { Slider } from "@/components/ui/slider";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 import { useServicePricing, getPriceForSqft } from "@/hooks/useServicePricing";
+import { useServiceAreas } from "@/hooks/useServiceAreas";
+import { matchServiceArea } from "@/lib/travel-fee";
 
 const frequencies = [
   { value: "onetime", label: "One-Time", discount: 0 },
@@ -26,16 +29,24 @@ const addOns = [
 const PricingCalculator = () => {
   const navigate = useNavigate();
   const { services, loading } = useServicePricing();
+  const { areas } = useServiceAreas(true);
   const [sqft, setSqft] = useState([1500]);
   const [serviceType, setServiceType] = useState("standard");
   const [frequency, setFrequency] = useState("onetime");
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
+  const [cityOrZip, setCityOrZip] = useState("");
 
   const selectedService = useMemo(
     () => services.find((s) => s.value === serviceType) || services[0],
     [services, serviceType]
   );
   const selectedFrequency = frequencies.find((f) => f.value === frequency)!;
+
+  const matchedArea = useMemo(
+    () => matchServiceArea(cityOrZip, areas),
+    [cityOrZip, areas]
+  );
+  const travelFee = matchedArea ? Number(matchedArea.travel_fee) || 0 : 0;
 
   const totalPrice = useMemo(() => {
     if (!selectedService || !selectedService.tiers.length) return 0;
@@ -46,8 +57,9 @@ const PricingCalculator = () => {
     }, 0);
     price += addOnTotal;
     price = price * (1 - selectedFrequency.discount);
+    price += travelFee; // Travel fee is not discounted
     return price;
-  }, [sqft, selectedService, selectedFrequency, selectedAddOns]);
+  }, [sqft, selectedService, selectedFrequency, selectedAddOns, travelFee]);
 
   const toggleAddOn = (id: string) => {
     setSelectedAddOns((prev) => prev.includes(id) ? prev.filter((a) => a !== id) : [...prev, id]);
@@ -62,6 +74,8 @@ const PricingCalculator = () => {
         frequency: selectedFrequency.label,
         addOns: selectedAddOns.map(id => addOns.find(a => a.id === id)?.label).filter(Boolean),
         totalPrice: totalPrice?.toFixed(2),
+        city: matchedArea?.name || cityOrZip,
+        travelFee,
       },
     });
   };
@@ -119,12 +133,33 @@ const PricingCalculator = () => {
               </Select>
             </div>
 
+            <div className="space-y-2">
+              <Label htmlFor="city-zip" className="text-base font-medium">Your City or ZIP</Label>
+              <Input
+                id="city-zip"
+                value={cityOrZip}
+                onChange={(e) => setCityOrZip(e.target.value)}
+                placeholder="e.g. Bethesda or 20814"
+              />
+              {cityOrZip && (
+                <p className="text-xs text-muted-foreground">
+                  {matchedArea
+                    ? travelFee > 0
+                      ? `Detected: ${matchedArea.name} • travel fee +$${travelFee.toFixed(0)}`
+                      : `Detected: ${matchedArea.name} • no travel fee`
+                    : `We don't see "${cityOrZip}" in our service list — call us at (202) 935-9934 for a custom quote.`}
+                </p>
+              )}
+            </div>
+
             <div className="bg-primary/5 rounded-lg p-6 text-center">
               <p className="text-muted-foreground mb-2">Estimated Price</p>
               <p className="text-4xl font-bold text-primary">
                 {loading ? "..." : `$${totalPrice?.toFixed(2)}`}
               </p>
-              <p className="text-sm text-muted-foreground mt-1">+ add-ons</p>
+              <p className="text-sm text-muted-foreground mt-1">
+                {travelFee > 0 ? `Includes $${travelFee.toFixed(0)} travel fee • + add-ons` : "+ add-ons"}
+              </p>
             </div>
 
             <div className="space-y-4">
