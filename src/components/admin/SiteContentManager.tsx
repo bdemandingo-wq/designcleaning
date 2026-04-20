@@ -371,6 +371,196 @@ const SiteContentManager = () => {
           </Button>
         </CardContent>
       </Card>
+
+      {/* Residential Page Copy */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Residential Page Copy</CardTitle>
+          <p className="text-sm text-muted-foreground">
+            Edit hero, per-service detail sections, add-ons, recurring, and CTAs on the /residential page.
+          </p>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div className="space-y-3">
+            <p className="text-sm font-semibold text-foreground">Hero</p>
+            <Field label="Headline" k="residential_hero_headline" multi rows={2} />
+            <Field label="Subheadline" k="residential_hero_subhead" multi rows={3} />
+          </div>
+
+          <div className="space-y-3 border-t pt-4">
+            <p className="text-sm font-semibold text-foreground">Services Overview</p>
+            <Field label="Section title" k="residential_services_overview_title" />
+            <Field label="Section subtitle" k="residential_services_overview_subtitle" multi rows={2} />
+          </div>
+
+          {(["standard", "deep", "moveinout", "airbnb"] as const).map((s) => (
+            <div key={s} className="space-y-3 border-t pt-4">
+              <p className="text-sm font-semibold text-foreground capitalize">Service: {s}</p>
+              <div className="grid md:grid-cols-2 gap-3">
+                <Field label="Title" k={`residential_${s}_title`} />
+                <Field label="Price" k={`residential_${s}_price`} />
+              </div>
+              <Field label="Short tagline (card)" k={`residential_${s}_short`} />
+              <Field label="Tagline (detail section)" k={`residential_${s}_tagline`} />
+              <Field label="Description" k={`residential_${s}_desc`} multi rows={3} />
+              <div className="grid md:grid-cols-2 gap-3">
+                {[1, 2, 3, 4].map((i) => (
+                  <Field key={i} label={`Includes item ${i}`} k={`residential_${s}_includes_${i}`} />
+                ))}
+              </div>
+            </div>
+          ))}
+
+          <div className="space-y-3 border-t pt-4">
+            <p className="text-sm font-semibold text-foreground">Add-Ons Preview</p>
+            <Field label="Title" k="residential_addons_title" />
+            <Field label="Subtitle" k="residential_addons_subtitle" multi rows={2} />
+          </div>
+
+          <div className="space-y-3 border-t pt-4">
+            <p className="text-sm font-semibold text-foreground">Recurring Block</p>
+            <Field label="Title" k="residential_recurring_title" />
+            <Field label="Subtitle" k="residential_recurring_subtitle" multi rows={2} />
+          </div>
+
+          <div className="space-y-3 border-t pt-4">
+            <p className="text-sm font-semibold text-foreground">Why Choose</p>
+            <Field label="Section title" k="residential_why_title" />
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="grid md:grid-cols-2 gap-3">
+                <Field label={`Why ${i} title`} k={`residential_why_${i}_title`} />
+                <Field label={`Why ${i} desc`} k={`residential_why_${i}_desc`} multi rows={2} />
+              </div>
+            ))}
+          </div>
+
+          <div className="space-y-3 border-t pt-4">
+            <p className="text-sm font-semibold text-foreground">Final CTA</p>
+            <Field label="Headline" k="residential_final_cta_headline" />
+            <Field label="Subhead" k="residential_final_cta_subhead" multi rows={2} />
+          </div>
+
+          <Button
+            onClick={() => {
+              const keys = [
+                "residential_hero_headline", "residential_hero_subhead",
+                "residential_services_overview_title", "residential_services_overview_subtitle",
+                ...(["standard", "deep", "moveinout", "airbnb"].flatMap((s) => [
+                  `residential_${s}_title`, `residential_${s}_short`, `residential_${s}_tagline`,
+                  `residential_${s}_desc`, `residential_${s}_price`,
+                  `residential_${s}_includes_1`, `residential_${s}_includes_2`,
+                  `residential_${s}_includes_3`, `residential_${s}_includes_4`,
+                ])),
+                "residential_addons_title", "residential_addons_subtitle",
+                "residential_recurring_title", "residential_recurring_subtitle",
+                "residential_why_title",
+                "residential_why_1_title", "residential_why_1_desc",
+                "residential_why_2_title", "residential_why_2_desc",
+                "residential_why_3_title", "residential_why_3_desc",
+                "residential_final_cta_headline", "residential_final_cta_subhead",
+              ];
+              saveKeys(keys, "Residential Copy");
+            }}
+            disabled={savingKey === "Residential Copy"}
+          >
+            <Save className="w-4 h-4 mr-2" />
+            {savingKey === "Residential Copy" ? "Saving…" : "Save Residential Copy"}
+          </Button>
+        </CardContent>
+      </Card>
+
+      {/* Airbnb Turnover Page Copy */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Airbnb Turnover Page Copy</CardTitle>
+          <p className="text-sm text-muted-foreground">
+            Edit hero, price bands, add-ons, and quote CTA on /airbnb-turnover.
+          </p>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div className="space-y-3">
+            <p className="text-sm font-semibold text-foreground">Hero</p>
+            <Field label="Headline" k="airbnb_hero_headline" multi rows={2} />
+            <Field label="Subheadline" k="airbnb_hero_subhead" multi rows={3} />
+          </div>
+
+          <div className="space-y-3 border-t pt-4">
+            <p className="text-sm font-semibold text-foreground">Price Bands</p>
+            <Field label="Section title" k="airbnb_bands_title" />
+            <Field label="Section subtitle" k="airbnb_bands_subtitle" multi rows={2} />
+            {[
+              { k: "studio", l: "Studio / 1 BR" },
+              { k: "two", l: "2 BR" },
+              { k: "three", l: "3 BR" },
+              { k: "four", l: "4 BR" },
+              { k: "five", l: "5+ BR" },
+            ].map((b) => (
+              <div key={b.k} className="grid md:grid-cols-2 gap-3">
+                <Field label={`${b.l} label`} k={`airbnb_band_${b.k}_label`} />
+                <Field label={`${b.l} price range`} k={`airbnb_band_${b.k}_range`} />
+              </div>
+            ))}
+            <Field label="Disclaimer" k="airbnb_bands_disclaimer" multi rows={2} />
+          </div>
+
+          <div className="space-y-3 border-t pt-4">
+            <p className="text-sm font-semibold text-foreground">Add-Ons</p>
+            <Field label="Title" k="airbnb_addons_title" />
+            <Field label="Subtitle" k="airbnb_addons_subtitle" multi rows={2} />
+            {[
+              { k: "linen", l: "Linen Service" },
+              { k: "restock", l: "Restocking" },
+              { k: "rush", l: "Same-Day Rush" },
+              { k: "trash", l: "Trash Haul" },
+              { k: "early", l: "Early Check-In" },
+              { k: "report", l: "Damage Photo Report" },
+            ].map((a) => (
+              <div key={a.k} className="grid md:grid-cols-2 gap-3">
+                <Field label={`${a.l} label`} k={`airbnb_addon_${a.k}_label`} />
+                <Field label={`${a.l} price`} k={`airbnb_addon_${a.k}_price`} />
+              </div>
+            ))}
+          </div>
+
+          <div className="space-y-3 border-t pt-4">
+            <p className="text-sm font-semibold text-foreground">Why Hosts Pick Us (5 lines)</p>
+            {[1, 2, 3, 4, 5].map((i) => (
+              <Field key={i} label={`Reason ${i}`} k={`airbnb_why_${i}`} />
+            ))}
+            <Field label="Section title" k="airbnb_why_title" />
+          </div>
+
+          <div className="space-y-3 border-t pt-4">
+            <p className="text-sm font-semibold text-foreground">Quote Form Block</p>
+            <Field label="Title" k="airbnb_quote_title" />
+            <Field label="Subtitle" k="airbnb_quote_subtitle" multi rows={2} />
+          </div>
+
+          <Button
+            onClick={() => {
+              const keys = [
+                "airbnb_hero_headline", "airbnb_hero_subhead",
+                "airbnb_bands_title", "airbnb_bands_subtitle", "airbnb_bands_disclaimer",
+                ...["studio", "two", "three", "four", "five"].flatMap((k) => [
+                  `airbnb_band_${k}_label`, `airbnb_band_${k}_range`,
+                ]),
+                "airbnb_addons_title", "airbnb_addons_subtitle",
+                ...["linen", "restock", "rush", "trash", "early", "report"].flatMap((k) => [
+                  `airbnb_addon_${k}_label`, `airbnb_addon_${k}_price`,
+                ]),
+                "airbnb_why_title",
+                ...[1, 2, 3, 4, 5].map((i) => `airbnb_why_${i}`),
+                "airbnb_quote_title", "airbnb_quote_subtitle",
+              ];
+              saveKeys(keys, "Airbnb Copy");
+            }}
+            disabled={savingKey === "Airbnb Copy"}
+          >
+            <Save className="w-4 h-4 mr-2" />
+            {savingKey === "Airbnb Copy" ? "Saving…" : "Save Airbnb Copy"}
+          </Button>
+        </CardContent>
+      </Card>
     </div>
   );
 };
