@@ -70,11 +70,11 @@ const COMMERCIAL_STEPS = [
 ] as const;
 
 const RES_ADDONS = [
-  { id: "fridge", label: "Inside Fridge", price: 35 },
-  { id: "oven", label: "Inside Oven", price: 25 },
-  { id: "windows", label: "Interior Windows", price: 40 },
-  { id: "laundry", label: "Laundry", price: 30 },
-  { id: "pet", label: "Pet Hair", price: 20 },
+  { id: "fridge", label: "Inside Fridge", price: 55 },
+  { id: "oven", label: "Inside Oven", price: 55 },
+  { id: "windows", label: "Interior Windows", price: 12 },
+  { id: "laundry", label: "Laundry", price: 40 },
+  { id: "pet", label: "Pet Hair", price: 50 },
 ];
 
 const ChatbotWidget = () => {
@@ -323,8 +323,8 @@ const ChatbotWidget = () => {
             status: "estimate_shown",
           });
           pushBot(
-            `Based on what you shared, your free estimate is $${estimate.toFixed(2)}.${matchedArea?.travel_fee ? ` (Includes $${matchedArea.travel_fee} travel fee for ${matchedArea.name}.)` : ""} Want to book now or pick a date?`,
-            ["Book Now", "I'll think about it"]
+            `Great news! Your free estimate is $${estimate.toFixed(2)}.${matchedArea?.travel_fee ? ` (Includes $${matchedArea.travel_fee} travel fee for ${matchedArea.name}.)` : ""}\n\nWe have openings this week — lock in your spot now and we'll handle the rest!`,
+            ["Book Now — Save My Spot", "Pick a Different Date", "I need to think about it"]
           );
           break;
         }
@@ -393,7 +393,7 @@ const ChatbotWidget = () => {
       if (option.startsWith("Commercial")) return startCommercial();
     }
     // Final CTAs
-    if (option === "Book Now") {
+    if (option === "Book Now — Save My Spot" || option === "Pick a Different Date" || option === "Book Now") {
       pushUser(option);
       await saveConversation({ converted_to_booking: true, status: "converted" });
       navigate("/booking", {
@@ -408,9 +408,34 @@ const ChatbotWidget = () => {
       setOpen(false);
       return;
     }
-    if (option === "I'll think about it" || option === "I'm all set" || option === "Have someone call me") {
+    if (option === "I need to think about it") {
       pushUser(option);
-      pushBot("Thanks! We'll be in touch. Reach us anytime at (202) 935-9934.");
+      await saveAbandonedLead();
+      pushBot(
+        `No rush! We've saved your estimate of $${calculateEstimate().toFixed(2)} and will send it to ${resState.email || "your email"}. This price is valid for 7 days.\n\nWhen you're ready, you can book online anytime or call us at (202) 935-9934.`,
+        ["Actually, let me book now", "Thanks, I'll decide later"]
+      );
+      await saveConversation({ status: "nurture" });
+      return;
+    }
+    if (option === "Actually, let me book now") {
+      pushUser(option);
+      await saveConversation({ converted_to_booking: true, status: "converted" });
+      navigate("/booking", {
+        state: {
+          sqft: resState.sqft,
+          serviceType: resState.serviceType,
+          totalPrice: calculateEstimate().toFixed(2),
+          city: matchedArea?.name || resState.zip,
+          travelFee: matchedArea?.travel_fee || 0,
+        },
+      });
+      setOpen(false);
+      return;
+    }
+    if (option === "Thanks, I'll decide later" || option === "I'm all set" || option === "Have someone call me") {
+      pushUser(option);
+      pushBot("Sounds good! Check your email for the estimate. We're here when you're ready — (202) 935-9934.");
       await saveConversation({ status: "completed" });
       return;
     }
