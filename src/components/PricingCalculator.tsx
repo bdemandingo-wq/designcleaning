@@ -133,12 +133,33 @@ const PricingCalculator = () => {
               </Select>
             </div>
 
+            <div className="space-y-2">
+              <Label htmlFor="city-zip" className="text-base font-medium">Your City or ZIP</Label>
+              <Input
+                id="city-zip"
+                value={cityOrZip}
+                onChange={(e) => setCityOrZip(e.target.value)}
+                placeholder="e.g. Bethesda or 20814"
+              />
+              {cityOrZip && (
+                <p className="text-xs text-muted-foreground">
+                  {matchedArea
+                    ? travelFee > 0
+                      ? `Detected: ${matchedArea.name} • travel fee +$${travelFee.toFixed(0)}`
+                      : `Detected: ${matchedArea.name} • no travel fee`
+                    : `We don't see "${cityOrZip}" in our service list — call us at (202) 935-9934 for a custom quote.`}
+                </p>
+              )}
+            </div>
+
             <div className="bg-primary/5 rounded-lg p-6 text-center">
               <p className="text-muted-foreground mb-2">Estimated Price</p>
               <p className="text-4xl font-bold text-primary">
                 {loading ? "..." : `$${totalPrice?.toFixed(2)}`}
               </p>
-              <p className="text-sm text-muted-foreground mt-1">+ add-ons</p>
+              <p className="text-sm text-muted-foreground mt-1">
+                {travelFee > 0 ? `Includes $${travelFee.toFixed(0)} travel fee • + add-ons` : "+ add-ons"}
+              </p>
             </div>
 
             <div className="space-y-4">
