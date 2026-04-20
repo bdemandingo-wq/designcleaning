@@ -43,7 +43,7 @@ const CityLandingPage = ({ cityName, citySlug }: CityLandingPageProps) => {
               House Cleaning in {cityName}
             </h1>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-8">
-              Design Cleaning provides professional, reliable home cleaning services in {cityName}. Book online in minutes — simple pricing, no hassle.
+              {introCopy}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" asChild><Link to="/booking">Book Your {cityName} Cleaning</Link></Button>
