@@ -44,6 +44,18 @@ const BookingForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!preferredDate) {
+      toast({ title: "Pick a date", description: "Please select your preferred service date.", variant: "destructive" });
+      return;
+    }
+    if (!timeSlot) {
+      toast({ title: "Pick a time slot", description: "Please choose Morning or Afternoon.", variant: "destructive" });
+      return;
+    }
+    if (!slotAvailable(preferredDate, timeSlot)) {
+      toast({ title: "Slot just filled up", description: "Please pick another time or date.", variant: "destructive" });
+      return;
+    }
     setIsSubmitting(true);
     try {
       const { error: dbError } = await supabase.from("bookings").insert({
@@ -51,18 +63,20 @@ const BookingForm = () => {
         address: formData.address, beds: formData.beds, baths: formData.baths, sqft: booking.sqft,
         service_type: booking.serviceType, frequency: booking.frequency, add_ons: booking.addOns,
         total_price: parseFloat(booking.totalPrice),
-        preferred_date: preferredDate ? format(preferredDate, "EEEE, MMMM d, yyyy") : "Not specified",
+        preferred_date: format(preferredDate, "yyyy-MM-dd"),
+        time_slot: timeSlot,
         special_instructions: `${formData.accessInstructions}\n\nFocus Areas: ${formData.focusAreas}`.trim() || null,
         pet_info: formData.hasPets !== "no" ? `${formData.hasPets} - ${formData.petDetails}` : null,
         status: "pending" as const,
-      });
+      } as any);
       if (dbError) { toast({ title: "Error", description: "Failed to save booking.", variant: "destructive" }); setIsSubmitting(false); return; }
 
       if (typeof window.gtag === "function") window.gtag("event", "generate_lead", { event_category: "booking", value: parseFloat(booking.totalPrice) || 0, currency: "USD" });
 
       try { await supabase.functions.invoke("send-sms-notification", { body: { type: "booking", data: { customerName: formData.name, customerPhone: formData.phone, serviceType: booking.serviceType, totalPrice: booking.totalPrice } } }); } catch {}
 
-      navigate("/confirmation", { state: { ...booking, ...formData, preferredDate: preferredDate ? format(preferredDate, "EEEE, MMMM d, yyyy") : "Not specified" } });
+      const slotLabel = timeSlot === "morning" ? "Morning (8am–12pm)" : "Afternoon (12pm–5pm)";
+      navigate("/confirmation", { state: { ...booking, ...formData, preferredDate: `${format(preferredDate, "EEEE, MMMM d, yyyy")} • ${slotLabel}` } });
     } catch { toast({ title: "Error", description: "Something went wrong.", variant: "destructive" }); }
     finally { setIsSubmitting(false); }
   };
@@ -97,11 +111,47 @@ const BookingForm = () => {
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-4">
-                <h2 className="font-semibold text-foreground flex items-center gap-2"><CalendarIcon className="w-4 h-4 text-primary" />Preferred Date</h2>
+                <h2 className="font-semibold text-foreground flex items-center gap-2"><CalendarIcon className="w-4 h-4 text-primary" />Preferred Date & Time</h2>
                 <Popover><PopoverTrigger asChild>
-                  <Button variant="outline" className={cn("w-full justify-start text-left", !preferredDate && "text-muted-foreground")}><CalendarIcon className="mr-2 h-4 w-4" />{preferredDate ? format(preferredDate, "EEEE, MMMM d, yyyy") : "Pick a date"}</Button>
-                </PopoverTrigger><PopoverContent className="w-auto p-0" align="start"><Calendar mode="single" selected={preferredDate} onSelect={setPreferredDate} disabled={(date) => date < minDate} initialFocus className="p-3 pointer-events-auto" /></PopoverContent></Popover>
+                  <Button variant="outline" className={cn("w-full justify-start text-left min-h-[44px]", !preferredDate && "text-muted-foreground")}><CalendarIcon className="mr-2 h-4 w-4" />{preferredDate ? format(preferredDate, "EEEE, MMMM d, yyyy") : "Pick a date"}</Button>
+                </PopoverTrigger><PopoverContent className="w-auto p-0" align="start"><Calendar mode="single" selected={preferredDate} onSelect={setPreferredDate} disabled={(date) => date < minDate || isDateUnavailable(date)} initialFocus className="p-3 pointer-events-auto" /></PopoverContent></Popover>
+                {availLoading && <p className="text-xs text-muted-foreground">Checking availability…</p>}
+                {preferredDate && (
+                  <div className="space-y-2">
+                    <p className="text-sm font-medium text-foreground">Choose a time slot:</p>
+                    <div className="grid grid-cols-2 gap-3">
+                      {(["morning", "afternoon"] as const).map((slot) => {
+                        const available = slotAvailable(preferredDate, slot);
+                        const selected = timeSlot === slot;
+                        return (
+                          <button
+                            key={slot}
+                            type="button"
+                            disabled={!available}
+                            onClick={() => setTimeSlot(slot)}
+                            className={cn(
+                              "rounded-lg border-2 p-4 text-left transition-all min-h-[72px]",
+                              selected ? "border-primary bg-primary/5" : "border-border hover:border-primary/50",
+                              !available && "opacity-50 cursor-not-allowed bg-muted",
+                            )}
+                          >
+                            <div className="flex items-center gap-2 mb-1">
+                              {slot === "morning" ? <Sun className="w-4 h-4 text-primary" /> : <Moon className="w-4 h-4 text-primary" />}
+                              <span className="font-semibold text-foreground capitalize">{slot}</span>
+                            </div>
+                            <p className="text-xs text-muted-foreground">
+                              {slot === "morning" ? "8am – 12pm" : "12pm – 5pm"}
+                            </p>
+                            {!available && <p className="text-xs text-destructive mt-1">Fully booked</p>}
+                          </button>
+                        );
+                      })}
+                    </div>
+                    <p className="text-xs text-muted-foreground">We'll confirm exact arrival time via text.</p>
+                  </div>
+                )}
               </div>
+
 
               <div className="space-y-4">
                 <h2 className="font-semibold text-foreground flex items-center gap-2"><User className="w-4 h-4 text-primary" />Contact</h2>
