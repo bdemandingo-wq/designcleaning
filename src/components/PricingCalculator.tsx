@@ -72,10 +72,13 @@ const PricingCalculator = () => {
   const [serviceType, setServiceType] = useState("standard");
   const [frequency, setFrequency] = useState("onetime");
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
+  const [pets, setPets] = useState("0");
+  const [condition, setCondition] = useState("good");
 
   const selectedService = services.find((s) => s.value === serviceType) ?? services[0];
   const selectedFrequency = frequencies.find((f) => f.value === frequency)!;
   const minimum = selectedService ? (SERVICE_MINIMUMS[selectedService.value] ?? 0) : 0;
+  const isDeepOrMove = selectedService?.value === "deep" || selectedService?.value === "moveinout";
 
   const totalPrice = useMemo(() => {
     if (!selectedService) return 0;
@@ -84,10 +87,13 @@ const PricingCalculator = () => {
       const addOn = addOns.find((a) => a.id === id);
       return sum + (addOn?.price || 0);
     }, 0);
-    price += addOnTotal;
+    const petTotal = petOptions.find((p) => p.value === pets)?.price || 0;
+    const conditionOpt = conditionOptions.find((c) => c.value === condition);
+    const conditionTotal = conditionOpt ? (isDeepOrMove ? conditionOpt.deep : conditionOpt.standard) : 0;
+    price += addOnTotal + petTotal + conditionTotal;
     price = price * (1 - selectedFrequency.discount);
     return price;
-  }, [sqft, selectedService, selectedFrequency, selectedAddOns, minimum]);
+  }, [sqft, selectedService, selectedFrequency, selectedAddOns, minimum, pets, condition, isDeepOrMove]);
 
   const toggleAddOn = (id: string) => {
     setSelectedAddOns((prev) => prev.includes(id) ? prev.filter((a) => a !== id) : [...prev, id]);
@@ -95,12 +101,18 @@ const PricingCalculator = () => {
 
   const handleBooking = () => {
     if (!selectedService) return;
+    const petLabel = petOptions.find((p) => p.value === pets)?.label;
+    const conditionLabel = conditionOptions.find((c) => c.value === condition)?.label;
     navigate("/booking", {
       state: {
         sqft: sqft[0],
         serviceType: selectedService.label,
         frequency: selectedFrequency.label,
-        addOns: selectedAddOns.map(id => addOns.find(a => a.id === id)?.label).filter(Boolean),
+        addOns: [
+          ...selectedAddOns.map(id => addOns.find(a => a.id === id)?.label).filter(Boolean),
+          ...(pets !== "0" && petLabel ? [petLabel] : []),
+          ...(condition !== "good" && conditionLabel ? [`Condition: ${conditionLabel}`] : []),
+        ],
         totalPrice: totalPrice?.toFixed(2),
       },
     });
