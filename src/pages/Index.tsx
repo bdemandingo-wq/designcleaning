@@ -9,6 +9,7 @@ import SEOSchema from "@/components/seo/SEOSchema";
 import Footer from "@/components/Footer";
 
 const WhyChooseUs = lazy(() => import("@/components/WhyChooseUs"));
+const SafeAndInsured = lazy(() => import("@/components/SafeAndInsured"));
 const PrimaryServiceAreas = lazy(() => import("@/components/PrimaryServiceAreas"));
 const Testimonials = lazy(() => import("@/components/Testimonials"));
 const HomeFAQ = lazy(() => import("@/components/HomeFAQ"));
@@ -47,6 +48,7 @@ const Index = () => {
         <HowItWorks />
         <PricingPreview />
         <LazySection minHeight={400}><WhyChooseUs /></LazySection>
+        <LazySection minHeight={400}><SafeAndInsured /></LazySection>
         <LazySection minHeight={350}><PrimaryServiceAreas /></LazySection>
         <LazySection minHeight={400}><Testimonials /></LazySection>
         <LazySection minHeight={400}><HomeFAQ /></LazySection>
