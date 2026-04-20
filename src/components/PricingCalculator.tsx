@@ -6,29 +6,7 @@ import { Slider } from "@/components/ui/slider";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-
-const pricingTiers = [
-  { maxSqft: 750, label: "Up to 750 sf" },
-  { maxSqft: 1000, label: "Up to 1000 sf" },
-  { maxSqft: 1250, label: "Up to 1250 sf" },
-  { maxSqft: 1500, label: "Up to 1500 sf" },
-  { maxSqft: 1800, label: "Up to 1800 sf" },
-  { maxSqft: 2100, label: "Up to 2100 sf" },
-  { maxSqft: 2400, label: "Up to 2400 sf" },
-  { maxSqft: 2700, label: "Up to 2700 sf" },
-  { maxSqft: 3000, label: "Up to 3000 sf" },
-  { maxSqft: 3300, label: "Up to 3300 sf" },
-  { maxSqft: 3600, label: "Up to 3600 sf" },
-  { maxSqft: 4000, label: "Up to 4000 sf" },
-  { maxSqft: 4400, label: "Up to 4400 sf" },
-];
-
-const serviceTypes = [
-  { value: "standard", label: "Standard Cleaning", prices: [108, 143, 178, 213, 248, 283, 313, 368, 423, 478, 533, 588, 643] },
-  { value: "deep", label: "Deep Cleaning", prices: [208, 243, 278, 313, 348, 383, 438, 493, 548, 603, 658, 713, 768] },
-  { value: "moveinout", label: "Move In/Move Out", prices: [283, 318, 353, 388, 423, 458, 513, 568, 623, 678, 733, 788, 843] },
-  { value: "recurring", label: "Recurring Cleaning", prices: [108, 143, 178, 213, 248, 283, 313, 368, 423, 478, 533, 588, 643] },
-];
+import { useServicePricing, getPriceForSqft } from "@/hooks/useServicePricing";
 
 const frequencies = [
   { value: "onetime", label: "One-Time", discount: 0 },
@@ -45,25 +23,23 @@ const addOns = [
   { id: "balcony", label: "Balcony/Patio", price: 20 },
 ];
 
-const getPriceForSqft = (sqft: number, prices: number[]): number => {
-  for (let i = 0; i < pricingTiers.length; i++) {
-    if (sqft <= pricingTiers[i].maxSqft) return prices[i];
-  }
-  return prices[prices.length - 1];
-};
-
 const PricingCalculator = () => {
   const navigate = useNavigate();
+  const { services, loading } = useServicePricing();
   const [sqft, setSqft] = useState([1500]);
   const [serviceType, setServiceType] = useState("standard");
   const [frequency, setFrequency] = useState("onetime");
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
 
-  const selectedService = serviceTypes.find((s) => s.value === serviceType)!;
+  const selectedService = useMemo(
+    () => services.find((s) => s.value === serviceType) || services[0],
+    [services, serviceType]
+  );
   const selectedFrequency = frequencies.find((f) => f.value === frequency)!;
 
   const totalPrice = useMemo(() => {
-    let price = getPriceForSqft(sqft[0], selectedService.prices);
+    if (!selectedService || !selectedService.tiers.length) return 0;
+    let price = getPriceForSqft(sqft[0], selectedService.tiers);
     const addOnTotal = selectedAddOns.reduce((sum, id) => {
       const addOn = addOns.find((a) => a.id === id);
       return sum + (addOn?.price || 0);
@@ -78,6 +54,7 @@ const PricingCalculator = () => {
   };
 
   const handleBooking = () => {
+    if (!selectedService) return;
     navigate("/booking", {
       state: {
         sqft: sqft[0],
@@ -120,10 +97,10 @@ const PricingCalculator = () => {
 
             <div className="space-y-2">
               <Label className="text-base font-medium">Service Type</Label>
-              <Select value={serviceType} onValueChange={setServiceType}>
-                <SelectTrigger><SelectValue /></SelectTrigger>
+              <Select value={serviceType} onValueChange={setServiceType} disabled={loading || services.length === 0}>
+                <SelectTrigger><SelectValue placeholder={loading ? "Loading..." : "Select a service"} /></SelectTrigger>
                 <SelectContent>
-                  {serviceTypes.map((s) => (
+                  {services.map((s) => (
                     <SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>
                   ))}
                 </SelectContent>
@@ -144,7 +121,9 @@ const PricingCalculator = () => {
 
             <div className="bg-primary/5 rounded-lg p-6 text-center">
               <p className="text-muted-foreground mb-2">Estimated Price</p>
-              <p className="text-4xl font-bold text-primary">${totalPrice?.toFixed(2)}</p>
+              <p className="text-4xl font-bold text-primary">
+                {loading ? "..." : `$${totalPrice?.toFixed(2)}`}
+              </p>
               <p className="text-sm text-muted-foreground mt-1">+ add-ons</p>
             </div>
 
@@ -170,7 +149,7 @@ const PricingCalculator = () => {
               </div>
             </div>
 
-            <Button size="lg" className="w-full text-lg font-semibold bg-accent text-accent-foreground hover:bg-accent/90 rounded-lg" onClick={handleBooking}>
+            <Button size="lg" className="w-full text-lg font-semibold bg-accent text-accent-foreground hover:bg-accent/90 rounded-lg" onClick={handleBooking} disabled={loading}>
               Book This Clean
             </Button>
           </CardContent>
