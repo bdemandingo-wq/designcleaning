@@ -177,6 +177,33 @@ const PricingCalculator = () => {
                   </Select>
                 </div>
 
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label className="text-base font-medium">Pets</Label>
+                    <Select value={pets} onValueChange={setPets}>
+                      <SelectTrigger><SelectValue /></SelectTrigger>
+                      <SelectContent>
+                        {petOptions.map((p) => (
+                          <SelectItem key={p.value} value={p.value}>{p.label}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-base font-medium">Home Condition</Label>
+                    <Select value={condition} onValueChange={setCondition}>
+                      <SelectTrigger><SelectValue /></SelectTrigger>
+                      <SelectContent>
+                        {conditionOptions.map((c) => (
+                          <SelectItem key={c.value} value={c.value}>
+                            {c.label} (+${isDeepOrMove ? c.deep : c.standard})
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
                 <div className="bg-primary/5 rounded-lg p-6 text-center">
                   <p className="text-muted-foreground mb-2">Estimated Price</p>
                   <p className="text-4xl font-bold text-primary">${totalPrice?.toFixed(2)}</p>
