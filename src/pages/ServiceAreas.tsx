@@ -4,21 +4,13 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEOSchema from "@/components/seo/SEOSchema";
+import { useServiceAreas } from "@/hooks/useServiceAreas";
 
-const serviceAreas = [
-  { name: "Gaithersburg", link: "/gaithersburg-cleaning", desc: "Reliable home cleaning in Gaithersburg, MD." },
-  { name: "Washington DC", link: "/washington-dc-cleaning", desc: "Professional cleaning in the nation's capital." },
-  { name: "Silver Spring", link: "/silver-spring-cleaning", desc: "Trusted home cleaning in Silver Spring, MD." },
-  { name: "Rockville", link: "/rockville-cleaning", desc: "Dependable cleaning services in Rockville, MD." },
-  { name: "Bethesda", link: "/bethesda-cleaning", desc: "Premium home cleaning in Bethesda, MD." },
-  { name: "Germantown", link: "/germantown-cleaning", desc: "Professional cleaning in Germantown, MD." },
-  { name: "Potomac", link: "/potomac-cleaning", desc: "Premium home cleaning in Potomac, MD." },
-  { name: "Bowie", link: "/bowie-cleaning", desc: "Reliable home cleaning in Bowie, MD." },
-  { name: "College Park", link: "/college-park-cleaning", desc: "Professional cleaning in College Park, MD." },
-  { name: "Laurel", link: "/laurel-cleaning", desc: "Trusted home cleaning in Laurel, MD." },
-];
+const stateLabel = (state: string) => (state === "DC" ? "Washington, DC" : state === "MD" ? "MD" : state);
 
 const ServiceAreas = () => {
+  const { areas, loading } = useServiceAreas(true);
+
   return (
     <>
       <SEOSchema
@@ -50,19 +42,31 @@ const ServiceAreas = () => {
 
         <section className="py-20">
           <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {serviceAreas.map((area) => (
-                <Link key={area.name} to={area.link} className="bg-card border border-border rounded-xl p-6 hover:border-primary/50 hover:shadow-md transition-all group">
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h3 className="font-display text-lg font-semibold text-foreground group-hover:text-primary transition-colors">{area.name}</h3>
-                      <p className="text-muted-foreground text-sm mt-1">{area.desc}</p>
+            {loading ? (
+              <p className="text-center text-muted-foreground">Loading service areas...</p>
+            ) : (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                {areas.map((area) => (
+                  <Link
+                    key={area.id}
+                    to={`/${area.slug}`}
+                    className="bg-card border border-border rounded-xl p-6 hover:border-primary/50 hover:shadow-md transition-all group"
+                  >
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <div>
+                        <h3 className="font-display text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                          {area.name}
+                        </h3>
+                        <p className="text-muted-foreground text-sm mt-1">
+                          {area.tier === "premium" ? "Premium" : "Reliable"} home cleaning in {area.name}, {stateLabel(area.state)}.
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         </section>
 
