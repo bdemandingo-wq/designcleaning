@@ -1,1 +1,4 @@
 project_id = "qscroubuymspatqhqimh"
+
+[functions.send-chatbot-followup]
+verify_jwt = false
