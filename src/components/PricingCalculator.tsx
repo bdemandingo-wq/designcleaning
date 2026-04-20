@@ -16,6 +16,22 @@ const SERVICE_MINIMUMS: Record<string, number> = {
   recurring: 99,
 };
 
+// Pet modifiers (same for Standard and Deep/Move-In)
+const petOptions = [
+  { value: "0", label: "No Pets", price: 0 },
+  { value: "1", label: "1 Pet (+$15)", price: 15 },
+  { value: "2", label: "2 Pets (+$30)", price: 30 },
+  { value: "3", label: "3+ Pets (+$45)", price: 45 },
+];
+
+// Condition modifiers — different price for Standard vs Deep/Move-In
+const conditionOptions = [
+  { value: "good", label: "Good / normal upkeep", standard: 25, deep: 40 },
+  { value: "fair", label: "Fair / some areas need attention", standard: 50, deep: 75 },
+  { value: "needswork", label: "Needs Work / heavy effort", standard: 90, deep: 110 },
+  { value: "verydirty", label: "Very Dirty / deep recovery", standard: 120, deep: 150 },
+];
+
 const frequencies = [
   { value: "onetime", label: "One-Time", discount: 0 },
   { value: "weekly", label: "Weekly (15% off)", discount: 0.15 },
@@ -56,10 +72,13 @@ const PricingCalculator = () => {
   const [serviceType, setServiceType] = useState("standard");
   const [frequency, setFrequency] = useState("onetime");
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
+  const [pets, setPets] = useState("0");
+  const [condition, setCondition] = useState("good");
 
   const selectedService = services.find((s) => s.value === serviceType) ?? services[0];
   const selectedFrequency = frequencies.find((f) => f.value === frequency)!;
   const minimum = selectedService ? (SERVICE_MINIMUMS[selectedService.value] ?? 0) : 0;
+  const isDeepOrMove = selectedService?.value === "deep" || selectedService?.value === "moveinout";
 
   const totalPrice = useMemo(() => {
     if (!selectedService) return 0;
@@ -68,10 +87,13 @@ const PricingCalculator = () => {
       const addOn = addOns.find((a) => a.id === id);
       return sum + (addOn?.price || 0);
     }, 0);
-    price += addOnTotal;
+    const petTotal = petOptions.find((p) => p.value === pets)?.price || 0;
+    const conditionOpt = conditionOptions.find((c) => c.value === condition);
+    const conditionTotal = conditionOpt ? (isDeepOrMove ? conditionOpt.deep : conditionOpt.standard) : 0;
+    price += addOnTotal + petTotal + conditionTotal;
     price = price * (1 - selectedFrequency.discount);
     return price;
-  }, [sqft, selectedService, selectedFrequency, selectedAddOns, minimum]);
+  }, [sqft, selectedService, selectedFrequency, selectedAddOns, minimum, pets, condition, isDeepOrMove]);
 
   const toggleAddOn = (id: string) => {
     setSelectedAddOns((prev) => prev.includes(id) ? prev.filter((a) => a !== id) : [...prev, id]);
@@ -79,12 +101,18 @@ const PricingCalculator = () => {
 
   const handleBooking = () => {
     if (!selectedService) return;
+    const petLabel = petOptions.find((p) => p.value === pets)?.label;
+    const conditionLabel = conditionOptions.find((c) => c.value === condition)?.label;
     navigate("/booking", {
       state: {
         sqft: sqft[0],
         serviceType: selectedService.label,
         frequency: selectedFrequency.label,
-        addOns: selectedAddOns.map(id => addOns.find(a => a.id === id)?.label).filter(Boolean),
+        addOns: [
+          ...selectedAddOns.map(id => addOns.find(a => a.id === id)?.label).filter(Boolean),
+          ...(pets !== "0" && petLabel ? [petLabel] : []),
+          ...(condition !== "good" && conditionLabel ? [`Condition: ${conditionLabel}`] : []),
+        ],
         totalPrice: totalPrice?.toFixed(2),
       },
     });
@@ -147,6 +175,33 @@ const PricingCalculator = () => {
                       ))}
                     </SelectContent>
                   </Select>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label className="text-base font-medium">Pets</Label>
+                    <Select value={pets} onValueChange={setPets}>
+                      <SelectTrigger><SelectValue /></SelectTrigger>
+                      <SelectContent>
+                        {petOptions.map((p) => (
+                          <SelectItem key={p.value} value={p.value}>{p.label}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-base font-medium">Home Condition</Label>
+                    <Select value={condition} onValueChange={setCondition}>
+                      <SelectTrigger><SelectValue /></SelectTrigger>
+                      <SelectContent>
+                        {conditionOptions.map((c) => (
+                          <SelectItem key={c.value} value={c.value}>
+                            {c.label} (+${isDeepOrMove ? c.deep : c.standard})
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
 
                 <div className="bg-primary/5 rounded-lg p-6 text-center">
