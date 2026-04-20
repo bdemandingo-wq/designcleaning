@@ -135,9 +135,9 @@ const ChatbotWidget = () => {
   }> = {}) => {
     const flowType = flow || "residential";
     const answers = flow === "commercial" ? comState : resState;
-    const payload = {
+    const payload: any = {
       flow_type: flowType,
-      answers: answers as unknown as Record<string, unknown>,
+      answers: answers as any,
       estimate_amount: flow === "residential" && resState.sqft ? calculateEstimate() : null,
       customer_name: (flow === "commercial" ? comState.name : resState.name) || null,
       customer_email: (flow === "commercial" ? comState.email : resState.email) || null,
@@ -146,11 +146,11 @@ const ChatbotWidget = () => {
       ...overrides,
     };
     if (!conversationId) {
-      const { data } = await supabase.from("chatbot_conversations").insert(payload).select("id").single();
+      const { data } = await (supabase.from("chatbot_conversations") as any).insert(payload).select("id").single();
       if (data?.id) setConversationId(data.id);
       return data?.id;
     } else {
-      await supabase.from("chatbot_conversations").update(payload).eq("id", conversationId);
+      await (supabase.from("chatbot_conversations") as any).update(payload).eq("id", conversationId);
       return conversationId;
     }
   };
@@ -160,14 +160,14 @@ const ChatbotWidget = () => {
     if (!email) return;
     const flowType = flow || "residential";
     const answers = flow === "commercial" ? comState : resState;
-    await supabase.from("abandoned_leads").insert({
+    await (supabase.from("abandoned_leads") as any).insert({
       conversation_id: conversationId,
       flow_type: flowType,
       customer_name: (flow === "commercial" ? comState.name : resState.name) || null,
       customer_email: email,
       customer_phone: (flow === "commercial" ? comState.phone : resState.phone) || null,
       estimate_amount: flow === "residential" && resState.sqft ? calculateEstimate() : null,
-      answers: answers as unknown as Record<string, unknown>,
+      answers: answers as any,
     });
   };
 
@@ -229,7 +229,7 @@ const ChatbotWidget = () => {
           "2,500–3,500": 3000,
           "3,500+": 4000,
         };
-        const sqft = sqftMap[answer] ?? parseInt(answer.replace(/\D/g, ""), 10) || 1500;
+        const sqft = sqftMap[answer] ?? (parseInt(answer.replace(/\D/g, ""), 10) || 1500);
         next({ ...resState, sqft });
         pushBot("Any add-ons? (tap all that apply, then 'Done')", [...RES_ADDONS.map((a) => a.label), "None", "Done"]);
         break;
