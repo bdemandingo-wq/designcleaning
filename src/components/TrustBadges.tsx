@@ -14,11 +14,11 @@ const TrustBadges = () => {
   return (
     <section className="py-8 bg-background border-b border-border">
       <div className="container mx-auto px-4">
-        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-5 md:gap-8 justify-items-center md:justify-items-start">
+        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
           {badges.map((badge) => (
             <div
               key={badge.label}
-              className="flex items-center gap-3"
+              className="flex items-center gap-3 px-4 py-3 rounded-xl border border-border bg-card shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-primary/40"
             >
               <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                 <badge.icon className="w-5 h-5 text-primary" aria-hidden="true" />
