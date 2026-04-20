@@ -2,3 +2,12 @@ project_id = "qscroubuymspatqhqimh"
 
 [functions.send-chatbot-followup]
 verify_jwt = false
+
+[functions.send-review-request]
+verify_jwt = false
+
+[functions.submit-review]
+verify_jwt = false
+
+[functions.get-review-token]
+verify_jwt = false
