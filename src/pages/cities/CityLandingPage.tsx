@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEOSchema from "@/components/seo/SEOSchema";
+import { useSiteContent } from "@/hooks/useSiteContent";
 
 interface CityLandingPageProps {
   cityName: string;
@@ -11,6 +12,12 @@ interface CityLandingPageProps {
 }
 
 const CityLandingPage = ({ cityName, citySlug }: CityLandingPageProps) => {
+  const { get } = useSiteContent();
+  const introCopy = get(
+    `city_${citySlug}_intro`,
+    `Design Cleaning provides professional, reliable home cleaning services in ${cityName}. Book online in minutes — simple pricing, no hassle.`
+  );
+
   const services = [
     { name: "Standard Cleaning", desc: "Routine maintenance cleaning to keep your home fresh.", price: "$120" },
     { name: "Deep Cleaning", desc: "Thorough top-to-bottom clean for homes that need extra attention.", price: "$200" },
