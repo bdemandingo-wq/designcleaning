@@ -41,20 +41,20 @@ const CityLandingPage = ({ cityName, citySlug }: CityLandingPageProps) => {
       />
       <main className="min-h-screen">
         <Navbar />
-        <section className="pt-24 pb-12 bg-gradient-to-br from-primary/10 to-background">
+        <section className="pt-20 sm:pt-24 pb-10 sm:pb-12 bg-gradient-to-br from-primary/10 to-background">
           <div className="container mx-auto px-4 text-center">
-            <div className="inline-flex items-center gap-2 bg-primary/15 text-primary border border-primary/30 px-4 py-2 rounded-full mb-6">
+            <div className="inline-flex items-center gap-2 bg-primary/15 text-primary border border-primary/30 px-4 py-2 rounded-full mb-5 sm:mb-6">
               <MapPin className="w-4 h-4" /><span className="text-sm font-medium">{cityName}</span>
             </div>
-            <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
+            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 break-words">
               House Cleaning in {cityName}
             </h1>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-8">
+            <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto mb-7 sm:mb-8">
               {introCopy}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" asChild><Link to="/booking">Book Your {cityName} Cleaning</Link></Button>
-              <Button size="lg" variant="outline" asChild>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+              <Button size="lg" className="min-h-[52px] w-full sm:w-auto" asChild><Link to="/booking">Book Your {cityName} Cleaning</Link></Button>
+              <Button size="lg" variant="outline" className="min-h-[52px] w-full sm:w-auto" asChild>
                 <a href="tel:2029359934">Call (202) 935-9934</a>
               </Button>
             </div>
