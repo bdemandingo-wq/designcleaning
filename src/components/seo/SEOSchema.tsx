@@ -24,7 +24,7 @@ const cleaningServiceSchema = {
   "description": "Design Cleaning is a modern residential cleaning service built for reliability, simplicity, and professional execution.",
   "url": WEBSITE,
   "telephone": PHONE,
-  "email": "DesignCleaning@proton.me",
+  "email": "support@tidywisecleaning.com",
   "foundingDate": "2025",
   "priceRange": "$$",
   "currenciesAccepted": "USD",
