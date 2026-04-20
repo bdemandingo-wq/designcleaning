@@ -43,11 +43,11 @@ const WhyChooseUs = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
           {features.map((feature, index) => (
             <div
               key={feature.title}
-              className="text-center opacity-0 animate-fade-in"
+              className="text-center p-6 md:p-8 rounded-2xl border border-border bg-card shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-primary/40 opacity-0 animate-fade-in"
               style={{ animationDelay: `${index * 0.1}s`, animationFillMode: "forwards" }}
             >
               <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
