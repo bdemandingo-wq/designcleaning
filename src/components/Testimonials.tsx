@@ -1,6 +1,7 @@
 import { Star, MapPin, ExternalLink } from "lucide-react";
 import { useRef } from "react";
 import { useSiteContent } from "@/hooks/useSiteContent";
+import { useApprovedReviews } from "@/hooks/useApprovedReviews";
 import { Button } from "@/components/ui/button";
 
 const fallback = [
@@ -34,17 +35,27 @@ const fallback = [
 const Testimonials = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const { get } = useSiteContent();
+  const { reviews } = useApprovedReviews(12);
   const reviewsUrl = get("google_reviews_url", "https://www.google.com/maps");
 
-  const testimonials = fallback.map((f, idx) => {
-    const i = idx + 1;
-    return {
-      text: get(`testimonial_${i}_text`, f.text),
-      name: get(`testimonial_${i}_name`, f.name),
-      location: get(`testimonial_${i}_location`, f.location),
-      rating: 5,
-    };
-  });
+  // Real approved reviews first; if none, show site-content overrides + fallback.
+  const testimonials = reviews.length > 0
+    ? reviews.map((r) => ({
+        text: r.review_text,
+        name: r.customer_name,
+        location: r.location || "DMV",
+        rating: r.rating,
+      }))
+    : fallback.map((f, idx) => {
+        const i = idx + 1;
+        return {
+          text: get(`testimonial_${i}_text`, f.text),
+          name: get(`testimonial_${i}_name`, f.name),
+          location: get(`testimonial_${i}_location`, f.location),
+          rating: 5,
+        };
+      });
+
 
   return (
     <section className="py-20 bg-background">
