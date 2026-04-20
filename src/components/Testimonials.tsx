@@ -1,6 +1,7 @@
-import { Star, MapPin } from "lucide-react";
+import { Star, MapPin, ExternalLink } from "lucide-react";
 import { useRef } from "react";
 import { useSiteContent } from "@/hooks/useSiteContent";
+import { Button } from "@/components/ui/button";
 
 const fallback = [
   {
@@ -33,6 +34,7 @@ const fallback = [
 const Testimonials = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const { get } = useSiteContent();
+  const reviewsUrl = get("google_reviews_url", "https://www.google.com/maps");
 
   const testimonials = fallback.map((f, idx) => {
     const i = idx + 1;
@@ -54,14 +56,25 @@ const Testimonials = () => {
             ))}
           </div>
           <span className="text-lg font-semibold text-foreground">5.0</span>
-          <span className="text-muted-foreground">5-Star Rated</span>
+          <span className="text-muted-foreground">on Google</span>
         </div>
 
         <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground text-center mb-4">
           What Our Clients Say
         </h2>
-        <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
-          Real reviews from happy homeowners in DMV (DC, Maryland & Virginia).
+        <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-4">
+          Real reviews from happy homeowners across the DMV.
+        </p>
+        <p className="text-center mb-12">
+          <a
+            href={reviewsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+          >
+            Read all reviews on Google
+            <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+          </a>
         </p>
 
         <div
@@ -70,30 +83,46 @@ const Testimonials = () => {
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {testimonials.map((testimonial, index) => (
-            <div
+            <a
               key={index}
-              className="flex-shrink-0 w-[320px] md:w-[380px] bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow scroll-snap-center"
+              href={reviewsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Read more reviews from ${testimonial.name} on Google`}
+              className="group flex-shrink-0 w-[320px] md:w-[380px] bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-lg hover:border-primary/40 transition-all scroll-snap-center cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary"
             >
-              <div className="flex gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-accent text-accent" />
-                ))}
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex gap-1">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 fill-accent text-accent" />
+                  ))}
+                </div>
+                <ExternalLink className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
               </div>
               <p className="text-foreground mb-6 leading-relaxed">"{testimonial.text}"</p>
               <div className="border-t border-border pt-4 flex items-center justify-between">
                 <div>
                   <p className="font-semibold text-foreground">{testimonial.name}</p>
                   <p className="text-sm text-muted-foreground flex items-center gap-1">
-                    <MapPin className="w-3 h-3" />
+                    <MapPin className="w-3 h-3" aria-hidden="true" />
                     {testimonial.location}
                   </p>
                 </div>
                 <span className="text-xs text-primary bg-primary/10 px-2 py-1 rounded-full font-medium">
-                  Verified
+                  Google
                 </span>
               </div>
-            </div>
+            </a>
           ))}
+        </div>
+
+        <div className="text-center mt-10">
+          <Button asChild variant="outline" size="lg" className="rounded-lg">
+            <a href={reviewsUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+              See All Google Reviews
+              <ExternalLink className="w-4 h-4" aria-hidden="true" />
+            </a>
+          </Button>
         </div>
       </div>
     </section>
