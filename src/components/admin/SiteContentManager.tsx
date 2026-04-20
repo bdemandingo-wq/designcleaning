@@ -68,8 +68,118 @@ const SiteContentManager = () => {
     return <div className="text-center py-8 text-muted-foreground">Loading…</div>;
   }
 
+  // Helper to render a single text/textarea field
+  const Field = ({ label, k, multi = false, rows = 2 }: { label: string; k: string; multi?: boolean; rows?: number }) => (
+    <div>
+      <Label htmlFor={k}>{label}</Label>
+      {multi ? (
+        <Textarea id={k} rows={rows} value={content[k] || ""} onChange={(e) => setField(k, e.target.value)} />
+      ) : (
+        <Input id={k} value={content[k] || ""} onChange={(e) => setField(k, e.target.value)} />
+      )}
+    </div>
+  );
+
+  const homepageKeys = [
+    "home_hero_headline", "home_hero_subhead", "home_hero_cta_primary", "home_hero_cta_secondary",
+    "home_trust_badge_1", "home_trust_badge_2", "home_trust_badge_3", "home_trust_badge_4",
+    "home_service_card_standard_title", "home_service_card_standard_desc", "home_service_card_standard_price", "home_service_card_standard_cta",
+    "home_service_card_deep_title", "home_service_card_deep_desc", "home_service_card_deep_price", "home_service_card_deep_cta",
+    "home_service_card_moveinout_title", "home_service_card_moveinout_desc", "home_service_card_moveinout_price", "home_service_card_moveinout_cta",
+    "home_service_card_airbnb_title", "home_service_card_airbnb_desc", "home_service_card_airbnb_price", "home_service_card_airbnb_cta",
+    "home_service_card_commercial_title", "home_service_card_commercial_desc", "home_service_card_commercial_price", "home_service_card_commercial_cta",
+    "home_howitworks_step_1_title", "home_howitworks_step_1_desc",
+    "home_howitworks_step_2_title", "home_howitworks_step_2_desc",
+    "home_howitworks_step_3_title", "home_howitworks_step_3_desc",
+    "home_pricing_preview_headline", "home_pricing_preview_note",
+    "home_why_reliability_title", "home_why_reliability_desc",
+    "home_why_transparency_title", "home_why_transparency_desc",
+    "home_why_scheduling_title", "home_why_scheduling_desc",
+    "home_final_cta_headline", "home_final_cta_subhead",
+  ];
+
   return (
     <div className="space-y-8">
+      {/* Homepage Copy */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Homepage Copy</CardTitle>
+          <p className="text-sm text-muted-foreground">
+            Edit every text block on the home page. Leave a field blank to fall back to the default.
+          </p>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div className="space-y-3">
+            <p className="text-sm font-semibold text-foreground">Hero Section</p>
+            <Field label="Headline" k="home_hero_headline" multi rows={2} />
+            <Field label="Subheadline" k="home_hero_subhead" multi rows={3} />
+            <div className="grid md:grid-cols-2 gap-3">
+              <Field label="Primary CTA label" k="home_hero_cta_primary" />
+              <Field label="Secondary CTA label" k="home_hero_cta_secondary" />
+            </div>
+          </div>
+
+          <div className="space-y-3 border-t pt-4">
+            <p className="text-sm font-semibold text-foreground">Trust Badges (4)</p>
+            <div className="grid md:grid-cols-2 gap-3">
+              <Field label="Badge 1" k="home_trust_badge_1" />
+              <Field label="Badge 2" k="home_trust_badge_2" />
+              <Field label="Badge 3" k="home_trust_badge_3" />
+              <Field label="Badge 4" k="home_trust_badge_4" />
+            </div>
+          </div>
+
+          {(["standard", "deep", "moveinout", "airbnb", "commercial"] as const).map((s) => (
+            <div key={s} className="space-y-3 border-t pt-4">
+              <p className="text-sm font-semibold text-foreground capitalize">Service Card: {s}</p>
+              <div className="grid md:grid-cols-2 gap-3">
+                <Field label="Title" k={`home_service_card_${s}_title`} />
+                <Field label="Price label" k={`home_service_card_${s}_price`} />
+              </div>
+              <Field label="Description" k={`home_service_card_${s}_desc`} multi rows={2} />
+              <Field label="CTA label" k={`home_service_card_${s}_cta`} />
+            </div>
+          ))}
+
+          <div className="space-y-3 border-t pt-4">
+            <p className="text-sm font-semibold text-foreground">How It Works (3 steps)</p>
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="grid md:grid-cols-2 gap-3">
+                <Field label={`Step ${i} title`} k={`home_howitworks_step_${i}_title`} />
+                <Field label={`Step ${i} description`} k={`home_howitworks_step_${i}_desc`} multi rows={2} />
+              </div>
+            ))}
+          </div>
+
+          <div className="space-y-3 border-t pt-4">
+            <p className="text-sm font-semibold text-foreground">Pricing Preview Block</p>
+            <Field label="Headline" k="home_pricing_preview_headline" />
+            <Field label="Note" k="home_pricing_preview_note" multi rows={3} />
+          </div>
+
+          <div className="space-y-3 border-t pt-4">
+            <p className="text-sm font-semibold text-foreground">Why Choose Design Cleaning</p>
+            {(["reliability", "transparency", "scheduling"] as const).map((k) => (
+              <div key={k} className="grid md:grid-cols-2 gap-3">
+                <Field label={`${k} title`} k={`home_why_${k}_title`} />
+                <Field label={`${k} description`} k={`home_why_${k}_desc`} multi rows={2} />
+              </div>
+            ))}
+          </div>
+
+          <div className="space-y-3 border-t pt-4">
+            <p className="text-sm font-semibold text-foreground">Final CTA Block</p>
+            <Field label="Headline" k="home_final_cta_headline" />
+            <Field label="Subheadline" k="home_final_cta_subhead" multi rows={2} />
+          </div>
+
+          <Button onClick={() => saveKeys(homepageKeys, "Homepage Copy")} disabled={savingKey === "Homepage Copy"}>
+            <Save className="w-4 h-4 mr-2" />
+            {savingKey === "Homepage Copy" ? "Saving…" : "Save Homepage Copy"}
+          </Button>
+        </CardContent>
+      </Card>
+
       {/* Links */}
       <Card>
         <CardHeader>
