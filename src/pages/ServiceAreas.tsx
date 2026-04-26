@@ -68,7 +68,7 @@ const ServiceAreas = () => {
     <>
       <SEOSchema
         pageTitle="Service Areas | Design Cleaning DMV — MD, DC, Northern VA"
-        pageDescription="Design Cleaning serves the entire DMV: Maryland, Washington DC, and Northern Virginia. Tiered coverage with transparent travel fee pricing."
+        pageDescription="Design Cleaning serves the entire DMV: Maryland, Washington DC, and Northern Virginia. Transparent, all-inclusive pricing in your free estimate."
         canonicalUrl="https://designcleaningdmv.com/service-areas"
         pageType="service"
         breadcrumbs={[
