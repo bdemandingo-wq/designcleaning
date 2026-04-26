@@ -67,7 +67,7 @@ const ReferralsPage = () => {
           pageTitle="Refer a Friend, Earn $25 | Design Cleaning"
           pageDescription="Share Design Cleaning with friends. You both get $25 off when they book their first clean."
           canonicalUrl="https://designcleaningdmv.com/referrals"
-          pageType="default"
+          pageType="service"
         />
         <main className="min-h-screen">
           <Navbar />
@@ -110,7 +110,7 @@ const ReferralsPage = () => {
         pageTitle="My Referral Link | Design Cleaning"
         pageDescription="Share your Design Cleaning referral link and earn $25 for every friend who books."
         canonicalUrl="https://designcleaningdmv.com/referrals"
-        pageType="default"
+        pageType="service"
       />
       <main className="min-h-screen bg-muted/30">
         <Navbar />
