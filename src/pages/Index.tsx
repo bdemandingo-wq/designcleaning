@@ -15,6 +15,7 @@ const Testimonials = lazy(() => import("@/components/Testimonials"));
 const HomeFAQ = lazy(() => import("@/components/HomeFAQ"));
 const FinalCTA = lazy(() => import("@/components/FinalCTA"));
 const ReferralBanner = lazy(() => import("@/components/ReferralBanner"));
+const ServiceMap = lazy(() => import("@/components/ServiceMap"));
 
 const homepageFaqs = [
   { q: "How do I book a cleaning?", a: "Visit our pricing page, get your free estimate in 60 seconds, then choose your preferred date and confirm. Takes under 5 minutes." },
