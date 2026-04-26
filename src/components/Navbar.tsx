@@ -83,8 +83,8 @@ const Navbar = () => {
           </div>
 
           {isOpen && (
-            <div className="lg:hidden py-4 border-t border-border animate-fade-in bg-background">
-              <div className="flex flex-col gap-1">
+            <div className="lg:hidden py-4 border-t border-border animate-fade-in bg-background max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain">
+              <div className="flex flex-col gap-1 pb-2">
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
@@ -99,7 +99,7 @@ const Navbar = () => {
                     {link.label}
                   </Link>
                 ))}
-                <div className="flex gap-2 mt-3">
+                <div className="flex gap-2 mt-3 sticky bottom-0 bg-background pt-2">
                   <Button variant="outline" className="flex-1 border-primary text-primary" asChild>
                     <a href="tel:2029359934" className="flex items-center justify-center gap-1.5">
                       <Phone className="w-4 h-4" />
