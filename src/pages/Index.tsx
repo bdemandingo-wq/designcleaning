@@ -15,6 +15,7 @@ const Testimonials = lazy(() => import("@/components/Testimonials"));
 const HomeFAQ = lazy(() => import("@/components/HomeFAQ"));
 const FinalCTA = lazy(() => import("@/components/FinalCTA"));
 const ReferralBanner = lazy(() => import("@/components/ReferralBanner"));
+const ServiceMap = lazy(() => import("@/components/ServiceMap"));
 
 const homepageFaqs = [
   { q: "How do I book a cleaning?", a: "Visit our pricing page, get your free estimate in 60 seconds, then choose your preferred date and confirm. Takes under 5 minutes." },
@@ -52,6 +53,7 @@ const Index = () => {
         <LazySection minHeight={400}><WhyChooseUs /></LazySection>
         <LazySection minHeight={350}><PrimaryServiceAreas /></LazySection>
         <LazySection minHeight={400}><Testimonials /></LazySection>
+        <LazySection minHeight={500}><ServiceMap /></LazySection>
         <LazySection minHeight={400}><HomeFAQ /></LazySection>
         <LazySection minHeight={350}><ReferralBanner /></LazySection>
         <LazySection minHeight={300}><FinalCTA /></LazySection>
