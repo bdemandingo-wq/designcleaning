@@ -29,6 +29,11 @@ const BookingForm = () => {
   const [preferredDate, setPreferredDate] = useState<Date | undefined>();
   const [timeSlot, setTimeSlot] = useState<"morning" | "afternoon" | "">("");
   const { isDateUnavailable, slotAvailable, loading: availLoading } = useBookingAvailability();
+  const { getStoredReferralCode, balance: creditBalance, clearStoredReferralCode } = useReferral();
+  const referralCode = getStoredReferralCode();
+  const totalNum = parseFloat(booking?.totalPrice ?? "0") || 0;
+  const creditApplied = Math.min(creditBalance, Math.max(0, totalNum));
+  const finalTotal = Math.max(0, totalNum - creditApplied);
 
   const minDate = new Date();
   minDate.setDate(minDate.getDate() + 2);
