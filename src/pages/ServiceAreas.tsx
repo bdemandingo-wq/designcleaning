@@ -124,7 +124,7 @@ const ServiceAreas = () => {
                     <h3 className="font-display text-base font-semibold text-foreground group-hover:text-primary transition-colors">
                       {area.name}
                     </h3>
-                    <p className="text-xs text-muted-foreground mt-1">No travel fee</p>
+                    <p className="text-xs text-muted-foreground mt-1">Home-base city</p>
                   </Link>
                 ))}
               </div>
