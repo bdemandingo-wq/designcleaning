@@ -545,10 +545,10 @@ const ChatbotWidget = () => {
       <Button
         onClick={() => (open ? handleClose() : setOpen(true))}
         size="icon"
-        className="h-14 w-14 rounded-full shadow-lg hover:scale-105 transition-transform"
+        className="h-12 w-12 sm:h-14 sm:w-14 rounded-full shadow-lg hover:scale-105 transition-transform"
         aria-label={open ? "Close chat" : "Open chat"}
       >
-        {open ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
+        {open ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />}
       </Button>
     </div>
   );
