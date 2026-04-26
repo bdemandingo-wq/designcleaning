@@ -29,12 +29,12 @@ const Navbar = () => {
       </a>
       <nav className="fixed top-0 left-0 right-0 z-[60] bg-background/95 backdrop-blur-md border-b border-border shadow-sm">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-20 md:h-24">
-            <Link to="/" className="flex items-center flex-shrink-0" aria-label="Design Cleaning home">
+          <div className="flex items-center justify-between h-16 md:h-20">
+            <Link to="/" className="flex items-center flex-shrink-0 h-full py-1.5" aria-label="Design Cleaning home">
               <img
                 src={logo}
                 alt="Design Cleaning logo"
-                className="h-16 md:h-20 w-auto object-contain"
+                className="h-full w-auto object-contain"
               />
             </Link>
 
