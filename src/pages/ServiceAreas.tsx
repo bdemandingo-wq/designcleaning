@@ -17,19 +17,19 @@ import { useSiteContent } from "@/hooks/useSiteContent";
 const TIER_META: Record<string, { title: string; subtitle: string }> = {
   core: {
     title: "Core Service Area",
-    subtitle: "Our 5 home-base cities — no travel fee, ever.",
+    subtitle: "Our 5 home-base cities.",
   },
   extended_md: {
     title: "Extended Maryland",
-    subtitle: "Nearby Montgomery & Prince George's County cities — small travel fee may apply.",
+    subtitle: "Nearby Montgomery & Prince George's County cities.",
   },
   dc: {
     title: "Washington DC",
-    subtitle: "Full DC coverage — travel fee shown upfront on your estimate.",
+    subtitle: "Full DC coverage.",
   },
   nova: {
     title: "Northern Virginia",
-    subtitle: "Arlington, Alexandria, McLean, and surrounding NoVA — travel fee applies.",
+    subtitle: "Arlington, Alexandria, McLean, and surrounding NoVA.",
   },
 };
 
