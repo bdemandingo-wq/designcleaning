@@ -27,7 +27,7 @@ const Hero = () => {
     >
       <div className="absolute inset-0 bg-black/55" />
       <div className="relative z-10 container mx-auto px-4 py-10 sm:py-14 md:py-20 lg:py-24">
-        <div className="grid lg:grid-cols-[1fr_minmax(0,420px)] gap-8 md:gap-10 items-center">
+        <div className="grid lg:grid-cols-[1fr_minmax(0,560px)] gap-8 md:gap-10 items-center">
           {/* Left: copy */}
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-black/50 text-white border border-white/30 mb-4 sm:mb-6">
