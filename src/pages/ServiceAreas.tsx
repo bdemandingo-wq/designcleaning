@@ -269,11 +269,6 @@ const CityAccordionItem = ({ area }: { area: ServiceArea }) => {
         <div className="flex items-center gap-3">
           <MapPin className="w-4 h-4 text-primary" />
           <span className="font-semibold text-foreground">{area.name}</span>
-          {area.travel_fee > 0 && (
-            <span className="text-xs text-muted-foreground">
-              +${Number(area.travel_fee).toFixed(0)} travel
-            </span>
-          )}
         </div>
       </AccordionTrigger>
       <AccordionContent>
