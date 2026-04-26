@@ -30,7 +30,7 @@ const Navbar = () => {
       <nav className="fixed top-0 left-0 right-0 z-[60] bg-background/95 backdrop-blur-md border-b border-border shadow-sm">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16 md:h-20">
-            <Link to="/" className="flex items-center flex-shrink-0 h-full py-3" aria-label="Design Cleaning home">
+            <Link to="/" className="flex items-center flex-shrink-0 h-full py-4" aria-label="Design Cleaning home">
               <img
                 src={logo}
                 alt="Design Cleaning logo"
