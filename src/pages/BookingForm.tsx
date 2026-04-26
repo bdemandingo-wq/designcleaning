@@ -14,6 +14,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { useBookingAvailability } from "@/hooks/useBookingAvailability";
+import { useReferral } from "@/hooks/useReferral";
+import { Gift } from "lucide-react";
 
 interface BookingState { sqft: number; serviceType: string; frequency: string; addOns: string[]; totalPrice: string; }
 
