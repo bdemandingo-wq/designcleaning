@@ -71,8 +71,8 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Right: instant estimator (desktop only — keeps mobile/tablet hero focused) */}
-          <div className="hidden lg:flex justify-end">
+          {/* Right: instant estimator */}
+          <div className="flex justify-center lg:justify-end mt-8 lg:mt-0">
             <HeroEstimator />
           </div>
         </div>
