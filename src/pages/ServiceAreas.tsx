@@ -43,14 +43,7 @@ const ServiceAreas = () => {
     "service_areas_intro",
     "Design Cleaning proudly serves Maryland, Washington DC, and Northern Virginia. Same vetted cleaners, same transparent pricing, every city."
   );
-  const policy = get("service_areas_travel_policy", "");
   const commercialNote = get("service_areas_commercial_note", "");
-  const feeBands = [
-    get("service_areas_fee_band_1", "0–10 miles • Free"),
-    get("service_areas_fee_band_2", "10–20 miles • $15–$25"),
-    get("service_areas_fee_band_3", "20–30 miles • $25–$50"),
-    get("service_areas_fee_band_4", "30+ miles • Custom quote"),
-  ];
 
   const tierGroups = useMemo(() => {
     const buckets: Record<string, ServiceArea[]> = {};
