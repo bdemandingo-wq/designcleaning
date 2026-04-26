@@ -6,10 +6,10 @@ import TrustBadges from "@/components/TrustBadges";
 import ServiceCards from "@/components/ServiceCards";
 import HowItWorks from "@/components/HowItWorks";
 import PricingPreview from "@/components/PricingPreview";
+import WhyChooseUs from "@/components/WhyChooseUs";
 import SEOSchema from "@/components/seo/SEOSchema";
 import Footer from "@/components/Footer";
 
-const WhyChooseUs = lazy(() => import("@/components/WhyChooseUs"));
 const PrimaryServiceAreas = lazy(() => import("@/components/PrimaryServiceAreas"));
 const Testimonials = lazy(() => import("@/components/Testimonials"));
 const HomeFAQ = lazy(() => import("@/components/HomeFAQ"));
