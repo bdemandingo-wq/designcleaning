@@ -69,14 +69,19 @@ const BookingForm = () => {
         customer_name: formData.name, customer_email: formData.email, customer_phone: formData.phone,
         address: formData.address, beds: formData.beds, baths: formData.baths, sqft: booking.sqft,
         service_type: booking.serviceType, frequency: booking.frequency, add_ons: booking.addOns,
-        total_price: parseFloat(booking.totalPrice),
+        total_price: finalTotal,
         preferred_date: format(preferredDate, "yyyy-MM-dd"),
         time_slot: timeSlot,
         special_instructions: `${formData.accessInstructions}\n\nFocus Areas: ${formData.focusAreas}`.trim() || null,
         pet_info: formData.hasPets !== "no" ? `${formData.hasPets} - ${formData.petDetails}` : null,
         status: "pending" as const,
+        referral_code_used: referralCode || null,
+        credit_applied: creditApplied,
       } as any);
       if (dbError) { toast({ title: "Error", description: "Failed to save booking.", variant: "destructive" }); setIsSubmitting(false); return; }
+
+      // Clear stored referral code so it's not reused
+      if (referralCode) clearStoredReferralCode();
 
       if (typeof window.gtag === "function") window.gtag("event", "generate_lead", { event_category: "booking", value: parseFloat(booking.totalPrice) || 0, currency: "USD" });
 
