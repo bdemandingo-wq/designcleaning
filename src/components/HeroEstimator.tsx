@@ -75,6 +75,7 @@ const HeroEstimator = () => {
             max={5}
             step={1}
             onValueChange={(v) => setBrIdx(v[0])}
+            className="[&_[data-orientation=horizontal]]:h-2.5 [&_[role=slider]]:h-7 [&_[role=slider]]:w-7 [&_[role=slider]]:border-[3px] [&_[role=slider]]:shadow-lg"
           />
           <div className="flex justify-between text-xs text-muted-foreground mt-1.5">
             <span>Studio</span>
