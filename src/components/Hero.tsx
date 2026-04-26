@@ -43,9 +43,6 @@ const Hero = () => {
             {headline}
           </h1>
 
-          <p className="text-lg md:text-xl text-white/85 max-w-2xl leading-relaxed mb-8">
-            {subhead}
-          </p>
 
           <div className="flex flex-col sm:flex-row gap-3">
             <Button
