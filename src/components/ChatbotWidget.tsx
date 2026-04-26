@@ -475,7 +475,7 @@ const ChatbotWidget = () => {
   const showInput = !!flow && (!lastBot?.options || lastBot.options.length === 0);
 
   return (
-    <div className="fixed right-4 z-50 bottom-[calc(5rem+env(safe-area-inset-bottom))] lg:bottom-4">
+    <div className="fixed right-3 sm:right-4 z-50 bottom-[calc(5.5rem+env(safe-area-inset-bottom))] lg:bottom-4">
       {open && (
         <div className="mb-3 w-[360px] max-w-[calc(100vw-2rem)] h-[520px] max-h-[calc(100dvh-9rem)] lg:max-h-[calc(100dvh-5rem)] flex flex-col rounded-2xl bg-card shadow-2xl border border-border overflow-hidden animate-in fade-in slide-in-from-bottom-4">
           <div className="bg-primary text-primary-foreground p-4 flex items-center justify-between">
