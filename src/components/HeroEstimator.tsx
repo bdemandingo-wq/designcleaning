@@ -39,7 +39,7 @@ const HeroEstimator = () => {
   }, [activeService, brIdx, serviceType]);
 
   return (
-    <div className="bg-card text-card-foreground rounded-2xl shadow-2xl border border-border p-6 w-full max-w-md">
+    <div className="bg-card text-card-foreground rounded-2xl shadow-2xl border border-border p-6 w-full max-w-lg">
       <div className="text-center mb-5">
         <h3 className="font-display text-xl font-bold text-foreground">Instant Price Estimator</h3>
         <p className="text-sm text-muted-foreground">Get your estimate in seconds</p>
