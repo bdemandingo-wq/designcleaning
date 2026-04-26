@@ -119,22 +119,22 @@ const PricingCalculator = () => {
   };
 
   return (
-    <section id="booking" className="py-20 bg-background">
+    <section id="booking" className="py-12 sm:py-16 md:py-20 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+        <div className="text-center mb-8 sm:mb-10 md:mb-12">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4">
             Transparent Pricing
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">
             Simple, upfront pricing with no hidden fees. Choose your service and book instantly.
           </p>
         </div>
 
         <Card className="max-w-2xl mx-auto shadow-elevated">
-          <CardHeader>
-            <CardTitle className="text-xl font-display">Select Your Service</CardTitle>
+          <CardHeader className="px-4 sm:px-6">
+            <CardTitle className="text-lg sm:text-xl font-display">Select Your Service</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-8">
+          <CardContent className="space-y-6 sm:space-y-8 px-4 sm:px-6">
             {loading || !selectedService ? (
               <div className="flex items-center justify-center py-12">
                 <Loader2 className="h-6 w-6 animate-spin text-primary" />
@@ -204,19 +204,19 @@ const PricingCalculator = () => {
                   </div>
                 </div>
 
-                <div className="bg-primary/5 rounded-lg p-6 text-center">
-                  <p className="text-muted-foreground mb-2">Estimated Price</p>
-                  <p className="text-4xl font-bold text-primary">${totalPrice?.toFixed(2)}</p>
-                  <p className="text-sm text-muted-foreground mt-1">+ add-ons</p>
+                <div className="bg-primary/5 rounded-lg p-4 sm:p-6 text-center">
+                  <p className="text-muted-foreground mb-2 text-sm sm:text-base">Estimated Price</p>
+                  <p className="text-3xl sm:text-4xl font-bold text-primary break-words">${totalPrice?.toFixed(2)}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground mt-1">+ add-ons</p>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <Label className="text-base font-medium">Add-On Services:</Label>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3">
                     {addOns.map((addOn) => (
                       <div
                         key={addOn.id}
-                        className={`flex items-center gap-2 p-3 rounded-lg border cursor-pointer transition-all ${
+                        className={`flex items-center gap-2 p-2.5 sm:p-3 rounded-lg border cursor-pointer transition-all min-h-[44px] ${
                           selectedAddOns.includes(addOn.id)
                             ? "bg-primary/10 border-primary"
                             : "bg-background border-border hover:border-primary/50"
@@ -224,7 +224,7 @@ const PricingCalculator = () => {
                         onClick={() => toggleAddOn(addOn.id)}
                       >
                         <Checkbox id={addOn.id} checked={selectedAddOns.includes(addOn.id)} onCheckedChange={() => toggleAddOn(addOn.id)} />
-                        <label htmlFor={addOn.id} className="text-sm cursor-pointer">
+                        <label htmlFor={addOn.id} className="text-sm cursor-pointer leading-tight flex-1">
                           {addOn.label} (+${addOn.price})
                         </label>
                       </div>
