@@ -170,31 +170,18 @@ const ServiceAreas = () => {
           </section>
         )}
 
-        {/* Travel fee policy + bands */}
+        {/* Pricing transparency */}
         <section className="py-16">
-          <div className="container mx-auto px-4 max-w-5xl">
-            <div className="grid md:grid-cols-2 gap-8 items-start">
-              <div>
-                <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-1.5 rounded-full mb-3 text-sm font-medium">
-                  <DollarSign className="w-4 h-4" /> Travel Fee Policy
-                </div>
-                <h2 className="font-display text-3xl font-bold text-foreground mb-4">
-                  Transparent. No surprises.
-                </h2>
-                <p className="text-muted-foreground leading-relaxed">{policy}</p>
-              </div>
-              <div className="bg-card border border-border rounded-xl p-6">
-                <p className="text-sm font-semibold text-foreground mb-4">Travel fee bands</p>
-                <ul className="space-y-3">
-                  {feeBands.map((band, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-primary mt-0.5 shrink-0" />
-                      <span className="text-foreground">{band}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          <div className="container mx-auto px-4 max-w-3xl text-center">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-1.5 rounded-full mb-3 text-sm font-medium">
+              <DollarSign className="w-4 h-4" /> Transparent Pricing
             </div>
+            <h2 className="font-display text-3xl font-bold text-foreground mb-4">
+              All-inclusive quotes. No surprises.
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              Your free estimate includes everything — your final price is exactly what you'll pay.
+            </p>
           </div>
         </section>
 
