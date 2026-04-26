@@ -102,61 +102,7 @@ const Contact = () => {
           <p className="text-muted-foreground text-lg leading-relaxed">{lead}</p>
         </div>
 
-        {/* Map + key contact summary */}
-        <div className="max-w-6xl mx-auto mb-10 grid lg:grid-cols-2 gap-6 items-stretch">
-          <div className="rounded-xl overflow-hidden shadow-md border border-border min-h-[320px]">
-            <iframe
-              title="Design Cleaning service area map"
-              src="https://www.google.com/maps?q=Gaithersburg%2C%20MD&output=embed"
-              width="100%"
-              height="100%"
-              style={{ border: 0, minHeight: 320 }}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-            />
-          </div>
-          <Card className="shadow-md">
-            <CardContent className="p-6 md:p-8 h-full flex flex-col justify-center">
-              <h2 className="font-display text-xl font-semibold text-foreground mb-4">
-                Contact Design Cleaning
-              </h2>
-              <ul className="space-y-3 text-sm">
-                <li>
-                  <span className="font-medium text-foreground">Phone: </span>
-                  <a href={`tel:${phoneTel}`} className="text-primary underline font-medium">{phoneNumber}</a>
-                </li>
-                <li>
-                  <span className="font-medium text-foreground">Email: </span>
-                  <a href={`mailto:${emailAddr}`} className="text-primary underline font-medium break-all">{emailAddr}</a>
-                </li>
-                <li>
-                  <span className="font-medium text-foreground">Hours: </span>
-                  <span className="text-muted-foreground">{hours}</span>
-                </li>
-                <li>
-                  <span className="font-medium text-foreground">Service Area: </span>
-                  <span className="text-muted-foreground">{areaSummary}</span>
-                </li>
-              </ul>
-              {areas.length > 0 && (
-                <div className="mt-5">
-                  <p className="font-medium text-foreground text-sm mb-2">Service Areas:</p>
-                  <div className="flex flex-wrap gap-2">
-                    {areas.slice(0, 8).map((a) => (
-                      <span
-                        key={a.id}
-                        className="text-xs px-2.5 py-1 rounded-full bg-primary/10 text-primary border border-primary/20"
-                      >
-                        {a.name}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        </div>
+
 
         <div className="grid lg:grid-cols-2 gap-10 max-w-6xl mx-auto">
           {/* Left: contact info + service area check */}
