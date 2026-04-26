@@ -53,6 +53,7 @@ const Index = () => {
         <LazySection minHeight={350}><PrimaryServiceAreas /></LazySection>
         <LazySection minHeight={400}><Testimonials /></LazySection>
         <LazySection minHeight={400}><HomeFAQ /></LazySection>
+        <LazySection minHeight={350}><ReferralBanner /></LazySection>
         <LazySection minHeight={300}><FinalCTA /></LazySection>
         <Footer />
       </main>
