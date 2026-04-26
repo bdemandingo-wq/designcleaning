@@ -60,7 +60,7 @@ const OurWorkPage = () => {
         />
       </Helmet>
       <Navbar />
-      <main id="main-content" className="pt-16">
+      <main id="main-content" className="pt-24">
         {/* Hero */}
         <section className="bg-primary text-primary-foreground py-16 text-center">
           <div className="container mx-auto px-4">

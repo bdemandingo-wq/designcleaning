@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone } from "lucide-react";
-import logo from "@/assets/design-cleaning-logo.jpg";
+import logo from "@/assets/design-cleaning-logo.png";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -29,16 +29,13 @@ const Navbar = () => {
       </a>
       <nav className="fixed top-0 left-0 right-0 z-[60] bg-background/95 backdrop-blur-md border-b border-border shadow-sm">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            <Link to="/" className="flex items-center gap-2 flex-shrink-0" aria-label="Design Cleaning home">
+          <div className="flex items-center justify-between h-20 md:h-24">
+            <Link to="/" className="flex items-center flex-shrink-0" aria-label="Design Cleaning home">
               <img
                 src={logo}
                 alt="Design Cleaning logo"
-                className="h-9 w-9 md:h-10 md:w-10 object-contain"
-                width={40}
-                height={40}
+                className="h-16 md:h-20 w-auto object-contain"
               />
-              <span className="font-display text-xl font-bold text-foreground">Design Cleaning</span>
             </Link>
 
             {/* Desktop nav */}

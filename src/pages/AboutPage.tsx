@@ -87,7 +87,7 @@ const AboutPage = () => {
       />
       <main id="main-content" className="min-h-screen">
         <Navbar />
-        <div className="pt-16">
+        <div className="pt-24">
           {/* Hero */}
           <section className="py-20 md:py-24 bg-primary text-primary-foreground">
             <div className="container mx-auto px-4 text-center max-w-3xl">

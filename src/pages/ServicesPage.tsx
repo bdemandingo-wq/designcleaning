@@ -58,7 +58,7 @@ const ServicesPage = () => {
       />
       <main id="main-content" className="min-h-screen">
         <Navbar />
-        <div className="pt-16">
+        <div className="pt-24">
           <section className="py-20 bg-primary text-primary-foreground">
             <div className="container mx-auto px-4 text-center">
               <h1 className="font-display text-4xl md:text-5xl font-bold mb-4">Our Cleaning Services</h1>
