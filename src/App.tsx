@@ -35,6 +35,7 @@ const CommercialPage = lazy(() => import("./pages/CommercialPage"));
 const PricingPage = lazy(() => import("./pages/PricingPage"));
 const AirbnbTurnoverPage = lazy(() => import("./pages/AirbnbTurnoverPage"));
 const ReviewSubmit = lazy(() => import("./pages/ReviewSubmit"));
+const ReferralsPage = lazy(() => import("./pages/ReferralsPage"));
 
 // City pages
 const CityLandingPage = lazy(() => import("./pages/cities/CityLandingPage"));
