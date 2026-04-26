@@ -17,19 +17,19 @@ import { useSiteContent } from "@/hooks/useSiteContent";
 const TIER_META: Record<string, { title: string; subtitle: string }> = {
   core: {
     title: "Core Service Area",
-    subtitle: "Our 5 home-base cities — no travel fee, ever.",
+    subtitle: "Our 5 home-base cities.",
   },
   extended_md: {
     title: "Extended Maryland",
-    subtitle: "Nearby Montgomery & Prince George's County cities — small travel fee may apply.",
+    subtitle: "Nearby Montgomery & Prince George's County cities.",
   },
   dc: {
     title: "Washington DC",
-    subtitle: "Full DC coverage — travel fee shown upfront on your estimate.",
+    subtitle: "Full DC coverage.",
   },
   nova: {
     title: "Northern Virginia",
-    subtitle: "Arlington, Alexandria, McLean, and surrounding NoVA — travel fee applies.",
+    subtitle: "Arlington, Alexandria, McLean, and surrounding NoVA.",
   },
 };
 
@@ -43,14 +43,7 @@ const ServiceAreas = () => {
     "service_areas_intro",
     "Design Cleaning proudly serves Maryland, Washington DC, and Northern Virginia. Same vetted cleaners, same transparent pricing, every city."
   );
-  const policy = get("service_areas_travel_policy", "");
   const commercialNote = get("service_areas_commercial_note", "");
-  const feeBands = [
-    get("service_areas_fee_band_1", "0–10 miles • Free"),
-    get("service_areas_fee_band_2", "10–20 miles • $15–$25"),
-    get("service_areas_fee_band_3", "20–30 miles • $25–$50"),
-    get("service_areas_fee_band_4", "30+ miles • Custom quote"),
-  ];
 
   const tierGroups = useMemo(() => {
     const buckets: Record<string, ServiceArea[]> = {};
@@ -68,7 +61,7 @@ const ServiceAreas = () => {
     <>
       <SEOSchema
         pageTitle="Service Areas | Design Cleaning DMV — MD, DC, Northern VA"
-        pageDescription="Design Cleaning serves the entire DMV: Maryland, Washington DC, and Northern Virginia. Tiered coverage with transparent travel fee pricing."
+        pageDescription="Design Cleaning serves the entire DMV: Maryland, Washington DC, and Northern Virginia. Transparent, all-inclusive pricing in your free estimate."
         canonicalUrl="https://designcleaningdmv.com/service-areas"
         pageType="service"
         breadcrumbs={[
@@ -124,7 +117,7 @@ const ServiceAreas = () => {
                     <h3 className="font-display text-base font-semibold text-foreground group-hover:text-primary transition-colors">
                       {area.name}
                     </h3>
-                    <p className="text-xs text-muted-foreground mt-1">No travel fee</p>
+                    <p className="text-xs text-muted-foreground mt-1">Home-base city</p>
                   </Link>
                 ))}
               </div>
@@ -170,31 +163,18 @@ const ServiceAreas = () => {
           </section>
         )}
 
-        {/* Travel fee policy + bands */}
+        {/* Pricing transparency */}
         <section className="py-16">
-          <div className="container mx-auto px-4 max-w-5xl">
-            <div className="grid md:grid-cols-2 gap-8 items-start">
-              <div>
-                <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-1.5 rounded-full mb-3 text-sm font-medium">
-                  <DollarSign className="w-4 h-4" /> Travel Fee Policy
-                </div>
-                <h2 className="font-display text-3xl font-bold text-foreground mb-4">
-                  Transparent. No surprises.
-                </h2>
-                <p className="text-muted-foreground leading-relaxed">{policy}</p>
-              </div>
-              <div className="bg-card border border-border rounded-xl p-6">
-                <p className="text-sm font-semibold text-foreground mb-4">Travel fee bands</p>
-                <ul className="space-y-3">
-                  {feeBands.map((band, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-primary mt-0.5 shrink-0" />
-                      <span className="text-foreground">{band}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          <div className="container mx-auto px-4 max-w-3xl text-center">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-1.5 rounded-full mb-3 text-sm font-medium">
+              <DollarSign className="w-4 h-4" /> Transparent Pricing
             </div>
+            <h2 className="font-display text-3xl font-bold text-foreground mb-4">
+              All-inclusive quotes. No surprises.
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              Your free estimate includes everything — your final price is exactly what you'll pay.
+            </p>
           </div>
         </section>
 
@@ -247,7 +227,7 @@ const ServiceAreas = () => {
           <div className="container mx-auto px-4 text-center">
             <h2 className="font-display text-3xl font-bold mb-4">Ready to Book Your Cleaning?</h2>
             <p className="text-primary-foreground/80 mb-8 max-w-xl mx-auto">
-              Get a free estimate in 60 seconds — your travel fee (if any) is shown upfront.
+              Get a free, all-inclusive estimate in 60 seconds — your price is your price.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary" asChild>
@@ -282,11 +262,6 @@ const CityAccordionItem = ({ area }: { area: ServiceArea }) => {
         <div className="flex items-center gap-3">
           <MapPin className="w-4 h-4 text-primary" />
           <span className="font-semibold text-foreground">{area.name}</span>
-          {area.travel_fee > 0 && (
-            <span className="text-xs text-muted-foreground">
-              +${Number(area.travel_fee).toFixed(0)} travel
-            </span>
-          )}
         </div>
       </AccordionTrigger>
       <AccordionContent>
