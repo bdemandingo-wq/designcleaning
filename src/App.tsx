@@ -70,6 +70,7 @@ const AppRoutes = () => {
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/airbnb-turnover" element={<AirbnbTurnoverPage />} />
         <Route path="/review/:token" element={<ReviewSubmit />} />
+        <Route path="/referrals" element={<ReferralsPage />} />
 
         {/* City Landing Pages — Core MD */}
         <Route path="/gaithersburg-cleaning" element={<CityLandingPage cityName="Gaithersburg" citySlug="gaithersburg-cleaning" />} />
