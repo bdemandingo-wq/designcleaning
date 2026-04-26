@@ -323,7 +323,7 @@ const ChatbotWidget = () => {
             status: "estimate_shown",
           });
           pushBot(
-            `Great news! Your free estimate is $${estimate.toFixed(2)}.${matchedArea?.travel_fee ? ` (Includes $${matchedArea.travel_fee} travel fee for ${matchedArea.name}.)` : ""}\n\nWe have openings this week — lock in your spot now and we'll handle the rest!`,
+            `Great news! Your free, all-inclusive estimate is $${estimate.toFixed(2)}.\n\nWe have openings this week — lock in your spot now and we'll handle the rest!`,
             ["Book Now — Save My Spot", "Pick a Different Date", "I need to think about it"]
           );
           break;
