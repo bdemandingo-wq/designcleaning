@@ -51,7 +51,7 @@ export const FAQ_DEFAULTS: { q: string; a: string }[] = [
   },
   {
     q: "What areas do you serve?",
-    a: "We serve Gaithersburg, Rockville, Bethesda, Silver Spring, Germantown, Washington DC, Arlington, Alexandria, and the greater DMV. Areas outside our core zone may include a small travel fee. Not sure? Get a free estimate and we'll confirm.",
+    a: "We serve Gaithersburg, Rockville, Bethesda, Silver Spring, Germantown, Washington DC, Arlington, Alexandria, and the greater DMV. Not sure if we cover your area? Get a free estimate and we'll confirm.",
   },
   {
     q: "What is your cancellation / rescheduling policy?",
