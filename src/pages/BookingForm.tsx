@@ -14,6 +14,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { useBookingAvailability } from "@/hooks/useBookingAvailability";
+import { useReferral } from "@/hooks/useReferral";
+import { Gift } from "lucide-react";
 
 interface BookingState { sqft: number; serviceType: string; frequency: string; addOns: string[]; totalPrice: string; }
 
@@ -27,6 +29,11 @@ const BookingForm = () => {
   const [preferredDate, setPreferredDate] = useState<Date | undefined>();
   const [timeSlot, setTimeSlot] = useState<"morning" | "afternoon" | "">("");
   const { isDateUnavailable, slotAvailable, loading: availLoading } = useBookingAvailability();
+  const { getStoredReferralCode, balance: creditBalance, clearStoredReferralCode } = useReferral();
+  const referralCode = getStoredReferralCode();
+  const totalNum = parseFloat(booking?.totalPrice ?? "0") || 0;
+  const creditApplied = Math.min(creditBalance, Math.max(0, totalNum));
+  const finalTotal = Math.max(0, totalNum - creditApplied);
 
   const minDate = new Date();
   minDate.setDate(minDate.getDate() + 2);
@@ -62,14 +69,19 @@ const BookingForm = () => {
         customer_name: formData.name, customer_email: formData.email, customer_phone: formData.phone,
         address: formData.address, beds: formData.beds, baths: formData.baths, sqft: booking.sqft,
         service_type: booking.serviceType, frequency: booking.frequency, add_ons: booking.addOns,
-        total_price: parseFloat(booking.totalPrice),
+        total_price: finalTotal,
         preferred_date: format(preferredDate, "yyyy-MM-dd"),
         time_slot: timeSlot,
         special_instructions: `${formData.accessInstructions}\n\nFocus Areas: ${formData.focusAreas}`.trim() || null,
         pet_info: formData.hasPets !== "no" ? `${formData.hasPets} - ${formData.petDetails}` : null,
         status: "pending" as const,
+        referral_code_used: referralCode || null,
+        credit_applied: creditApplied,
       } as any);
       if (dbError) { toast({ title: "Error", description: "Failed to save booking.", variant: "destructive" }); setIsSubmitting(false); return; }
+
+      // Clear stored referral code so it's not reused
+      if (referralCode) clearStoredReferralCode();
 
       if (typeof window.gtag === "function") window.gtag("event", "generate_lead", { event_category: "booking", value: parseFloat(booking.totalPrice) || 0, currency: "USD" });
 
@@ -102,12 +114,43 @@ const BookingForm = () => {
               </div>
             </div>
 
-            <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mb-8">
+            <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mb-4">
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
                 <div className="min-w-0"><p className="text-sm text-muted-foreground">Your Service</p><p className="font-semibold text-foreground break-words">{booking.serviceType} • {booking.frequency}</p><p className="text-sm text-muted-foreground">{booking.sqft.toLocaleString()} sq ft</p></div>
-                <div className="sm:text-right"><p className="text-sm text-muted-foreground">Total</p><p className="text-2xl font-bold text-primary">${booking.totalPrice}</p></div>
+                <div className="sm:text-right">
+                  {creditApplied > 0 ? (
+                    <>
+                      <p className="text-sm text-muted-foreground line-through">${totalNum.toFixed(2)}</p>
+                      <p className="text-xs text-emerald-600 font-medium">−${creditApplied.toFixed(2)} credit</p>
+                      <p className="text-2xl font-bold text-primary">${finalTotal.toFixed(2)}</p>
+                    </>
+                  ) : (
+                    <>
+                      <p className="text-sm text-muted-foreground">Total</p>
+                      <p className="text-2xl font-bold text-primary">${booking.totalPrice}</p>
+                    </>
+                  )}
+                </div>
               </div>
             </div>
+
+            {(referralCode || creditApplied > 0) && (
+              <div className="bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 rounded-lg p-3 mb-8 flex items-start gap-2.5">
+                <Gift className="w-4 h-4 text-emerald-600 mt-0.5 shrink-0" />
+                <div className="text-sm text-emerald-800 dark:text-emerald-300">
+                  {creditApplied > 0 && (
+                    <p>
+                      <span className="font-semibold">${creditApplied.toFixed(2)} in credit</span> will be applied to this booking.
+                    </p>
+                  )}
+                  {referralCode && (
+                    <p>
+                      Referral code <span className="font-mono font-semibold">{referralCode}</span> applied — you'll get $25 credit after your first cleaning.
+                    </p>
+                  )}
+                </div>
+              </div>
+            )}
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-4">
