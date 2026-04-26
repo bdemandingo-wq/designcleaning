@@ -71,7 +71,7 @@ const ReferralsPage = () => {
         />
         <main className="min-h-screen">
           <Navbar />
-          <section className="pt-32 pb-20 bg-gradient-to-br from-emerald-500 to-emerald-600 text-white">
+          <section className="pt-32 pb-20 bg-gradient-to-br from-blue-500 to-blue-600 text-white">
             <div className="container mx-auto px-4 max-w-2xl text-center">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/15 mb-6">
                 <Gift className="w-8 h-8" />
@@ -84,13 +84,13 @@ const ReferralsPage = () => {
                 clean, you both get $25 off automatically.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Button size="lg" className="bg-white text-emerald-700 hover:bg-white/90 font-semibold" asChild>
+                <Button size="lg" className="bg-white text-blue-700 hover:bg-white/90 font-semibold" asChild>
                   <Link to="/auth?mode=signup&redirect=/referrals">Create Account</Link>
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-emerald-700 bg-transparent"
+                  className="border-white text-white hover:bg-white hover:text-blue-700 bg-transparent"
                   asChild
                 >
                   <Link to="/auth?redirect=/referrals">Sign In</Link>
@@ -116,7 +116,7 @@ const ReferralsPage = () => {
         <Navbar />
 
         {/* Hero */}
-        <section className="pt-28 pb-12 bg-gradient-to-br from-emerald-500 to-emerald-600 text-white">
+        <section className="pt-28 pb-12 bg-gradient-to-br from-blue-500 to-blue-600 text-white">
           <div className="container mx-auto px-4 max-w-3xl text-center">
             <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-white/15 mb-5">
               <Gift className="w-7 h-7" />
@@ -254,7 +254,7 @@ const ReferralsPage = () => {
                         <p
                           className={`text-xs font-medium ${
                             r.status === "completed"
-                              ? "text-emerald-600"
+                              ? "text-blue-600"
                               : "text-amber-600"
                           }`}
                         >
